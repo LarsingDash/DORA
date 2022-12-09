@@ -10,23 +10,56 @@ import nl.a3.dora.ui.component.DialogBox
 @Composable
 fun HomeScreen() {
     val showDialog = remember {
-        mutableStateOf(false)
+        mutableStateOf(0)
     }
 
     Button(onClick = {
-        showDialog.value = true
+        showDialog.value = 1
     }) {
-        Text(text = "Dialog je moeder")
+        Text(text = "Popup Testbutton")
     }
 
-    if (showDialog.value) {
+    if (showDialog.value == 1) {
         DialogBox(
             showDialog,
             "TestTitle",
-            "Juuuuuuuuuuuuuuuuuuuuuuuuu kanker moeder",
+            "Test\nDescription\nDescription\nDescription\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "Description\n" +
+                    "last",
             mapOf(
-                "No" to { println("no") },
-                "Maybe" to { println("maybe") },
+//                "No" to { println("no") },
+//                "Maybe" to { println("maybe") },
                 "Yes" to { println("yes") }
             )
         )

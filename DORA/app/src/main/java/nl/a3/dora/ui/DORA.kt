@@ -1,12 +1,13 @@
 package nl.a3.dora.ui
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -83,29 +84,33 @@ fun BottomBar(
         modifier = Modifier,
         backgroundColor = Color.LightGray
     ) {
-        Row {
+        Row(modifier = Modifier.fillMaxWidth()) {
             //Home
             NavButton(
                 buttonUnit = homeButtonUnit,
                 buttonName = Pages.Home.title,
+                modifier = Modifier.weight(0.25f),
             )
 
             //map
             NavButton(
                 buttonUnit = mapButtonUnit,
                 buttonName = Pages.Map.title,
+                modifier = Modifier.weight(0.25f),
             )
 
             //poi
             NavButton(
                 buttonUnit = poiButtonUnit,
                 buttonName = Pages.POI.title,
+                modifier = Modifier.weight(0.25f),
             )
 
             //help
             NavButton(
                 buttonUnit = helpButtonUnit,
                 buttonName = Pages.Help.title,
+                modifier = Modifier.weight(0.25f),
             )
         }
     }
@@ -113,14 +118,15 @@ fun BottomBar(
 
 @Composable
 fun NavButton(
+    modifier: Modifier,
     buttonUnit: () -> Unit,
     buttonName: String,
 ) {
     Button(
         onClick = buttonUnit,
-        modifier = Modifier
-            .padding(10.dp, 0.dp),
-        colors = ButtonDefaults.buttonColors(Color.Red)
+        modifier = modifier.fillMaxHeight(),
+        colors = ButtonDefaults.buttonColors(Color.Red),
+        shape = MaterialTheme.shapes.large,
     ) {
         Text(
             text = buttonName,

@@ -10,16 +10,16 @@ import nl.a3.dora.ui.component.DialogBox
 @Composable
 fun HelpScreen() {
     val displayDisplay = remember {
-        mutableStateOf(false)
+        mutableStateOf(0)
     }
 
     Button(onClick = {
-        displayDisplay.value = true
+        displayDisplay.value = 1
     }) {
         Text(text = "help")
     }
 
-    if (displayDisplay.value) {
+    if (displayDisplay.value == 1) {
         DialogBox(
             showDialog = displayDisplay,
             titleText = "title",
