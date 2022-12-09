@@ -10,16 +10,16 @@ import nl.a3.dora.ui.component.DialogBox
 @Composable
 fun HomeScreen() {
     val showDialog = remember {
-        mutableStateOf(false)
+        mutableStateOf(0)
     }
 
     Button(onClick = {
-        showDialog.value = true
+        showDialog.value = 1
     }) {
         Text(text = "Dialog je moeder")
     }
 
-    if (showDialog.value) {
+    if (showDialog.value == 1) {
         DialogBox(
             showDialog,
             "TestTitle",

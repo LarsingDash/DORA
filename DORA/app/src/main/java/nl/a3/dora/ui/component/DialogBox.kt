@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DialogBox(
-    showDialog: MutableState<Boolean>,
+    showDialog: MutableState<Int>,
     titleText: String,
     description: String,
     buttons: Map<String, () -> Unit>
@@ -54,7 +54,7 @@ fun DialogBox(
                     for (set in buttons) {
                         Button(
                             onClick = {
-                                showDialog.value = false
+                                showDialog.value = 0
                                 set.value.invoke()
                             },
                             colors = ButtonDefaults.buttonColors(Color.Gray)
