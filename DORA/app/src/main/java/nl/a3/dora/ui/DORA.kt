@@ -1,5 +1,7 @@
 package nl.a3.dora.ui
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,10 +20,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import nl.a3.dora.R
+import nl.a3.dora.model.POI
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
 import nl.a3.dora.ui.screens.POIScreen
+import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.viewmodel.RouteViewModel
+import org.osmdroid.util.GeoPoint
 
 enum class Pages(val title: String) {
     Home(title = "home"),
@@ -34,8 +41,11 @@ private lateinit var currentPage : MutableState<String>
 
 @Composable
 fun DORA(
-    navController: NavHostController = rememberNavController()
+    poiViewModel: PoiViewModel,
+    routeViewModel: RouteViewModel
 ) {
+    val navController: NavHostController = rememberNavController()
+
     currentPage = remember {
         mutableStateOf(Pages.Home.title)
     }
@@ -68,7 +78,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen()
+                HomeScreen(routeViewModel)
             }
 
             //Map
@@ -78,7 +88,7 @@ fun DORA(
 
             //POI
             composable(route = Pages.POI.title) {
-                POIScreen()
+                POIScreen(poiViewModel)
             }
 
             //Help
