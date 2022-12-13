@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import nl.a3.dora.data.repository.test.DummyRepoPoi
 import nl.a3.dora.model.POI
 import nl.a3.dora.viewmodel.repository.PoiRepository
 import nl.a3.dora.viewmodel.repository.ViewModelAbstract
@@ -29,21 +28,21 @@ class PoiViewModel @Inject constructor(
         return tempItem
     }
 
-    override fun addType(poi: POI) {
+    override fun addType(type: POI) {
         viewModelScope.launch(Dispatchers.IO) {
-            poiRepository.insertPOI(poi)
+            poiRepository.insertPOI(type)
         }
     }
 
-    override fun updateType(poi: POI) {
+    override fun updateType(type: POI) {
         viewModelScope.launch(Dispatchers.IO) {
-            poiRepository.updatePOI(poi)
+            poiRepository.updatePOI(type)
         }
     }
 
-    override fun deleteType(poi: POI) {
+    override fun deleteType(type: POI) {
         viewModelScope.launch(Dispatchers.IO) {
-            poiRepository.deletePOI(poi)
+            poiRepository.deletePOI(type)
         }
     }
 }
