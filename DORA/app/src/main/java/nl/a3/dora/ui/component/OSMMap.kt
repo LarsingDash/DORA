@@ -9,8 +9,11 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import kotlinx.coroutines.runBlocking
 import nl.a3.dora.TestPOI
+import org.osmdroid.bonuspack.routing.OSRMRoadManager
 import org.osmdroid.bonuspack.routing.RoadManager
+import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
@@ -20,6 +23,7 @@ import org.osmdroid.views.overlay.Polyline
 private lateinit var mapView: MapView
 private lateinit var poiOverlay: ItemizedIconOverlay<POIOverlayItem>
 private lateinit var routeOverlay: Polyline
+private lateinit var roadManager: RoadManager
 
 //Main Composable
 @Composable
@@ -27,11 +31,11 @@ fun OSMMap(
     onPOIClicked: (TestPOI) -> Unit,
 ) {
     //Initiate variables
-
     val context = LocalContext.current
-    mapView = remember { MapView(context) }
-
     val updatedOnPOIClicked by rememberUpdatedState(onPOIClicked)
+
+    mapView = remember { MapView(context) }
+    roadManager = OSRMRoadManager(context, Configuration.getInstance().userAgentValue)
 
     //Create overlays
     poiOverlay = createPOIOverlay(
@@ -108,14 +112,21 @@ fun addPOIListToMap(POIList: List<TestPOI>) {
     mapView.invalidate()
 }
 
+@Composable
 fun addRouteToMap(POIList: List<TestPOI>) {
     val route: ArrayList<GeoPoint> = arrayListOf()
     for (poi in POIList) {
         route.add(poi.geoPoint)
     }
 
-    routeOverlay.setPoints(route.toMutableList())
-    mapView.invalidate()
+    runBlocking {
+        val road = roadManager.getRoad(route)
+        routeOverlay = RoadManager.buildRoadOverlay(road)
+    }
+//    mapView.overlays.add(routeOverlay)
+
+//    routeOverlay.setPoints(route.toMutableList())
+//    mapView.invalidate()
 }
 
 @Composable
