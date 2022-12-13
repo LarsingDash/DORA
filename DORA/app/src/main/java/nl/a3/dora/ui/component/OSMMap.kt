@@ -36,6 +36,7 @@ fun OSMMap(
 
     mapView = remember { MapView(context) }
     roadManager = OSRMRoadManager(context, Configuration.getInstance().userAgentValue)
+    (roadManager as OSRMRoadManager).setMean(OSRMRoadManager.MEAN_BY_FOOT)
 
     //Create overlays
     poiOverlay = createPOIOverlay(
@@ -112,8 +113,9 @@ fun addPOIListToMap(POIList: List<TestPOI>) {
     mapView.invalidate()
 }
 
-@Composable
 fun addRouteToMap(POIList: List<TestPOI>) {
+    mapView.overlays.remove(routeOverlay)
+
     val route: ArrayList<GeoPoint> = arrayListOf()
     for (poi in POIList) {
         route.add(poi.geoPoint)
@@ -123,10 +125,9 @@ fun addRouteToMap(POIList: List<TestPOI>) {
         val road = roadManager.getRoad(route)
         routeOverlay = RoadManager.buildRoadOverlay(road)
     }
-//    mapView.overlays.add(routeOverlay)
 
-//    routeOverlay.setPoints(route.toMutableList())
-//    mapView.invalidate()
+    mapView.overlays.add(routeOverlay)
+    mapView.invalidate()
 }
 
 @Composable
