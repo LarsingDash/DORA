@@ -10,32 +10,40 @@ import nl.a3.dora.data.data_source.type_converters.GeoTypeConverter
 import nl.a3.dora.data.data_source.type_converters.ImgTypeConverter
 import nl.a3.dora.data.data_source.type_converters.ListTypeConverter
 import nl.a3.dora.model.POI
+import nl.a3.dora.model.Route
 
-//TODO Database automigration necessary
 /**
  * Room Database for local data persistence
- * Singleton pattern for use of ease
+ * Singleton pattern for ease of use
  * Database uses SQLite commands for Reading and writing data
+ * TODO Database automigration necessary
  */
-@Database(entities = [POI::class],
+@Database(
+    entities = [
+        POI::class,
+        Route::class
+    ],
     version = 1,
-    exportSchema = false)
+    exportSchema = false
+)
 @TypeConverters(
     ImgTypeConverter::class,
     GeoTypeConverter::class,
     ListTypeConverter::class
 )
-abstract class DoraDB: RoomDatabase() {
+abstract class DoraDB : RoomDatabase() {
     abstract fun poiDao(): PoiDao
+    abstract fun routeDao(): RouteDao
 
     companion object {
         private const val DATABASE_NAME = "dora_db"
+
         @Volatile
         private var INSTANCE: DoraDB? = null
 
         fun getDBInstance(context: Context): DoraDB {
             val tempInstance = INSTANCE
-            if (tempInstance != null){
+            if (tempInstance != null) {
                 return tempInstance
             }
 

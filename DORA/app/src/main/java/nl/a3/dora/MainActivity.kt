@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import nl.a3.dora.presentation.ui.DORA
 import nl.a3.dora.presentation.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 
 @AndroidEntryPoint
@@ -21,10 +22,11 @@ class MainActivity : ComponentActivity() {
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
 
         val poiViewModel: PoiViewModel by viewModels()
+        val routeViewModel: RouteViewModel by viewModels()
 
         setContent {
             DORATheme {
-                DORA(poiViewModel)
+                DORA(poiViewModel, routeViewModel)
             }
         }
     }

@@ -26,8 +26,7 @@ interface PoiDao {
     fun getAllPOIs(): Flow<List<POI>>
 
     /**
-     * @brief Gets all POIs from the poi_table through SQLite queries
-     * @return Flow<List<POI>>
+     * @brief Gets a POI from the poi_table through SQLite queries
      */
     @Query("SELECT * FROM poi_table WHERE poiID= :id")
     suspend fun getPOIByID(id: Int): POI?

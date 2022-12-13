@@ -17,6 +17,7 @@ import nl.a3.dora.presentation.ui.screens.HomeScreen
 import nl.a3.dora.presentation.ui.screens.MapScreen
 import nl.a3.dora.presentation.ui.screens.POIScreen
 import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.viewmodel.RouteViewModel
 
 enum class Pages(val title: String) {
     Home(title = "home"),
@@ -27,7 +28,8 @@ enum class Pages(val title: String) {
 
 @Composable
 fun DORA(
-    poiViewModel: PoiViewModel
+    poiViewModel: PoiViewModel,
+    routeViewModel: RouteViewModel
 ) {
     val navController: NavHostController = rememberNavController()
     Scaffold(
@@ -59,7 +61,7 @@ fun DORA(
 
             //Map
             composable(route = Pages.Map.title) {
-                MapScreen()
+                MapScreen(routeViewModel)
             }
 
             //POI

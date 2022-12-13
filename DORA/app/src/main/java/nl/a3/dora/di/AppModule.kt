@@ -9,7 +9,9 @@ import nl.a3.dora.data.data_source.DoraDB
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.DoraApp
 import nl.a3.dora.data.repository.test.DummyRepoPoi
+import nl.a3.dora.data.repository.test.DummyRepoRoute
 import nl.a3.dora.viewmodel.repository.PoiRepository
+import nl.a3.dora.viewmodel.repository.RouteRepository
 import javax.inject.Singleton
 
 /**
@@ -32,6 +34,12 @@ object AppModule {
     @Singleton
     fun providePoiRepository(db: DoraDB): PoiRepository {
         return DummyRepoPoi()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteRepository(db: DoraDB): RouteRepository {
+        return DummyRepoRoute()
     }
 
 }
