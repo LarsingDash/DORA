@@ -1,4 +1,4 @@
-package nl.a3.dora.presentation.ui
+package nl.a3.dora.ui
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -16,10 +16,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import nl.a3.dora.R
 import nl.a3.dora.model.POI
-import nl.a3.dora.presentation.ui.screens.HelpScreen
-import nl.a3.dora.presentation.ui.screens.HomeScreen
-import nl.a3.dora.presentation.ui.screens.MapScreen
-import nl.a3.dora.presentation.ui.screens.POIScreen
+import nl.a3.dora.ui.screens.HelpScreen
+import nl.a3.dora.ui.screens.HomeScreen
+import nl.a3.dora.ui.screens.MapScreen
+import nl.a3.dora.ui.screens.POIScreen
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.util.GeoPoint

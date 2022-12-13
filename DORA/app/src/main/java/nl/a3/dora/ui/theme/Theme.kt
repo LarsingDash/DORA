@@ -1,4 +1,4 @@
-package nl.a3.dora.presentation.ui.theme
+package nl.a3.dora.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

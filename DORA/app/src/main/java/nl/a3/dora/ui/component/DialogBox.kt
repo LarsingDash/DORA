@@ -1,4 +1,4 @@
-package nl.a3.dora.presentation.ui.component
+package nl.a3.dora.ui.component
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*

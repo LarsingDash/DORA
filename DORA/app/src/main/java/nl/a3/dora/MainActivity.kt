@@ -11,8 +11,8 @@ import androidx.core.graphics.drawable.toBitmap
 import dagger.hilt.android.AndroidEntryPoint
 import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
-import nl.a3.dora.presentation.ui.DORA
-import nl.a3.dora.presentation.ui.theme.DORATheme
+import nl.a3.dora.ui.DORA
+import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration

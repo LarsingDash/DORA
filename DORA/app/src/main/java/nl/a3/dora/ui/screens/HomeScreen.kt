@@ -1,4 +1,4 @@
-package nl.a3.dora.presentation.ui.screens
+package nl.a3.dora.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import nl.a3.dora.presentation.ui.component.DialogBox
+import nl.a3.dora.ui.component.DialogBox
 import nl.a3.dora.viewmodel.RouteViewModel
 
 
