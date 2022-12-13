@@ -10,16 +10,16 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import nl.a3.dora.TestPOI
+import org.osmdroid.bonuspack.routing.RoadManager
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.Overlay
 import org.osmdroid.views.overlay.OverlayItem
 import org.osmdroid.views.overlay.Polyline
 
-private lateinit var mapView : MapView
-private lateinit var poiOverlay : ItemizedIconOverlay<POIOverlayItem>
-private lateinit var routeOverlay : Polyline
+private lateinit var mapView: MapView
+private lateinit var poiOverlay: ItemizedIconOverlay<POIOverlayItem>
+private lateinit var routeOverlay: Polyline
 
 //Main Composable
 @Composable
@@ -27,6 +27,7 @@ fun OSMMap(
     onPOIClicked: (TestPOI) -> Unit,
 ) {
     //Initiate variables
+
     val context = LocalContext.current
     mapView = remember { MapView(context) }
 
@@ -68,7 +69,7 @@ fun OSMMap(
 private fun createPOIOverlay(
     context: Context,
     updatedOnPOIClicked: (TestPOI) -> Unit,
-) : ItemizedIconOverlay<POIOverlayItem> {
+): ItemizedIconOverlay<POIOverlayItem> {
     return remember {
         //Create listener from clicks on the POI
         val listener = object : ItemizedIconOverlay.OnItemGestureListener<POIOverlayItem> {
@@ -79,7 +80,9 @@ private fun createPOIOverlay(
             }
 
             //Hold (not in use)
-            override fun onItemLongPress(index: Int, item: POIOverlayItem?): Boolean { return false }
+            override fun onItemLongPress(index: Int, item: POIOverlayItem?): Boolean {
+                return false
+            }
         }
 
         //Create and return overlay
@@ -90,14 +93,14 @@ private fun createPOIOverlay(
 @Composable
 private fun createRouteOverlay(
     mapView: MapView
-) : Polyline {
+): Polyline {
     return remember {
         Polyline(mapView, true, true)
     }
 }
 
 //Other Functions
-fun addPOIListToMap(POIList : List<TestPOI>) {
+fun addPOIListToMap(POIList: List<TestPOI>) {
     poiOverlay.removeAllItems()
     poiOverlay.addItems(
         POIList.map { POIOverlayItem(it) }
@@ -105,7 +108,7 @@ fun addPOIListToMap(POIList : List<TestPOI>) {
     mapView.invalidate()
 }
 
-fun addRouteToMap(POIList : List<TestPOI>) {
+fun addRouteToMap(POIList: List<TestPOI>) {
     val route: ArrayList<GeoPoint> = arrayListOf()
     for (poi in POIList) {
         route.add(poi.geoPoint)

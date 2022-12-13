@@ -73,6 +73,7 @@ dependencies {
 
     // For OSM Droid
     implementation "org.osmdroid:osmdroid-android:$osm_droid_version"
+    implementation fileTree(dir: 'libs', include: "osmbonuspack_6.9.0.aar")
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
     testImplementation 'junit:junit:4.13.2'
