@@ -14,5 +14,6 @@ data class POI(
     @PrimaryKey(autoGenerate = true) val poiID: Int? = null,
     val name: String,
     val distanceTo: Float,
-    @Ignore val bitmapImg: Bitmap,
+    val isVisited: Boolean,
+    @Ignore val poiImg: Bitmap,
 )

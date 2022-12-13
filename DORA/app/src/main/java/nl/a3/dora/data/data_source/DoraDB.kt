@@ -1,6 +1,7 @@
 package nl.a3.dora.data.data_source
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -12,7 +13,9 @@ import nl.a3.dora.model.POI
  * Singleton pattern for use of ease
  * Database uses SQLite commands for Reading and writing data
  */
-@Database(entities = [POI::class], version = 1, exportSchema = false)
+@Database(entities = [POI::class],
+    version = 1,
+    exportSchema = false)
 abstract class DoraDB: RoomDatabase() {
     abstract fun poiDao(): PoiDao
 
