@@ -15,8 +15,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import nl.a3.dora.model.POI
 import nl.a3.dora.presentation.ui.component.DialogBox
 import nl.a3.dora.viewmodel.PoiViewModel
+import org.osmdroid.util.GeoPoint
 
 @Composable
 fun HomeScreen(poiViewModel: PoiViewModel) {
@@ -30,9 +32,18 @@ fun HomeScreen(poiViewModel: PoiViewModel) {
     LazyColumn {
         items(poiListState.value.size) { index ->
             val poi = poiListState.value[index]
-
+//            poiViewModel.addType(
+//                POI(
+//                    poiID = 7,
+//                    name= "Poi 10",
+//                    distanceTo = 0f,
+//                    isVisited = true,
+//                    thumbnailImg = null,
+//                    GeoPoint(51.5941116667, 4.7794166667)
+//                )
+//            )
             Box(modifier = Modifier.padding(5.dp)) {
-                Text(text = poi.name)
+                Text(text = poi.isVisited.toString())
 //                    Text(text = note.content)
             }
         }

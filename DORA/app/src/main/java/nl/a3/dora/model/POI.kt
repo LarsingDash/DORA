@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import org.osmdroid.util.GeoPoint
 
 /**
  * @bier Data class for storing representative data
@@ -15,4 +16,7 @@ data class POI(
     val name: String,
     val distanceTo: Float,
     val isVisited: Boolean,
+    val thumbnailImg: Bitmap? = null,
+    //TODO GeoPoint non-null maken en daarna GeoPoint Invullen
+    val poiLocation: GeoPoint? = null,
 )

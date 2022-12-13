@@ -5,6 +5,10 @@ import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import nl.a3.dora.data.data_source.type_converters.GeoTypeConverter
+import nl.a3.dora.data.data_source.type_converters.ImgTypeConverter
+import nl.a3.dora.data.data_source.type_converters.ListTypeConverter
 import nl.a3.dora.model.POI
 
 //TODO Database automigration necessary
@@ -16,6 +20,11 @@ import nl.a3.dora.model.POI
 @Database(entities = [POI::class],
     version = 1,
     exportSchema = false)
+@TypeConverters(
+    ImgTypeConverter::class,
+    GeoTypeConverter::class,
+    ListTypeConverter::class
+)
 abstract class DoraDB: RoomDatabase() {
     abstract fun poiDao(): PoiDao
 
