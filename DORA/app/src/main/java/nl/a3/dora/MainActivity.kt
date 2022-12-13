@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import nl.a3.dora.ui.DORA
-import nl.a3.dora.ui.theme.DORATheme
+import nl.a3.dora.presentation.ui.DORA
+import nl.a3.dora.presentation.ui.theme.DORATheme
 import org.osmdroid.config.Configuration
 
 class MainActivity : ComponentActivity() {

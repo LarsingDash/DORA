@@ -1,11 +1,11 @@
-package nl.a3.dora.ui.screens
+package nl.a3.dora.presentation.ui.screens
 
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import nl.a3.dora.ui.component.DialogBox
+import nl.a3.dora.presentation.ui.component.DialogBox
 
 @Composable
 fun HomeScreen() {

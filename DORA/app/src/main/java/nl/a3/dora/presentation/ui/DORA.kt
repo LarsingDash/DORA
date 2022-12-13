@@ -1,4 +1,4 @@
-package nl.a3.dora.ui
+package nl.a3.dora.presentation.ui
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,10 +12,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import nl.a3.dora.ui.screens.HelpScreen
-import nl.a3.dora.ui.screens.HomeScreen
-import nl.a3.dora.ui.screens.MapScreen
-import nl.a3.dora.ui.screens.POIScreen
+import nl.a3.dora.presentation.ui.screens.HelpScreen
+import nl.a3.dora.presentation.ui.screens.HomeScreen
+import nl.a3.dora.presentation.ui.screens.MapScreen
+import nl.a3.dora.presentation.ui.screens.POIScreen
 
 enum class Pages(val title: String) {
     Home(title = "home"),

@@ -1,4 +1,4 @@
-package nl.a3.dora.ui.theme
+package nl.a3.dora.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
