@@ -18,18 +18,36 @@ import nl.a3.dora.model.POI
 @Dao
 interface PoiDao {
 
+    /**
+     * @brief Gets all POIs from the poi_table through SQLite queries
+     * @return Flow<List<POI>>
+     */
     @Query("SELECT * FROM poi_table")
     fun getAllPOIs(): Flow<List<POI>>
 
+    /**
+     * @brief Gets all POIs from the poi_table through SQLite queries
+     * @return Flow<List<POI>>
+     */
     @Query("SELECT * FROM poi_table WHERE poiID= :id")
     suspend fun getPOIByID(id: Int): POI?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPOI(poi: POI)
-
+    /**
+     * @brief Updates the value of the selected POI in the Database
+     */
     @Update
     suspend fun updatePOI(poi: POI)
 
+    /**
+     * @brief Inserts a new POI to the database,
+     * if this POI has already been added the newest version will take the spot
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPOI(poi: POI)
+
+    /**
+     * @brief Deletes the selected POI from the Database
+     */
     @Delete
     suspend fun deletePOI(poi: POI)
 }
