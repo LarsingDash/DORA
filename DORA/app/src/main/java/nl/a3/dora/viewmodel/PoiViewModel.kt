@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import nl.a3.dora.data.repository.test.DummyRepoPoi
 import nl.a3.dora.model.POI
 import nl.a3.dora.viewmodel.repository.PoiRepository
 import nl.a3.dora.viewmodel.repository.ViewModelAbstract

@@ -15,5 +15,4 @@ data class POI(
     val name: String,
     val distanceTo: Float,
     val isVisited: Boolean,
-    @Ignore val poiImg: Bitmap,
 )
