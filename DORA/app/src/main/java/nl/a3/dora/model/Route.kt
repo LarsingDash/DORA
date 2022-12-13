@@ -1,4 +1,8 @@
 package nl.a3.dora.model
 
-class Route {
-}
+import androidx.room.PrimaryKey
+
+//data class Route(
+//    @PrimaryKey(autoGenerate = true) val routeID: Int? = null,
+//    val routeName: String,
+//)
