@@ -38,11 +38,11 @@ class MainActivity : ComponentActivity() {
 
         //TEST DATA for RoomDB integration
 //        val poi = POI(
-//            poiID = 0,
+//            poiID = null,
 //            name = "Oude VVV-pand",
 //            distanceTo = 0f,
 //            isVisited = false,
-//            thumbnailUri = R.drawable.vvv_breda,
+//            thumbnailUri = R.drawable.funnypicture,
 //            poiLocation = GeoPoint(51.5941116667, 4.7794166667)
 //        )
 //
