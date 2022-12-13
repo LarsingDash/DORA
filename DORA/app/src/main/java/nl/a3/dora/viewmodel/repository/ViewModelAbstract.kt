@@ -7,9 +7,9 @@ interface ViewModelAbstract<T> {
 
     fun getTypeByID(id: Int): T?
 
-    fun addType(poi: T)
+    fun addType(type: T)
 
-    fun updateType(poi: T)
+    fun updateType(type: T)
 
-    fun deleteType(poi: T)
+    fun deleteType(type: T)
 }
