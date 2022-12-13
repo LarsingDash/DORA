@@ -16,7 +16,7 @@ data class POI(
     val name: String,
     val distanceTo: Float,
     val isVisited: Boolean,
-    val thumbnailImg: Bitmap? = null,
+    val thumbnailUri: Int,
     //TODO GeoPoint non-null maken en daarna GeoPoint Invullen
     val poiLocation: GeoPoint? = null,
 )

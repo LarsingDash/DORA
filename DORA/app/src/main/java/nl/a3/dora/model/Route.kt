@@ -12,7 +12,7 @@ data class Route(
     @PrimaryKey(autoGenerate = true) val routeID: Int? = null,
     val routeName: String,
     val routeList: List<POI>,
-    val thumbnailImg: Bitmap? = null,
+    val thumbnailUri: Int,
     val routeLength: Float,
     val routeContent: String
 )

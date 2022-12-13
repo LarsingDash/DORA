@@ -16,12 +16,12 @@ import org.osmdroid.util.GeoPoint
  */
 class DummyRepoPoi: PoiRepository {
     private val dummyList: List<List<POI>> = listOf (
-        listOf(
-            POI(0, "Poi 0", 5.0f, false, null, null),
-            POI(1, "Poi 1", 6.0f, false, null, null),
-            POI(2, "Poi 2", 9.0f, true, null, null),
-            POI(3, "Poi 3", 13.0f, false, null, null),
-        )
+//        listOf(
+//            POI(0, "Poi 0", 5.0f, false, null, null),
+//            POI(1, "Poi 1", 6.0f, false, "img2", null),
+//            POI(2, "Poi 2", 9.0f, true, "img3", null),
+//            POI(3, "Poi 3", 13.0f, false, "img4", null),
+//        )
     )
 
     override fun getAllPOIs(): Flow<List<POI>> {

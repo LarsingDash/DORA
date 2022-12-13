@@ -1,16 +1,16 @@
 package nl.a3.dora.viewmodel.repository
 
 import kotlinx.coroutines.flow.Flow
-import nl.a3.dora.data.repository.PoiRepositoryImpl
+import nl.a3.dora.data.repository.RouteRepositoryImpl
 import nl.a3.dora.model.Route
-import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.viewmodel.RouteViewModel
 import nl.a3.dora.data.data_source.RouteDao
 
 /**
  * @brief Used for dependency injection
  * @see RouteDao,
- * @see PoiRepositoryImpl and
- * @see PoiViewModel for injection
+ * @see RouteRepositoryImpl and
+ * @see RouteViewModel for injection
  */
 interface RouteRepository {
     fun getAllRoutes(): Flow<List<Route>>

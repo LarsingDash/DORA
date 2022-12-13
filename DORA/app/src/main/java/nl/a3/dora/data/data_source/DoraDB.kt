@@ -24,7 +24,7 @@ import nl.a3.dora.model.Route
         Route::class
     ],
     version = 1,
-    exportSchema = false
+    exportSchema = true
 )
 @TypeConverters(
     ImgTypeConverter::class,
