@@ -1,25 +1,23 @@
 package nl.a3.dora
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
-import android.os.Environment
 import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import nl.a3.dora.model.POI
-import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
-import java.io.File
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -38,17 +36,33 @@ class MainActivity : ComponentActivity() {
 
         //TEST DATA for RoomDB integration
         //TODO Fill database with values that represent the necessary data structures
-//        val poi = POI(
-//            poiID = null,
-//            name = "Oude VVV-pand",
-//            distanceTo = 0f,
-//            isVisited = false,
-//            thumbnailUri = R.drawable.funnypicture,
-//            poiLocation = GeoPoint(51.5941116667, 4.7794166667)
-//        )
+        val poi = POI(
+            name = "Bibliotheek",
+            distanceTo = 0f,
+            isVisited = false,
+            thumbnailUri = R.drawable.breda_bieb,
+            poiLocation = GeoPoint(51.587638, 4.779667)
+        )
+        poiViewModel.addType(poi)
+
+//        Log of all POI data, for testing usages
+
+//        lifecycleScope.launch {
+//            poiViewModel.typeListFlow.first().find { it.poiID == 11 }?.let {
+//                poiViewModel.deleteType(it)
+//            }
+//        }
+//        lifecycleScope.launch {
+//            val poi = poiViewModel.typeListFlow.first()[10].copy(thumbnailUri = R.drawable.grote_kerk)
+//            poiViewModel.updateType(poi)
 //
-//        poiViewModel.addType(poi)
+//            val poi1 = poiViewModel.typeListFlow.first()[11].copy(thumbnailUri = R.drawable.ridder_straat)
+//            poiViewModel.updateType(poi1)
 //
+//            val poi2 = poiViewModel.typeListFlow.first()[12].copy(thumbnailUri = R.drawable.grotemarkt)
+//            poiViewModel.updateType(poi2)
+//        }
+
 //        routeViewModel.addType(
 //            Route(
 //                routeID = null,

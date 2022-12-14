@@ -41,7 +41,7 @@ interface PoiDao {
      * @brief Inserts a new POI to the database,
      * if this POI has already been added the newest version will take the spot
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertPOI(poi: POI)
 
     /**
