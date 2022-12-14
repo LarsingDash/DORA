@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
         val routeViewModel: RouteViewModel by viewModels()
 
         //TEST DATA for RoomDB integration
+        //TODO Fill database with values that represent the necessary data structures
 //        val poi = POI(
 //            poiID = null,
 //            name = "Oude VVV-pand",
