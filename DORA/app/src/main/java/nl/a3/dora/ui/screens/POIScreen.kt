@@ -23,10 +23,10 @@ import nl.a3.dora.viewmodel.PoiViewModel
 fun POIScreen(poiViewModel: PoiViewModel) {
     val poiListState = poiViewModel.typeListFlow.collectAsState(initial = listOf())
 
-
-    poiListState.value.forEach{
-        Log.d("DEBUG DATA", "POI DATA: $it")
-    }
+    //Testing if all POIs are added in
+//    poiListState.value.forEach{
+//        Log.d("DEBUG DATA", "POI DATA: $it")
+//    }
 
 
     LazyColumn {
