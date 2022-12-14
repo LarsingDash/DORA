@@ -36,19 +36,19 @@ class MainActivity : ComponentActivity() {
 
         //TEST DATA for RoomDB integration
         //TODO Fill database with values that represent the necessary data structures
-        val poi = POI(
-            name = "Einde stadswandeling",
-            distanceTo = 0f,
-            isVisited = false,
-            thumbnailUri = R.drawable.einde_route,
-            poiLocation = GeoPoint(51.589780, 4.776203)
-        )
-        poiViewModel.addType(poi)
+//        val poi = POI(
+//            name = "Einde stadswandeling",
+//            distanceTo = 0f,
+//            isVisited = false,
+//            thumbnailUri = R.drawable.einde_route,
+//            poiLocation = GeoPoint(51.589780, 4.776203)
+//        )
+//        poiViewModel.addType(poi)
 
 //        Log of all POI data, for testing usages
 
 //        lifecycleScope.launch {
-//            poiViewModel.typeListFlow.first().find { it.poiID == 27 }?.let {
+//            poiViewModel.typeListFlow.first().find { it.poiID == 30 }?.let {
 //                poiViewModel.deleteType(it)
 //            }
 //        }
