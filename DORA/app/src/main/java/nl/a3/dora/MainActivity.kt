@@ -1,25 +1,23 @@
 package nl.a3.dora
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
-import android.os.Environment
 import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import nl.a3.dora.model.POI
-import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
-import java.io.File
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -39,16 +37,26 @@ class MainActivity : ComponentActivity() {
         //TEST DATA for RoomDB integration
         //TODO Fill database with values that represent the necessary data structures
 //        val poi = POI(
-//            poiID = null,
-//            name = "Oude VVV-pand",
+//            name = "Einde stadswandeling",
 //            distanceTo = 0f,
 //            isVisited = false,
-//            thumbnailUri = R.drawable.funnypicture,
-//            poiLocation = GeoPoint(51.5941116667, 4.7794166667)
+//            thumbnailUri = R.drawable.einde_route,
+//            poiLocation = GeoPoint(51.589780, 4.776203)
 //        )
-//
 //        poiViewModel.addType(poi)
-//
+
+//        Log of all POI data, for testing usages
+
+//        lifecycleScope.launch {
+//            poiViewModel.typeListFlow.first().find { it.poiID == 30 }?.let {
+//                poiViewModel.deleteType(it)
+//            }
+//        }
+//        lifecycleScope.launch {
+//            val poi = poiViewModel.typeListFlow.first().last().copy(poiID = 26)
+//            poiViewModel.updateType(poi)
+//        }
+
 //        routeViewModel.addType(
 //            Route(
 //                routeID = null,

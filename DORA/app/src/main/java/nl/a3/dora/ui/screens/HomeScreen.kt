@@ -48,7 +48,6 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
         }
     }
 
-
     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Button(onClick = {
             showDialog.value = 1

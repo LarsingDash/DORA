@@ -37,9 +37,8 @@ interface RouteDao {
 
     /**
      * @brief Inserts a new Route to the database,
-     * if this Route has already been added the newest version will take the spot
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertRoute(route: Route)
 
     /**

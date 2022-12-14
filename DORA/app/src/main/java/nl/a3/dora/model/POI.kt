@@ -1,6 +1,7 @@
 package nl.a3.dora.model
 
 import android.graphics.Bitmap
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -12,11 +13,10 @@ import org.osmdroid.util.GeoPoint
  */
 @Entity(tableName = "poi_table")
 data class POI(
-    @PrimaryKey(autoGenerate = true) val poiID: Int? = null,
+    @PrimaryKey(autoGenerate = true)  val poiID: Int? = null,
     val name: String,
     val distanceTo: Float,
     val isVisited: Boolean,
     val thumbnailUri: Int,
-    //TODO GeoPoint non-null maken en daarna GeoPoint Invullen
     val poiLocation: GeoPoint? = null,
 )
