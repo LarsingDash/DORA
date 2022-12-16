@@ -28,7 +28,7 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
     val routeStateList = routeViewModel.typeListFlow.collectAsState(initial = listOf())
 
     //load reusable lazycolomn
-    GUIList()
+    GUIList(routeStateList)
 
     /*LazyColumn {
         items(routeStateList.value.size) { index ->

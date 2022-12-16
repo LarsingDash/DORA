@@ -3,56 +3,55 @@ package nl.a3.dora.ui.component
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import nl.a3.dora.model.Route
 
 @Composable
-fun GUIList(modifier: Modifier = Modifier) {
+fun GUIList(routeStateList: State<List<Route>>, modifier: Modifier = Modifier) {
     //generateTestData
     val testList: MutableList<String> = arrayListOf()
     for (i in 1..100) {
         testList.add(i.toString())
     }
 
-    var listIndex by remember {mutableStateOf(-1) }
-
+    var listIndexRoute: Route? by remember {mutableStateOf(null) }
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(16.dp)
     ) {
-        items(testList) {
-                item ->
-            if (listIndex == testList.indexOf(item)) {
-                FoldedOutText(text = item,){listIndex = -1}
+        items(routeStateList.value.size) {
+                index -> val route = routeStateList.value[index]
+            if (route == listIndexRoute) {
+                FoldedRouteItem(route){listIndexRoute = null}
             } else {
-                TestText(text = item,){listIndex = testList.indexOf(item)}
+                RouteItem(route){ listIndexRoute = route }
             }
         }
     }
 }
 
 @Composable
-fun FoldedOutText(text: String, foldAction : () -> Unit) {
+fun FoldedRouteItem(route: Route, foldAction : () -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
         Card (
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { foldAction.invoke() }
         ){
-            Text(text = text)
+            Text(text = route.routeName)
         }
-        Text(text = "IT WORKED", fontSize = 20.sp)
+        Text(text = route.routeContent)
     }
 }
 
 
 @Composable
-fun TestText(text: String, foldAction : () -> Unit) {
+fun RouteItem(route: Route, foldAction : () -> Unit) {
     Card (
         modifier = Modifier
             .fillMaxWidth()
@@ -61,7 +60,7 @@ fun TestText(text: String, foldAction : () -> Unit) {
     ){
         Row {
             Text(
-                text = text
+                text = route.routeName
             )
         }
     }
