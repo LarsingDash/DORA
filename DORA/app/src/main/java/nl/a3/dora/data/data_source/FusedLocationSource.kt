@@ -1,4 +1,4 @@
-package nl.a3.dora.data.datasources
+package nl.a3.dora.data.data_source
 
 import android.annotation.SuppressLint
 import android.content.Context
