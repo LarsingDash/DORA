@@ -17,19 +17,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import nl.a3.dora.R
 import nl.a3.dora.ui.component.DialogBox
+import nl.a3.dora.ui.component.GUIList
 import nl.a3.dora.viewmodel.RouteViewModel
 
 
 @Composable
 fun HomeScreen(routeViewModel: RouteViewModel) {
-    val showDialog = remember {
-        mutableStateOf(0)
-    }
-
     val routeStateList = routeViewModel.typeListFlow.collectAsState(initial = listOf())
 
-    LazyColumn {
+    //load reusable lazycolomn
+    GUIList()
+
+    /*LazyColumn {
         items(routeStateList.value.size) { index ->
             val route = routeStateList.value[index]
             Text(
@@ -38,7 +39,7 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
                 lineHeight = 70.sp
             )
             Image(
-                painter = painterResource(id = route.thumbnailUri),
+                painter = painterResource(id = R.drawable.tower_of_destinity),
                 contentDescription = "Cool tower"
             )
             Text(
@@ -46,7 +47,12 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
                 lineHeight = 70.sp
             )
         }
-    }
+    }*/
+
+
+    //TestCode DialogBox en button
+    /*
+    val showDialog = remember { mutableStateOf(0) }
 
     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Button(onClick = {
@@ -55,7 +61,9 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
             Text(text = "Popup Testbutton")
         }
     }
+    */
 
+    /*
     if (showDialog.value == 1) {
         DialogBox(
             showDialog,
@@ -101,4 +109,5 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
             )
         )
     }
+    */
 }
