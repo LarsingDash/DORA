@@ -2,16 +2,20 @@ package nl.a3.dora.ui.component
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import nl.a3.dora.R.color.*
+import nl.a3.dora.ui.theme.confirmButton
 
 @Composable
 fun DialogBox(
@@ -59,16 +63,22 @@ fun DialogBox(
             Row {
                 for (set in buttons) {
                     Button(
-                        modifier = Modifier.weight(1 / buttons.size.toFloat()),
+                        modifier = Modifier
+                            .weight(1 / buttons.size.toFloat())
+                            .clip(RoundedCornerShape(25.dp)),
                         onClick = {
                             showDialog.value = 0
                             set.value.invoke()
                         },
-                        colors = ButtonDefaults.buttonColors(Color.Gray),
+                        colors = ButtonDefaults.buttonColors(confirmButton),
                         shape = RectangleShape,
                     ) {
 
-                        Text(text = set.key)
+                        Text(
+                            text = set.key,
+                            style = MaterialTheme.typography.body1,
+                            color = Color.White,
+                        )
                     }
                 }
             }
