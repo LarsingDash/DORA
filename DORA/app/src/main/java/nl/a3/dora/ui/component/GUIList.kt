@@ -1,31 +1,24 @@
 package nl.a3.dora.ui.component
 
-import android.os.Debug
-import android.util.Log
-import android.widget.Button
-import android.widget.Toast
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlin.random.Random
 
 @Composable
 fun GUIList(modifier: Modifier = Modifier) {
+    //generateTestData
     val testList: MutableList<String> = arrayListOf()
     for (i in 1..100) {
         testList.add(i.toString())
     }
+
     var listIndex by remember {mutableStateOf(-1) }
 
     LazyColumn(
@@ -35,42 +28,41 @@ fun GUIList(modifier: Modifier = Modifier) {
         items(testList) {
                 item ->
             if (listIndex == testList.indexOf(item)) {
-                FoldedOutText()
+                FoldedOutText(text = item,){listIndex = -1}
             } else {
-                TestText(
-                    text = item,
-                    index = testList.indexOf(item),
-                    {listIndex = testList.indexOf(item)}
-                )
+                TestText(text = item,){listIndex = testList.indexOf(item)}
             }
         }
     }
 }
 
 @Composable
-fun FoldedOutText() {
-    Card (
-        modifier = Modifier.fillMaxWidth()
-    ){
+fun FoldedOutText(text: String, foldAction : () -> Unit) {
+    Column(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
+        Card (
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { foldAction.invoke() }
+        ){
+            Text(text = text)
+        }
         Text(text = "IT WORKED", fontSize = 20.sp)
     }
 }
 
 
 @Composable
-fun TestText(text: String, index: Int, buttonClikked : () -> Unit) {
+fun TestText(text: String, foldAction : () -> Unit) {
     Card (
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp)
+            .clickable { foldAction.invoke() }
     ){
         Row {
             Text(
-                text = text + "    "
+                text = text
             )
-            Button(onClick = buttonClikked) {
-                Text(text = "fold out")
-            }
-            
-            Text(text = index.toString())
         }
     }
 }
