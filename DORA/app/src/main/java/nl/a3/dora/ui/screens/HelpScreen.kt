@@ -59,7 +59,8 @@ fun HelpScreen() {
                     "labeled Map shows the directions and route of the selected route. The button labeled" +
                     "Poi gives an overview of all points of interest.",
             buttons = mapOf(
-                "close" to {},
+                "close" to Pair(false, {}),
+                "open" to Pair(true, {}),
             )
         )
     }
