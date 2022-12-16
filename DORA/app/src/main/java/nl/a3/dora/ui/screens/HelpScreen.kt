@@ -25,7 +25,8 @@ fun HelpScreen() {
             titleText = "title",
             description = "description",
             buttons = mapOf(
-                "close" to {},
+                "close" to Pair(false, {}),
+                "open" to Pair(true, {}),
             )
         )
     }

@@ -22,7 +22,7 @@ fun DialogBox(
     showDialog: MutableState<Int>,
     titleText: String,
     description: String,
-    buttons: Map<String, () -> Unit>
+    buttons: Map<String, Pair<Boolean, () -> Unit>>
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -62,22 +62,30 @@ fun DialogBox(
 
             Row {
                 for (set in buttons) {
+                    var buttonColor = ButtonDefaults.buttonColors(Color.LightGray)
+                    var textColor = Color.DarkGray
+
+                    if (set.value.first) {
+                        buttonColor = ButtonDefaults.buttonColors(confirmButton)
+                        textColor = Color.White
+                    }
+
                     Button(
                         modifier = Modifier
                             .weight(1 / buttons.size.toFloat())
                             .clip(RoundedCornerShape(25.dp)),
                         onClick = {
                             showDialog.value = 0
-                            set.value.invoke()
+                            set.value.second.invoke()
                         },
-                        colors = ButtonDefaults.buttonColors(confirmButton),
+                        colors = buttonColor,
                         shape = RectangleShape,
                     ) {
 
                         Text(
                             text = set.key,
                             style = MaterialTheme.typography.body1,
-                            color = Color.White,
+                            color = textColor,
                         )
                     }
                 }
