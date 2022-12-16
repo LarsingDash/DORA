@@ -53,7 +53,11 @@ fun HelpScreen() {
         DialogBox(
             showDialog = displayDisplay,
             titleText = "How does the app work?",
-            description = "description",
+            description = "On the bottom of the app there are four buttons. Each of these buttons" +
+                    "lead to different pages. Home is the homescreen, here you can find all available" +
+                    "routes to walk and how many points of interest there are on that route. The button" +
+                    "labeled Map shows the directions and route of the selected route. The button labeled" +
+                    "Poi gives an overview of all points of interest.",
             buttons = mapOf(
                 "close" to {},
             )
