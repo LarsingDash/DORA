@@ -1,23 +1,19 @@
 package nl.a3.dora.ui
 
-import android.content.Context
-import android.graphics.BitmapFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -25,16 +21,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import nl.a3.dora.R
-import nl.a3.dora.model.POI
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
 import nl.a3.dora.ui.screens.POIScreen
+import nl.a3.dora.ui.theme.iconSelected
+import nl.a3.dora.ui.theme.iconUnselected
+import nl.a3.dora.ui.theme.navBarColor1
+import nl.a3.dora.ui.theme.navBarColor2
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
-import org.osmdroid.util.GeoPoint
-import nl.a3.dora.ui.theme.*
 
 enum class Pages(val title: String) {
     Home(title = "HOME"),
@@ -113,7 +109,7 @@ fun BottomBar(
     helpButtonUnit: () -> Unit,
 ) {
     BottomAppBar(
-        modifier = Modifier.clip(RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp))
+        modifier = Modifier
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(
@@ -160,7 +156,7 @@ fun BottomBar(
                         imageVector = Icons.Default.Search,
                         contentDescription = Pages.Map.title,
                         modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 3.dp),
-                        )
+                    )
                 },
                 selected = currentPage.value == Pages.Map.title,
                 onClick = mapButtonUnit,
@@ -181,7 +177,7 @@ fun BottomBar(
                         imageVector = Icons.Default.Place,
                         contentDescription = Pages.POI.title,
                         modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 3.dp),
-                        )
+                    )
                 },
                 selected = currentPage.value == Pages.POI.title,
                 onClick = poiButtonUnit,
@@ -195,14 +191,14 @@ fun BottomBar(
                     Text(
                         text = Pages.Help.title,
                         style = MaterialTheme.typography.body1,
-                        )
+                    )
                 },
                 icon = {
                     Icon(
                         imageVector = Icons.Default.Info,
                         contentDescription = Pages.Help.title,
                         modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 3.dp),
-                        )
+                    )
                 },
                 selected = currentPage.value == Pages.Help.title,
                 onClick = helpButtonUnit,
