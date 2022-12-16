@@ -1,6 +1,6 @@
 package nl.a3.dora.ui.screens
 
-import android.location.Location
+import android.location.Location as GPSLocation
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import nl.a3.dora.model.POI
@@ -11,6 +11,8 @@ import org.osmdroid.util.GeoPoint
 import androidx.compose.ui.platform.LocalContext
 import nl.a3.dora.data.data_source.FusedLocationSource
 import kotlinx.coroutines.runBlocking
+import nl.a3.dora.data.repository.LocationRepositoryImpl
+import nl.a3.dora.model.Location
 
 @Composable
 fun MapScreen() {
@@ -28,7 +30,7 @@ fun MapScreen() {
 
 //    val context = LocalContext.current
 
-    val flp = FusedLocationSource(LocalContext.current)
+    val flp = LocationRepositoryImpl(FusedLocationSource(LocalContext.current))
 
     var text1: Result<Location>? = null
 

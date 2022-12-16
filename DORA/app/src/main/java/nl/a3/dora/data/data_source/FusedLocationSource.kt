@@ -23,25 +23,25 @@ class FusedLocationSource(
     @SuppressLint("MissingPermission")
     suspend fun getCurrentLocation(
         request: CurrentLocationRequest,
-    ): Result<Location> = suspendCoroutine { e ->
-        locationProviderClient.getCurrentLocation(request, null)
+    ): Result<Location> = suspendCoroutine {
+            continuation -> locationProviderClient
+        .getCurrentLocation(request, null)
             .addOnSuccessListener {
-                if (it !== null) e.resume(Result.success(it))
-                else e.resume(Result.failure(Exception("Location not found")))
+                if (it !== null) continuation.resume(Result.success(it))
+                else continuation.resume(Result.failure(Exception("Location not found")))
             }
-            .addOnFailureListener { e.resume(Result.failure(it)) }
+            .addOnFailureListener { continuation.resume(Result.failure(it)) }
     }
 
     @SuppressLint("MissingPermission")
-    suspend fun getLastLocation():
-            Result<Location> = suspendCoroutine { e ->
-        locationProviderClient.lastLocation
+    suspend fun getLastLocation(): Result<Location> = suspendCoroutine {
+            continuation -> locationProviderClient.lastLocation
             .addOnSuccessListener {
-                if (it !== null) e.resume(Result.success(it))
-                else e.resume(Result.failure(Exception("Location not found")))
+                if (it !== null) continuation.resume(Result.success(it))
+                else continuation.resume(Result.failure(Exception("Location not found")))
             }
             .addOnFailureListener {
-                e.resume(Result.failure(it))
+                continuation.resume(Result.failure(it))
             }
     }
 
