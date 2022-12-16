@@ -1,6 +1,7 @@
 package nl.a3.dora.ui.component
 
 import android.content.Context
+import android.graphics.Paint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -10,7 +11,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import kotlinx.coroutines.runBlocking
-import nl.a3.dora.TestPOI
+import nl.a3.dora.model.POI
 import org.osmdroid.bonuspack.routing.OSRMRoadManager
 import org.osmdroid.bonuspack.routing.RoadManager
 import org.osmdroid.config.Configuration
@@ -28,7 +29,7 @@ private lateinit var roadManager: RoadManager
 //Main Composable
 @Composable
 fun OSMMap(
-    onPOIClicked: (TestPOI) -> Unit,
+    onPOIClicked: (POI) -> Unit,
 ) {
     //Initiate variables
     val context = LocalContext.current
@@ -73,7 +74,7 @@ fun OSMMap(
 @Composable
 private fun createPOIOverlay(
     context: Context,
-    updatedOnPOIClicked: (TestPOI) -> Unit,
+    updatedOnPOIClicked: (POI) -> Unit,
 ): ItemizedIconOverlay<POIOverlayItem> {
     return remember {
         //Create listener from clicks on the POI
@@ -105,7 +106,7 @@ private fun createRouteOverlay(
 }
 
 //Other Functions
-fun addPOIListToMap(POIList: List<TestPOI>) {
+fun addPOIListToMap(POIList: List<POI>) {
     poiOverlay.removeAllItems()
     poiOverlay.addItems(
         POIList.map { POIOverlayItem(it) }
@@ -113,17 +114,20 @@ fun addPOIListToMap(POIList: List<TestPOI>) {
     mapView.invalidate()
 }
 
-fun addRouteToMap(POIList: List<TestPOI>) {
+fun addRouteToMap(POIList: List<POI>) {
     mapView.overlays.remove(routeOverlay)
 
     val route: ArrayList<GeoPoint> = arrayListOf()
     for (poi in POIList) {
-        route.add(poi.geoPoint)
+        route.add(poi.poiLocation)
     }
 
     runBlocking {
         val road = roadManager.getRoad(route)
         routeOverlay = RoadManager.buildRoadOverlay(road)
+        routeOverlay.outlinePaint.strokeCap = Paint.Cap.ROUND
+        routeOverlay.outlinePaint.strokeWidth = 15f
+        routeOverlay.outlinePaint.strokeJoin = Paint.Join.ROUND
     }
 
     mapView.overlays.add(routeOverlay)
@@ -154,5 +158,5 @@ private fun MapView.lifecycleObserver() = LifecycleEventObserver { _, event ->
 }
 
 private class POIOverlayItem(
-    val poi: TestPOI
-) : OverlayItem(poi.name, null, poi.geoPoint)
+    val poi: POI
+) : OverlayItem(poi.name, null, poi.poiLocation)
