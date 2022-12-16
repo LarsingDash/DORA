@@ -1,6 +1,7 @@
 package nl.a3.dora.ui.component
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Paint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
@@ -36,6 +37,8 @@ fun OSMMap(
     val updatedOnPOIClicked by rememberUpdatedState(onPOIClicked)
 
     mapView = remember { MapView(context) }
+    mapView.overlays.clear()
+
     roadManager = OSRMRoadManager(context, Configuration.getInstance().userAgentValue)
     (roadManager as OSRMRoadManager).setMean(OSRMRoadManager.MEAN_BY_FOOT)
 
@@ -107,7 +110,6 @@ private fun createRouteOverlay(
 
 //Other Functions
 fun addPOIListToMap(POIList: List<POI>) {
-    poiOverlay.removeAllItems()
     poiOverlay.addItems(
         POIList.map { POIOverlayItem(it) }
     )
@@ -115,22 +117,38 @@ fun addPOIListToMap(POIList: List<POI>) {
 }
 
 fun addRouteToMap(POIList: List<POI>) {
-    mapView.overlays.remove(routeOverlay)
+    //Make subRoutes between all POI's
+    for (POI in POIList) {
+        //Skip if index is last element
+        val index = POIList.indexOf(POI)
+        if (index == POIList.size - 1) continue
 
-    val route: ArrayList<GeoPoint> = arrayListOf()
-    for (poi in POIList) {
-        route.add(poi.poiLocation)
+        //Get nextPOI and make subRoute
+        val nextPOI = POIList[index + 1]
+        val subRoute: ArrayList<GeoPoint> = arrayListOf(POI.poiLocation, nextPOI.poiLocation)
+
+        //Create routeOverlay using OpenSourceRoadManager
+        runBlocking {
+            //Creation
+            val road = roadManager.getRoad(subRoute)
+            routeOverlay = RoadManager.buildRoadOverlay(road)
+
+            //Design
+            routeOverlay.outlinePaint.strokeCap = Paint.Cap.ROUND
+            routeOverlay.outlinePaint.strokeWidth = 15f
+            routeOverlay.outlinePaint.strokeJoin = Paint.Join.ROUND
+
+            //Change color if the POI has been visited already
+            if (nextPOI.isVisited) {
+                routeOverlay.outlinePaint.color = Color.GREEN
+            }
+        }
+
+        //Add the overlay to all overlays
+        mapView.overlays.add(routeOverlay)
     }
 
-    runBlocking {
-        val road = roadManager.getRoad(route)
-        routeOverlay = RoadManager.buildRoadOverlay(road)
-        routeOverlay.outlinePaint.strokeCap = Paint.Cap.ROUND
-        routeOverlay.outlinePaint.strokeWidth = 15f
-        routeOverlay.outlinePaint.strokeJoin = Paint.Join.ROUND
-    }
-
-    mapView.overlays.add(routeOverlay)
+    //Update map
     mapView.invalidate()
 }
 
