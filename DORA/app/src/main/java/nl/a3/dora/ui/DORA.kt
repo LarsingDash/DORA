@@ -1,21 +1,34 @@
 package nl.a3.dora.ui
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import nl.a3.dora.R
+import nl.a3.dora.model.POI
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
 import nl.a3.dora.ui.screens.POIScreen
+import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.viewmodel.RouteViewModel
+import org.osmdroid.util.GeoPoint
 
 enum class Pages(val title: String) {
     Home(title = "home"),
@@ -24,24 +37,37 @@ enum class Pages(val title: String) {
     Help(title = "help"),
 }
 
+private lateinit var currentPage : MutableState<String>
+
 @Composable
 fun DORA(
-    navController: NavHostController = rememberNavController()
+    poiViewModel: PoiViewModel,
+    routeViewModel: RouteViewModel
 ) {
+    val navController: NavHostController = rememberNavController()
+
+    currentPage = remember {
+        mutableStateOf(Pages.Home.title)
+    }
+
     Scaffold(
         bottomBar = {
             BottomBar(
                 homeButtonUnit = {
                     navController.navigate(Pages.Home.title)
+                    currentPage.value = Pages.Home.title
                 },
                 mapButtonUnit = {
                     navController.navigate(Pages.Map.title)
+                    currentPage.value = Pages.Map.title
                 },
                 poiButtonUnit = {
                     navController.navigate(Pages.POI.title)
+                    currentPage.value = Pages.POI.title
                 },
                 helpButtonUnit = {
                     navController.navigate(Pages.Help.title)
+                    currentPage.value = Pages.Help.title
                 })
         }
     ) { paddingValues ->
@@ -52,7 +78,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen()
+                HomeScreen(routeViewModel)
             }
 
             //Map
@@ -62,7 +88,7 @@ fun DORA(
 
             //POI
             composable(route = Pages.POI.title) {
-                POIScreen()
+                POIScreen(poiViewModel)
             }
 
             //Help
@@ -84,53 +110,82 @@ fun BottomBar(
         modifier = Modifier,
         backgroundColor = Color.LightGray
     ) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row {
             //Home
-            NavButton(
-                buttonUnit = homeButtonUnit,
-                buttonName = Pages.Home.title,
-                modifier = Modifier.weight(0.25f),
+            BottomNavigationItem(
+                label = {
+                    Text(
+                        text = Pages.Home.title,
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Home,
+                        contentDescription = Pages.Home.title,
+                    )
+                },
+                selected = currentPage.value == Pages.Home.title,
+                onClick = homeButtonUnit,
+                selectedContentColor = Color.Blue,
+                unselectedContentColor = Color.Black,
             )
 
-            //map
-            NavButton(
-                buttonUnit = mapButtonUnit,
-                buttonName = Pages.Map.title,
-                modifier = Modifier.weight(0.25f),
+            //Map
+            BottomNavigationItem(
+                label = {
+                    Text(
+                        text = Pages.Map.title,
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = Pages.Map.title,
+                    )
+                },
+                selected = currentPage.value == Pages.Map.title,
+                onClick = mapButtonUnit,
+                selectedContentColor = Color.Blue,
+                unselectedContentColor = Color.Black,
             )
 
-            //poi
-            NavButton(
-                buttonUnit = poiButtonUnit,
-                buttonName = Pages.POI.title,
-                modifier = Modifier.weight(0.25f),
+            //POI
+            BottomNavigationItem(
+                label = {
+                    Text(
+                        text = Pages.POI.title,
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Place,
+                        contentDescription = Pages.POI.title,
+                    )
+                },
+                selected = currentPage.value == Pages.POI.title,
+                onClick = poiButtonUnit,
+                selectedContentColor = Color.Blue,
+                unselectedContentColor = Color.Black,
             )
 
-            //help
-            NavButton(
-                buttonUnit = helpButtonUnit,
-                buttonName = Pages.Help.title,
-                modifier = Modifier.weight(0.25f),
+            //POI
+            BottomNavigationItem(
+                label = {
+                    Text(
+                        text = Pages.Help.title,
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = Pages.Help.title,
+                    )
+                },
+                selected = currentPage.value == Pages.Help.title,
+                onClick = helpButtonUnit,
+                selectedContentColor = Color.Blue,
+                unselectedContentColor = Color.Black,
             )
         }
-    }
-}
-
-@Composable
-fun NavButton(
-    modifier: Modifier,
-    buttonUnit: () -> Unit,
-    buttonName: String,
-) {
-    Button(
-        onClick = buttonUnit,
-        modifier = modifier.fillMaxHeight(),
-        colors = ButtonDefaults.buttonColors(Color.Red),
-        shape = MaterialTheme.shapes.large,
-    ) {
-        Text(
-            text = buttonName,
-            color = Color.White
-        )
     }
 }

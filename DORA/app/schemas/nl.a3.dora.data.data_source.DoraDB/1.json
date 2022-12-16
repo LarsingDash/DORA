@@ -1,0 +1,114 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "005acc9a20aae5531f53807a247305ef",
+    "entities": [
+      {
+        "tableName": "poi_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`poiID` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `distanceTo` REAL NOT NULL, `isVisited` INTEGER NOT NULL, `thumbnailUri` INTEGER NOT NULL, `poiLocation` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "poiID",
+            "columnName": "poiID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceTo",
+            "columnName": "distanceTo",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isVisited",
+            "columnName": "isVisited",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "thumbnailUri",
+            "columnName": "thumbnailUri",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "poiLocation",
+            "columnName": "poiLocation",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "poiID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "route_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`routeID` INTEGER PRIMARY KEY AUTOINCREMENT, `routeName` TEXT NOT NULL, `routeList` TEXT NOT NULL, `thumbnailUri` INTEGER NOT NULL, `routeLength` REAL NOT NULL, `routeContent` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "routeID",
+            "columnName": "routeID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "routeName",
+            "columnName": "routeName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "routeList",
+            "columnName": "routeList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "thumbnailUri",
+            "columnName": "thumbnailUri",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "routeLength",
+            "columnName": "routeLength",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "routeContent",
+            "columnName": "routeContent",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "routeID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '005acc9a20aae5531f53807a247305ef')"
+    ]
+  }
+}
