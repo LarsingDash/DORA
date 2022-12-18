@@ -1,5 +1,8 @@
 package nl.a3.dora.ui
 
+import android.app.Activity
+import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -16,14 +19,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
+import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import nl.a3.dora.R
-import nl.a3.dora.model.POI
 import androidx.navigation.navArgument
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
@@ -55,6 +58,7 @@ fun DORA(
     currentPage = remember {
         mutableStateOf(Pages.Home.title)
     }
+    val currentActivity = LocalContext.current as Activity
 
     Scaffold(
         bottomBar = {
@@ -85,24 +89,42 @@ fun DORA(
             //Home
             composable(route = Pages.Home.title) {
                 HomeScreen(routeViewModel)
+                BackHandler(true) {
+                    currentActivity.finish()
+                }
             }
 
             //Map
             composable(route = Pages.Map.title) {
-                MapScreen(navController)
+                MapScreen(navController, currentPage)
+                BackHandler(true) {
+                    currentActivity.finish()
+                }
             }
 
             //POI
             composable(
                 route = Pages.POI.title + "/{poiID}",
-                arguments = listOf(navArgument("poiID") {type = NavType.IntType})
+                arguments = listOf(navArgument("poiID") { type = NavType.IntType })
             ) {
-                POIScreen(poiViewModel, it.arguments?.getInt("poiID"))
+                val poiID = it.arguments?.getInt("poiID")
+
+                POIScreen(poiViewModel, poiID)
+                BackHandler(true) {
+                    if (poiID == -1) currentActivity.finish()
+                    else  {
+                        navController.popBackStack()
+                        currentPage.value = Pages.Map.title
+                    }
+                }
             }
 
             //Help
             composable(route = Pages.Help.title) {
                 HelpScreen()
+                BackHandler(true) {
+                    currentActivity.finish()
+                }
             }
         }
     }
