@@ -18,9 +18,13 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import nl.a3.dora.R
+import nl.a3.dora.model.POI
+import androidx.navigation.navArgument
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
@@ -64,7 +68,7 @@ fun DORA(
                     currentPage.value = Pages.Map.title
                 },
                 poiButtonUnit = {
-                    navController.navigate(Pages.POI.title)
+                    navController.navigate(Pages.POI.title + "/-1")
                     currentPage.value = Pages.POI.title
                 },
                 helpButtonUnit = {
@@ -85,12 +89,15 @@ fun DORA(
 
             //Map
             composable(route = Pages.Map.title) {
-                MapScreen()
+                MapScreen(navController)
             }
 
             //POI
-            composable(route = Pages.POI.title) {
-                POIScreen(poiViewModel)
+            composable(
+                route = Pages.POI.title + "/{poiID}",
+                arguments = listOf(navArgument("poiID") {type = NavType.IntType})
+            ) {
+                POIScreen(poiViewModel, it.arguments?.getInt("poiID"))
             }
 
             //Help
