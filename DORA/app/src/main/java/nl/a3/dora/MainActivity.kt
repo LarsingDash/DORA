@@ -50,7 +50,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
 
 //TEST DATA for RoomDB integration
@@ -87,13 +86,6 @@ class MainActivity : ComponentActivity() {
 //                routeContent = "Historic tower of awesomeness"
 //            )
 //        )
-
-        setContent {
-            DORATheme {
-                DORA(poiViewModel, routeViewModel)
-            }
-        }
-    }
 
     companion object {
         public var selectedRoute: Route? = null
