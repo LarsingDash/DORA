@@ -1,7 +1,6 @@
 package nl.a3.dora.ui
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -23,11 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import nl.a3.dora.data.data_source.LocationService
 import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
@@ -51,7 +50,8 @@ private lateinit var currentPage: MutableState<String>
 @Composable
 fun DORA(
     poiViewModel: PoiViewModel,
-    routeViewModel: RouteViewModel
+    routeViewModel: RouteViewModel,
+    locationService: LocationService
 ) {
     val navController: NavHostController = rememberNavController()
 
@@ -96,7 +96,7 @@ fun DORA(
 
             //Map
             composable(route = Pages.Map.title) {
-                MapScreen(navController, currentPage)
+                MapScreen(navController, currentPage, locationService)
                 BackHandler(true) {
                     currentActivity.finish()
                 }

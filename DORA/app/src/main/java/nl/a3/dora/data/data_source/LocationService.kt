@@ -1,13 +1,10 @@
-package nl.a3.dora.data.repository
+package nl.a3.dora.data.data_source
 
 import android.annotation.SuppressLint
-import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +13,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import nl.a3.dora.R
+import nl.a3.dora.data.repository.LocationClientImpl
 import nl.a3.dora.viewmodel.repository.LocationClient
 import org.osmdroid.util.GeoPoint
 
@@ -79,16 +76,14 @@ class LocationService(
             .catch { e -> e.printStackTrace() }
             .onEach { location ->
                 println("poopoo")
-                val lat = location.latitude
-                val long = location.longitude
-                this.geoPoint.latitude = lat
-                this.geoPoint.longitude = long
+                this.geoPoint.latitude = location.latitude
+                this.geoPoint.longitude = location.longitude
             }
             .launchIn(serviceScope)
         println("bruh2")
     }
 
-    fun stop() {
+    private fun stop() {
         stopForeground(true)
         stopSelf()
     }

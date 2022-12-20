@@ -40,8 +40,8 @@ class LocationClientImpl(
             println("ik heb je moeder gedaan")
             val locationCallback = object : LocationCallback() {
                 override fun onLocationResult(locationResult: LocationResult) {
-                    super.onLocationResult(locationResult)
                     println("bruh69")
+                    super.onLocationResult(locationResult)
                     locationResult.locations.lastOrNull()?.let { location ->
                         println("kanker")
                         launch { send(location) }
@@ -53,7 +53,7 @@ class LocationClientImpl(
             client.requestLocationUpdates(
                 request,
                 locationCallback,
-                Looper.getMainLooper()
+                Looper.getMainLooper(),
             )
 
             awaitClose{
