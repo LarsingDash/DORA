@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 Log.d("POI DATA", "$it")
             }
         }
-        
+
         setContent {
             DORATheme {
                 DORA(poiViewModel, routeViewModel)
