@@ -42,42 +42,7 @@ class MainActivity : ComponentActivity() {
                 Log.d("POI DATA", "$it")
             }
         }
-        //TEST DATA for RoomDB integration
-        //TODO Fill database with values that represent the necessary data structures
-//        val poi = POI(
-//            name = "Einde stadswandeling",
-//            distanceTo = 0f,
-//            isVisited = false,
-//            thumbnailUri = R.drawable.einde_route,
-//            poiLocation = GeoPoint(51.589780, 4.776203)
-//        )
-//        poiViewModel.addType(poi)
-
-//        Log of all POI data, for testing usages
-
-//        lifecycleScope.launch {
-//            poiViewModel.typeListFlow.first().find { it.poiID == 30 }?.let {
-//                poiViewModel.deleteType(it)
-//            }
-//        }
-//        lifecycleScope.launch {
-//            val poi = poiViewModel.typeListFlow.first().last().copy(poiID = 26)
-//            poiViewModel.updateType(poi)
-//        }
-
-//        routeViewModel.addType(
-//            Route(
-//                routeID = null,
-//                routeName = "Route 1",
-//                listOf(
-//                    poi
-//                ),
-//                thumbnailUri = R.drawable.tower_of_destinity,
-//                routeLength = 20f,
-//                routeContent = "Historic tower of awesomeness"
-//            )
-//        )
-
+        
         setContent {
             DORATheme {
                 DORA(poiViewModel, routeViewModel)
