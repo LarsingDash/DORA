@@ -1,5 +1,6 @@
 package nl.a3.dora.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.Icon
@@ -19,7 +20,7 @@ fun ListItemHeader(
     onFoldClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Row {
+    Row (modifier = Modifier.clickable { onFoldClick.invoke() }) {
         Text(text = text)
         Spacer(modifier = Modifier.weight(1f))
         if (isFoldedOut) {

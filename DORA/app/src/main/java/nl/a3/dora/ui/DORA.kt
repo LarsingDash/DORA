@@ -86,7 +86,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen(routeViewModel, navController)
+                HomeScreen(routeViewModel, navController, currentPage)
                 BackHandler(true) {
                     currentActivity.finish()
                 }

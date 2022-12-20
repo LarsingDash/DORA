@@ -34,7 +34,7 @@ fun RouteItem(
             .padding(8.dp)
     ) {
         Column (modifier = Modifier.padding(8.dp)) {
-            ListItemHeader(text = route.routeName,isFoldedOut = isFoldedOut, onFoldClick = { /*TODO*/ })
+            ListItemHeader(text = route.routeName,isFoldedOut = isFoldedOut, onFoldClick = onFoldClick)
             if (isFoldedOut) {
                 RouteDiscriptionItem(
                     route = route,
