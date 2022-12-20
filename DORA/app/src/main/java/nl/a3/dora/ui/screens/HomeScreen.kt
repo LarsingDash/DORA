@@ -1,104 +1,86 @@
 package nl.a3.dora.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.*
+import androidx.navigation.NavHostController
+import nl.a3.dora.MainActivity
+import nl.a3.dora.model.Route
+import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.component.DialogBox
+import nl.a3.dora.ui.component.RouteItem
+import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 
+private var routeAwaitingReset: Route? = null
 
 @Composable
-fun HomeScreen(routeViewModel: RouteViewModel) {
-    val showDialog = remember {
-        mutableStateOf(0)
-    }
-
+fun HomeScreen(
+    routeViewModel: RouteViewModel,
+    poiViewModel: PoiViewModel,
+    navController: NavHostController,
+    currentPage: MutableState<String>
+) {
     val routeStateList = routeViewModel.typeListFlow.collectAsState(initial = listOf())
+    var openedRoute: Route? by remember { mutableStateOf(null) }
+    val showDialog = remember { mutableStateOf(0) }
 
     LazyColumn {
+
         items(routeStateList.value.size) { index ->
             val route = routeStateList.value[index]
-            Text(
-                text = route.routeName,
-                modifier = Modifier.padding(5.dp),
-                lineHeight = 70.sp
-            )
-            Image(
-                painter = painterResource(id = route.thumbnailUri),
-                contentDescription = "Cool tower"
-            )
-            Text(
-                text = route.routeContent,
-                lineHeight = 70.sp
+            var foldout = false
+            if (openedRoute != null && openedRoute == route) {
+                foldout = true
+            }
+            RouteItem(
+                route = route,
+                isFoldedOut = foldout,
+                onFoldClick = {
+                    if (foldout) {
+                        openedRoute = null
+                    } else {
+                        openedRoute = route
+                    }
+                },
+                onSelectRouteClick = {
+                    MainActivity.selectedRoute = route
+                    currentPage.value = Pages.Map.title
+                    navController.navigate(Pages.Map.title + "/1")
+                },
+                onResetRouteClick = {
+                    showDialog.value = 1
+                    routeAwaitingReset = route
+                }
             )
         }
     }
 
-    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-        Button(onClick = {
-            showDialog.value = 1
-        }) {
-            Text(text = "Popup Testbutton")
-        }
-    }
-
+    //DialogBox
     if (showDialog.value == 1) {
         DialogBox(
-            showDialog,
-            "TestTitle",
-            "Test\nDescription\nDescription\nDescription\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "last",
-            mapOf(
-//                "No" to { println("no") },
-//                "Maybe" to { println("maybe") },
-                "Yes" to Pair(false, { println("yes") })
+            showDialog = showDialog,
+            titleText = "cirgen",
+            description = "sinjor",
+            buttons = mapOf(
+                "No" to Pair(true) {},
+                "Yes" to Pair(
+                    false
+                ) {
+                    Log.d("DEBUG ENTRY", "Resetting ROUTE")
+                    resetRoute(poiViewModel)
+                }
             )
         )
     }
+}
+
+private fun resetRoute(poiViewModel: PoiViewModel) {
+    Log.d("POI data", "${routeAwaitingReset?.routeList}")
+    routeAwaitingReset?.routeList?.forEach {
+        val poi = it.copy(isVisited = false)
+        Log.d("POI data", "$poi")
+        poiViewModel.updateType(poi)
+    }
+    routeAwaitingReset = null
 }
