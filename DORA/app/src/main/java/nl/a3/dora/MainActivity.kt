@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import nl.a3.dora.model.POI
+import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
@@ -76,5 +77,9 @@ class MainActivity : ComponentActivity() {
                 DORA(poiViewModel, routeViewModel)
             }
         }
+    }
+
+    companion object {
+        public var selectedRoute: Route? = null
     }
 }

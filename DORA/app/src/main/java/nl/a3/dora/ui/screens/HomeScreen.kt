@@ -1,53 +1,35 @@
 package nl.a3.dora.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import nl.a3.dora.R
-import nl.a3.dora.ui.component.DialogBox
-import nl.a3.dora.ui.component.GUIList
+import androidx.navigation.NavHostController
+import nl.a3.dora.MainActivity
+import nl.a3.dora.ui.Pages
+import nl.a3.dora.ui.component.RouteItem
 import nl.a3.dora.viewmodel.RouteViewModel
 
 
 @Composable
-fun HomeScreen(routeViewModel: RouteViewModel) {
+fun HomeScreen(routeViewModel: RouteViewModel, navController: NavHostController) {
     val routeStateList = routeViewModel.typeListFlow.collectAsState(initial = listOf())
 
-    //load reusable lazycolomn
-    GUIList(routeStateList)
+    LazyColumn {
 
-    /*LazyColumn {
         items(routeStateList.value.size) { index ->
             val route = routeStateList.value[index]
-            Text(
-                text = route.routeName,
-                modifier = Modifier.padding(5.dp),
-                lineHeight = 70.sp
-            )
-            Image(
-                painter = painterResource(id = R.drawable.tower_of_destinity),
-                contentDescription = "Cool tower"
-            )
-            Text(
-                text = route.routeContent,
-                lineHeight = 70.sp
+            RouteItem(
+                route = route,
+                isFoldedOut = true, //todo = foldvariable
+                onFoldClick = {/*todo = foldroute*/ },
+                onSelectRouteClick = {
+                    MainActivity.selectedRoute = route
+                    navController.navigate(Pages.Home.title)
+                },
+                onResetRouteClick = {/*todo = deselectroute via dialogbox*/ }
             )
         }
-    }*/
+    }
 
 
     //TestCode DialogBox en button

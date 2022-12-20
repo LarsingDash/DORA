@@ -25,7 +25,7 @@ class DummyRepoRoute: RouteRepository {
                     POI(2, "Poi 2",false, R.drawable.breda_stadhuis_nieuw, GeoPoint(51.59461, 4.77896)),
                     POI(3, "Poi 3", true, R.drawable.bocht_of_cingel, GeoPoint(51.5864, 4.7902)), //Geolocation made up
                 ),
-                thumbnailUri = 0,
+                thumbnailUri = R.drawable.tower_of_destinity,
                 routeLength = 5f,
                 routeContent = "This route is used for test data purposes"
             ),
@@ -38,7 +38,7 @@ class DummyRepoRoute: RouteRepository {
 //                    POI(poiID = 2, name = "Poi 6", 19f, true, "img3", null),
 //                    POI(poiID = 3, name = "Poi 7", 4f, true, "img4", null),
                 ),
-                thumbnailUri = 0,
+                thumbnailUri = R.drawable.breda_bieb,
                 routeLength = 10f,
                 routeContent = "This second route is used for test data purposes"
             ),

@@ -106,6 +106,9 @@ dependencies {
     //GSON dependencies
     implementation 'com.google.code.gson:gson:2.9.0'
 
+    //more icons dependencies
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.arch.core:core-testing:$arch_testing_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
