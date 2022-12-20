@@ -105,7 +105,7 @@ fun HomeScreen(routeViewModel: RouteViewModel) {
             mapOf(
 //                "No" to { println("no") },
 //                "Maybe" to { println("maybe") },
-                "Yes" to { println("yes") }
+                "Yes" to Pair(false, { println("yes") })
             )
         )
     }
