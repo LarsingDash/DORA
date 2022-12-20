@@ -26,7 +26,6 @@ fun HomeScreen(
     val showDialog = remember { mutableStateOf(0) }
 
     LazyColumn {
-
         items(routeStateList.value.size) { index ->
             val route = routeStateList.value[index]
             var foldout = false
