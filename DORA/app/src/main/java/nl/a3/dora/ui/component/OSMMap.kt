@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -33,6 +31,7 @@ private lateinit var roadManager: RoadManager
 @Composable
 fun OSMMap(
     navController: NavController,
+    currentPage: MutableState<String>,
 ) {
     //Initiate variables
     val context = LocalContext.current
@@ -46,6 +45,7 @@ fun OSMMap(
     poiOverlay = createPOIOverlay(
         context = context,
         navController,
+        currentPage,
     )
 
     //Create map
@@ -72,7 +72,8 @@ fun OSMMap(
 @Composable
 private fun createPOIOverlay(
     context: Context,
-    navController: NavController
+    navController: NavController,
+    currentPage: MutableState<String>,
 ): ItemizedIconOverlay<POIOverlayItem> {
     return remember {
         //Create listener from clicks on the POI
@@ -81,6 +82,7 @@ private fun createPOIOverlay(
             override fun onItemSingleTapUp(index: Int, item: POIOverlayItem?): Boolean {
                 item?.poi?.let {
                     navController.navigate(Pages.POI.title + "/${it.poiID}")
+                    currentPage.value = Pages.POI.title
                 }
                 return true
             }

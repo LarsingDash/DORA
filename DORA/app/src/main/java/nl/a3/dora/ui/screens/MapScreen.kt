@@ -1,6 +1,7 @@
 package nl.a3.dora.ui.screens
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavController
 import nl.a3.dora.model.POI
 import nl.a3.dora.ui.component.OSMMap
@@ -10,9 +11,10 @@ import org.osmdroid.util.GeoPoint
 
 @Composable
 fun MapScreen(
-    navController: NavController
+    navController: NavController,
+    currentPage: MutableState<String>
 ) {
-    OSMMap(navController)
+    OSMMap(navController, currentPage)
 
     val POIList = arrayListOf(
         POI(0, "Avans", true, 0, GeoPoint(51.5856, 4.7925)),
