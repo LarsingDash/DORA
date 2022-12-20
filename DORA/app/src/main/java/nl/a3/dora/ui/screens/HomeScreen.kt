@@ -1,11 +1,18 @@
 package nl.a3.dora.ui.screens
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.Pages
+import nl.a3.dora.ui.component.DialogBox
 import nl.a3.dora.ui.component.RouteItem
 import nl.a3.dora.viewmodel.RouteViewModel
 
@@ -18,6 +25,7 @@ fun HomeScreen(
 ) {
     val routeStateList = routeViewModel.typeListFlow.collectAsState(initial = listOf())
     var openedRoute: Route? by remember { mutableStateOf(null) }
+    val showDialog = remember { mutableStateOf(0) }
 
     LazyColumn {
 
@@ -29,7 +37,7 @@ fun HomeScreen(
             }
             RouteItem(
                 route = route,
-                isFoldedOut = foldout, //todo = foldvariable
+                isFoldedOut = foldout,
                 onFoldClick = {
                     if (foldout) {
                         openedRoute = null
@@ -42,9 +50,27 @@ fun HomeScreen(
                     currentPage.value = Pages.Map.title
                     navController.navigate(Pages.Map.title)
                 },
-                onResetRouteClick = {/*todo = deselectroute via dialogbox*/ }
+                onResetRouteClick = {
+                    showDialog.value = 1
+                }
             )
         }
+    }
+
+    //DialogBox
+    if (showDialog.value == 1) {
+        DialogBox(
+            showDialog = showDialog,
+            titleText = "cirgen",
+            description = "sinjor",
+            buttons = mapOf(
+                "No" to Pair(true) {},
+                "Yes" to Pair(false
+                ) {
+                    MainActivity.selectedRoute = null
+                }
+            )
+        )
     }
 
 
