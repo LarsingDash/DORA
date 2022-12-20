@@ -34,7 +34,7 @@ interface PoiDao {
     /**
      * @brief Updates the value of the selected POI in the Database
      */
-    @Update
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updatePOI(poi: POI)
 
     /**

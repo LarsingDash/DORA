@@ -32,7 +32,7 @@ interface RouteDao {
     /**
      * @brief Updates the value of the selected Route in the Database
      */
-    @Update
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateRoute(route: Route)
 
     /**
