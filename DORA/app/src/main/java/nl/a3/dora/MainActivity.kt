@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.preference.PreferenceManager
+import android.util.Log
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import nl.a3.dora.model.POI
@@ -35,6 +37,11 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            poiViewModel.typeListFlow.first().forEach() {
+                Log.d("POI DATA", "$it")
+            }
+        }
         //TEST DATA for RoomDB integration
         //TODO Fill database with values that represent the necessary data structures
 //        val poi = POI(
