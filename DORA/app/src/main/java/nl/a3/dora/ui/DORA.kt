@@ -1,7 +1,6 @@
 package nl.a3.dora.ui
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -23,7 +22,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -88,7 +86,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen(routeViewModel)
+                HomeScreen(routeViewModel, navController)
                 BackHandler(true) {
                     currentActivity.finish()
                 }
