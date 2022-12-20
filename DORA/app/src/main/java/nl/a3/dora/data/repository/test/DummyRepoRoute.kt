@@ -46,12 +46,12 @@ class DummyRepoRoute: RouteRepository {
     )
 
     override fun getAllRoutes(): Flow<List<Route>> {
-        Log.d("DEBUG Route", "Getting all Routes $routeList")
+//        Log.d("DEBUG Route", "Getting all Routes $routeList")
         return routeList.asFlow()
     }
 
     override suspend fun getRouteByID(id: Int): Route? {
-        Log.d("DEBUG Route", "Getting ${routeList.first()[id]} from list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Getting ${routeList.first()[id]} from list ${routeList.first()}")
         return routeList.first()[id]
 
     }
@@ -64,11 +64,11 @@ class DummyRepoRoute: RouteRepository {
 
     override suspend fun insertRoute(route: Route) {
         routeList.first() + route
-        Log.d("DEBUG Route", "Inserting $route to list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Inserting $route to list ${routeList.first()}")
     }
 
     override suspend fun deleteRoute(route: Route) {
         routeList.first().toMutableList().remove(route)
-        Log.d("DEBUG Route", "Deleting $route from list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Deleting $route from list ${routeList.first()}")
     }
 }

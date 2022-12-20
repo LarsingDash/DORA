@@ -86,7 +86,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen(routeViewModel, navController)
+                HomeScreen(routeViewModel, poiViewModel, navController, currentPage)
                 BackHandler(true) {
                     currentActivity.finish()
                 }
@@ -107,7 +107,7 @@ fun DORA(
             ) {
                 val poiID = it.arguments?.getInt("poiID")
 
-                POIScreen(poiViewModel, poiID)
+                POIScreen(poiID)
                 BackHandler(true) {
                     if (poiID == -1) currentActivity.finish()
                     else  {
