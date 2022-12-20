@@ -3,8 +3,10 @@ package nl.a3.dora.ui.screens
 import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import nl.a3.dora.MainActivity
+import nl.a3.dora.R
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.component.DialogBox
@@ -36,11 +38,7 @@ fun HomeScreen(
                 route = route,
                 isFoldedOut = foldout,
                 onFoldClick = {
-                    if (foldout) {
-                        openedRoute = null
-                    } else {
-                        openedRoute = route
-                    }
+                    openedRoute = if (foldout) null else route
                 },
                 onSelectRouteClick = {
                     MainActivity.selectedRoute = route
@@ -59,11 +57,11 @@ fun HomeScreen(
     if (showDialog.value == 1) {
         DialogBox(
             showDialog = showDialog,
-            titleText = "cirgen",
-            description = "sinjor",
+            titleText = stringResource(R.string.reset_route),
+            description = stringResource(R.string.are_you_sure_text),
             buttons = mapOf(
-                "No" to Pair(true) {},
-                "Yes" to Pair(
+                stringResource(R.string.no) to Pair(true) {},
+                stringResource(R.string.yes) to Pair(
                     false
                 ) {
                     Log.d("DEBUG ENTRY", "Resetting ROUTE")
