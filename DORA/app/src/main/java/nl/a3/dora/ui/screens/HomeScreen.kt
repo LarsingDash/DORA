@@ -1,25 +1,23 @@
 package nl.a3.dora.ui.screens
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
+import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.component.DialogBox
 import nl.a3.dora.ui.component.RouteItem
+import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 
+private var routeAwaitingReset: Route? = null
 
 @Composable
 fun HomeScreen(
     routeViewModel: RouteViewModel,
+    poiViewModel: PoiViewModel,
     navController: NavHostController,
     currentPage: MutableState<String>
 ) {
@@ -52,6 +50,7 @@ fun HomeScreen(
                 },
                 onResetRouteClick = {
                     showDialog.value = 1
+                    routeAwaitingReset = route
                 }
             )
         }
@@ -65,73 +64,23 @@ fun HomeScreen(
             description = "sinjor",
             buttons = mapOf(
                 "No" to Pair(true) {},
-                "Yes" to Pair(false
+                "Yes" to Pair(
+                    false
                 ) {
-                    MainActivity.selectedRoute = null
+                    Log.d("DEBUG ENTRY", "Resetting ROUTE")
+                    resetRoute(poiViewModel)
                 }
             )
         )
     }
+}
 
-
-    //TestCode DialogBox en button
-    /*
-    val showDialog = remember { mutableStateOf(0) }
-
-    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-        Button(onClick = {
-            showDialog.value = 1
-        }) {
-            Text(text = "Popup Testbutton")
-        }
+private fun resetRoute(poiViewModel: PoiViewModel) {
+    Log.d("POI data", "${routeAwaitingReset?.routeList}")
+    routeAwaitingReset?.routeList?.forEach {
+        val poi = it.copy(isVisited = false)
+        Log.d("POI data", "$poi")
+        poiViewModel.updateType(poi)
     }
-    */
-
-    /*
-    if (showDialog.value == 1) {
-        DialogBox(
-            showDialog,
-            "TestTitle",
-            "Test\nDescription\nDescription\nDescription\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "Description\n" +
-                    "last",
-            mapOf(
-//                "No" to { println("no") },
-//                "Maybe" to { println("maybe") },
-                "Yes" to Pair(false, { println("yes") })
-            )
-        )
-    }
-    */
+    routeAwaitingReset = null
 }

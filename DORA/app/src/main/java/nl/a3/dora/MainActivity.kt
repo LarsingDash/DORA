@@ -80,6 +80,6 @@ class MainActivity : ComponentActivity() {
     }
 
     companion object {
-        public var selectedRoute: Route? = null
+        var selectedRoute: Route? = null
     }
 }
