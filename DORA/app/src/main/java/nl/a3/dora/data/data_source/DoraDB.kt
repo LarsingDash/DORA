@@ -1,7 +1,6 @@
 package nl.a3.dora.data.data_source
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -36,7 +35,7 @@ abstract class DoraDB : RoomDatabase() {
     abstract fun routeDao(): RouteDao
 
     companion object {
-        private const val DATABASE_NAME = "dora_db"
+        private const val DATABASE_NAME = "dora.db"
 
         @Volatile
         private var INSTANCE: DoraDB? = null
@@ -53,7 +52,9 @@ abstract class DoraDB : RoomDatabase() {
                     context,
                     DoraDB::class.java,
                     DATABASE_NAME,
-                ).fallbackToDestructiveMigration()
+                )
+                    .createFromAsset("database/dora.db")
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 return instance
