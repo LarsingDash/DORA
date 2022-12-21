@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
         setupUserLocation()
+        assignGeofencing()
 
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
@@ -62,10 +63,7 @@ class MainActivity : ComponentActivity() {
                     val geoLocation = GeoPoint(location.latitude, location.longitude)
                     userLocation = geoLocation
 
-                    if (
-                        Math.abs(userLocation.latitude - lastUserLocation.latitude) > 0.00001
-                        || Math.abs(userLocation.longitude - lastUserLocation.longitude) > 0.00001
-                    ) {
+                    if (userLocation.distanceToAsDouble(lastUserLocation) > 0.5) {
                         lastUserLocation = userLocation
 
                         //Invoke subscriptions
@@ -104,5 +102,18 @@ class MainActivity : ComponentActivity() {
         var userLocation = GeoPoint(51.5856, 4.7925)
         var lastUserLocation = userLocation
         var locationSubscriptions = arrayListOf<(GeoPoint) -> Unit>()
+
+        fun assignGeofencing() {
+            locationSubscriptions.add {
+                selectedRoute?.routeList?.forEach { poi ->
+                    val poiLocation = poi.poiLocation
+
+                    if (userLocation.distanceToAsDouble(poiLocation) < 25) {
+                        //todo
+                        Log.println(Log.DEBUG, "GEOFENCE", poi.poiName)
+                    }
+                }
+            }
+        }
     }
 }

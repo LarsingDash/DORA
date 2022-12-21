@@ -55,8 +55,6 @@ fun OSMMap(
         navController,
         currentPage,
     )
-//    locationOverlay = IconOverlay(MainActivity.userLocation, context.getDrawable(R.drawable.user))
-//    mapView.overlays.add(locationOverlay)
 
     //Create map
     AndroidView(
@@ -71,8 +69,7 @@ fun OSMMap(
                 controller.setZoom(17.0)
 
                 mapView.overlays.add(poiOverlay)
-                //todo perhaps
-//                mapView.tileProvider.tileSource = TileSourceFactory.BASE_OVERLAY_NL
+//                mapView.zoomController.display.setBitmaps()
             }
         },
     )
