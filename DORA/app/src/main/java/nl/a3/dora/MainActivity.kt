@@ -12,12 +12,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.*
+import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
@@ -25,6 +22,9 @@ import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
         StrictMode.setThreadPolicy(policy)
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        setupUserLocation()
 
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
@@ -50,8 +51,8 @@ class MainActivity : ComponentActivity() {
         //Setup provider and requests
         val provider = LocationServices.getFusedLocationProviderClient(this)
         val request = LocationRequest.Builder(
-            Priority.PRIORITY_BALANCED_POWER_ACCURACY,
-            250L
+            Priority.PRIORITY_HIGH_ACCURACY,
+            1000L
         ).build()
 
         //Setup callback
@@ -65,9 +66,16 @@ class MainActivity : ComponentActivity() {
                     val geoLocation = GeoPoint(location.latitude, location.longitude)
                     userLocation = geoLocation
 
-                    //Invoke subscriptions
-                    for (subscriber in locationSubscriptions) {
-                        subscriber.invoke(geoLocation)
+                    if (
+                        Math.abs(userLocation.latitude - lastUserLocation.latitude)  > 0.00001
+                        || Math.abs(userLocation.longitude - lastUserLocation.longitude)  > 0.00001
+                    ) {
+                        lastUserLocation = userLocation
+
+                        //Invoke subscriptions
+                        for (subscriber in locationSubscriptions) {
+                            subscriber.invoke(geoLocation)
+                        }
                     }
                 }
             }
@@ -97,7 +105,8 @@ class MainActivity : ComponentActivity() {
 
     companion object {
         var selectedRoute: Route? = null
-        var userLocation = GeoPoint(0.0, 0.0)
+        var userLocation = GeoPoint(51.5856, 4.7925)
+        var lastUserLocation = userLocation
         var locationSubscriptions = arrayListOf<(GeoPoint) -> Unit>()
     }
 }

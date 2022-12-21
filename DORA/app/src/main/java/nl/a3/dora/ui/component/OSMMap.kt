@@ -4,7 +4,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -12,22 +15,25 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
+import nl.a3.dora.MainActivity
+import nl.a3.dora.R
 import nl.a3.dora.model.POI
 import nl.a3.dora.ui.Pages
 import org.osmdroid.bonuspack.routing.OSRMRoadManager
 import org.osmdroid.bonuspack.routing.RoadManager
 import org.osmdroid.config.Configuration
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.tileprovider.tilesource.TileSourcePolicy
-import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.IconOverlay
 import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.OverlayItem
+import org.osmdroid.views.overlay.Polyline
 
 private lateinit var mapView: MapView
 private lateinit var poiOverlay: ItemizedIconOverlay<POIOverlayItem>
+private var locationOverlay: IconOverlay = IconOverlay()
 private lateinit var roadManager: RoadManager
+private var routeOverlays = arrayListOf<Polyline>()
 
 //Main Composable
 @Composable
@@ -49,6 +55,8 @@ fun OSMMap(
         navController,
         currentPage,
     )
+//    locationOverlay = IconOverlay(MainActivity.userLocation, context.getDrawable(R.drawable.user))
+//    mapView.overlays.add(locationOverlay)
 
     //Create map
     AndroidView(
@@ -59,7 +67,7 @@ fun OSMMap(
                 maxZoomLevel = 20.0
                 isTilesScaledToDpi = true
 
-                controller.setCenter(GeoPoint(51.5856, 4.7925))
+                controller.setCenter(MainActivity.userLocation)
                 controller.setZoom(17.0)
 
                 mapView.overlays.add(poiOverlay)
@@ -126,19 +134,30 @@ fun addPOIListToMap(
     mapView.invalidate()
 }
 
-fun addRouteToMap(POIList: List<POI>) {
+fun addRouteToMap(originalPOIList: List<POI>) {
+    mapView.overlays.removeAll(routeOverlays)
+    routeOverlays.clear()
+
+    //Add userPOI to route
+    val poiList = arrayListOf<POI>()
+    poiList.addAll(originalPOIList)
+    for (poi in originalPOIList) {
+        if (!poi.isVisited) poiList.add(originalPOIList.indexOf(poi), POI(-1, 0, true, 0, 0, MainActivity.userLocation))
+    }
+
     //Make subRoutes between all POI's
-    for (POI in POIList) {
+    val loaders = arrayListOf<Thread>()
+    for (poi in poiList) {
         //Skip if index is last element
-        val index = POIList.indexOf(POI)
-        if (index == POIList.size - 1) continue
+        val index = poiList.indexOf(poi)
+        if (index == poiList.size - 1) continue
 
         //Get nextPOI and make subRoute
-        val nextPOI = POIList[index + 1]
-        val subRoute: ArrayList<GeoPoint> = arrayListOf(POI.poiLocation, nextPOI.poiLocation)
+        val nextPOI = poiList[index + 1]
+        val subRoute: ArrayList<GeoPoint> = arrayListOf(poi.poiLocation, nextPOI.poiLocation)
 
         //Create routeOverlay using OpenSourceRoadManager
-        Thread {
+        val loader = Thread {
             //Creation
             val road = roadManager.getRoad(subRoute)
             val routeOverlay = RoadManager.buildRoadOverlay(road)
@@ -156,11 +175,23 @@ fun addRouteToMap(POIList: List<POI>) {
             }
 
             //Add the overlay to all overlays
-            mapView.overlays.add(mapView.overlays.indexOf(poiOverlay), routeOverlay)
-        }.start()
+            mapView.overlays.add(0, routeOverlay)
+            routeOverlays.add(routeOverlay)
+        }
+        loader.start()
+        loaders.add(loader)
     }
 
+    loaders.forEach { it.join() }
+
     //Update map
+    mapView.invalidate()
+}
+
+fun updateUserLocation(geoPoint: GeoPoint, context: Context) {
+    mapView.overlays.remove(locationOverlay)
+    locationOverlay = IconOverlay(geoPoint, context.getDrawable(R.drawable.user))
+    mapView.overlays.add(locationOverlay)
     mapView.invalidate()
 }
 
@@ -186,7 +217,6 @@ private fun MapView.lifecycleObserver() = LifecycleEventObserver { _, event ->
         else -> {}
     }
 }
-
 
 private class POIOverlayItem(
     val poi: POI,
