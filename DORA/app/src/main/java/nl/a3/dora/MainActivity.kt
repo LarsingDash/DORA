@@ -38,39 +38,19 @@ class MainActivity : ComponentActivity() {
         val routeViewModel: RouteViewModel by viewModels()
 
 //        val historicKM: List<POI> = listOf(
-//            poiViewModel.getTypeByID(16),
-//            poiViewModel.getTypeByID(17),
-//            poiViewModel.getTypeByID(18),
+//            poiViewModel.getTypeByID(26),
 //            poiViewModel.getTypeByID(19),
-//            poiViewModel.getTypeByID(20),
-//            poiViewModel.getTypeByID(21),
-//            poiViewModel.getTypeByID(22),
-//            poiViewModel.getTypeByID(23),
-//            poiViewModel.getTypeByID(24),
-//            poiViewModel.getTypeByID(25),
-//            poiViewModel.getTypeByID(2),
-//            poiViewModel.getTypeByID(3),
-//            poiViewModel.getTypeByID(4),
-//            poiViewModel.getTypeByID(5),
-//            poiViewModel.getTypeByID(6),
-//            poiViewModel.getTypeByID(7),
-//            poiViewModel.getTypeByID(8),
-//            poiViewModel.getTypeByID(9),
-//            poiViewModel.getTypeByID(10),
-//            poiViewModel.getTypeByID(11),
-//            poiViewModel.getTypeByID(13),
-//            poiViewModel.getTypeByID(14),
-//            poiViewModel.getTypeByID(12),
-//            poiViewModel.getTypeByID(15),
+//            poiViewModel.getTypeByID(27),
+//            poiViewModel.getTypeByID(28),
 //        ) as List<POI>
 //
 //        routeViewModel.addType(
 //            Route(
-//                routeName = R.string.historische_km,
+//                routeName = "de_route",
 //                routeList = historicKM,
-//                thumbnailUri = R.drawable.meester_muller,
+//                thumbnailUri = "pad_van_sinterklaas",
 //                routeLength = 60f,
-//                routeDescription = R.string.route_description_historische_kilometer
+//                routeDescription = "route_description_de_route"
 //            )
 //        )
 //        lifecycleScope.launch(Dispatchers.IO) {
