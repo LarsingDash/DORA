@@ -11,7 +11,7 @@
     <string name="ags_logo_desc">Ags logo</string>
     <string name="route_thumb_desc">Route thumbnail</string>
     <string name="has_visited_text">Bezocht: al bezocht</string>
-    <string name="not_yet_visited_text">Bezocht: onbezocht</string>
+    <string name="not_yet_visited_text">Bezocht: nog niet bezocht</string>
     <string name="poi_number">Poi nummer: </string>
     <string name="reset_route">Reset route</string>
     <string name="are_you_sure_text">Weet je zeker dat je route will resetten?</string>
