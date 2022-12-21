@@ -14,8 +14,9 @@ import org.osmdroid.util.GeoPoint
 @Entity(tableName = "poi_table")
 data class POI(
     @PrimaryKey(autoGenerate = true)  val poiID: Int? = null,
-    val name: String,
+    val poiName: Int,
     val isVisited: Boolean,
     val thumbnailUri: Int,
+    val poiDescription: Int,
     val poiLocation: GeoPoint,
 )

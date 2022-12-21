@@ -27,7 +27,7 @@ fun POIItem(
 ) {
     //Background Card used in both Route and POI Item
     ListItemCard(
-        headerText = poi.name,
+        headerText = stringResource(id = poi.poiName),
         isFoldedOut = isFoldedOut,
         onFoldClick = onFoldClick,
         DescriptionComp = {
@@ -96,9 +96,10 @@ private fun PreviewPOIItem() {
     POIItem(
         poi = POI(
             0,
-            "Poi 0",
+            R.string.truth,
             true,
             R.drawable.tower_of_destinity,
+            R.string.truth,
             GeoPoint(51.5856, 4.7925)
         ),
         isFoldedOut = true,

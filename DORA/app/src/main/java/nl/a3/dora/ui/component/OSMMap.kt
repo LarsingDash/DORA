@@ -3,12 +3,8 @@ package nl.a3.dora.ui.component
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -16,6 +12,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
+import nl.a3.dora.DoraApp
 import nl.a3.dora.model.POI
 import nl.a3.dora.ui.Pages
 import org.osmdroid.bonuspack.routing.OSRMRoadManager
@@ -102,9 +99,13 @@ private fun createPOIOverlay(
 }
 
 //Other Functions
-fun addPOIListToMap(POIList: List<POI>) {
+
+fun addPOIListToMap(POIList: List<POI>, context: Context) {
     poiOverlay.addItems(
-        POIList.map { POIOverlayItem(it) }
+        POIList.map { POIOverlayItem(it, context
+            .getString(
+                it
+                    .poiName)) }
     )
     mapView.invalidate()
 }
@@ -170,6 +171,8 @@ private fun MapView.lifecycleObserver() = LifecycleEventObserver { _, event ->
     }
 }
 
+
 private class POIOverlayItem(
-    val poi: POI
-) : OverlayItem(poi.name, null, poi.poiLocation)
+    val poi: POI,
+    poiName: String
+) : OverlayItem(poiName, null, poi.poiLocation)

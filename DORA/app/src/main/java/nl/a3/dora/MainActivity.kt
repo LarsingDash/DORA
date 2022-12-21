@@ -5,7 +5,6 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.preference.PreferenceManager
 import android.util.Log
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -38,11 +37,46 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            routeViewModel.typeListFlow.first().forEach {
-                Log.d("ROUTE DATA", "$it")
-            }
-        }
+//        val historicKM: List<POI> = listOf(
+//            poiViewModel.getTypeByID(16),
+//            poiViewModel.getTypeByID(17),
+//            poiViewModel.getTypeByID(18),
+//            poiViewModel.getTypeByID(19),
+//            poiViewModel.getTypeByID(20),
+//            poiViewModel.getTypeByID(21),
+//            poiViewModel.getTypeByID(22),
+//            poiViewModel.getTypeByID(23),
+//            poiViewModel.getTypeByID(24),
+//            poiViewModel.getTypeByID(25),
+//            poiViewModel.getTypeByID(2),
+//            poiViewModel.getTypeByID(3),
+//            poiViewModel.getTypeByID(4),
+//            poiViewModel.getTypeByID(5),
+//            poiViewModel.getTypeByID(6),
+//            poiViewModel.getTypeByID(7),
+//            poiViewModel.getTypeByID(8),
+//            poiViewModel.getTypeByID(9),
+//            poiViewModel.getTypeByID(10),
+//            poiViewModel.getTypeByID(11),
+//            poiViewModel.getTypeByID(13),
+//            poiViewModel.getTypeByID(14),
+//            poiViewModel.getTypeByID(12),
+//            poiViewModel.getTypeByID(15),
+//        ) as List<POI>
+//
+//        routeViewModel.addType(
+//            Route(
+//                routeName = R.string.historische_km,
+//                routeList = historicKM,
+//                thumbnailUri = R.drawable.meester_muller,
+//                routeLength = 60f,
+//                routeDescription = R.string.route_description_historische_kilometer
+//            )
+//        )
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            val poi = poiViewModel.typeListFlow.first().find { it.poiName == R.string.grote_kerk }?.copy(poiLocation = GeoPoint(51.588784341353744, 4.775163473055657))
+//            poi?.let { poiViewModel.updateType(it) }
+//        }
 
         setContent {
             DORATheme {
@@ -55,8 +89,6 @@ class MainActivity : ComponentActivity() {
         var selectedRoute: Route? = null
     }
 }
-
-
 
 //TEST DATA for RoomDB integration
 //        val poi = POI(
@@ -100,15 +132,15 @@ class MainActivity : ComponentActivity() {
 //            poiViewModel.getTypeByID(26)
 //        ) as List<POI>
 
-// 1. School 2.Klooster kazerne <-- pos updaten 3. Vlaszak 4. Gasthuispoort 5.Station
-
-//        routeViewModel.getTypeByID(2)?.let {
-//            val route = it.copy(routeList = deROUTE)
-//            routeViewModel.updateType(route)
-//        }
-
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            poiViewModel.typeListFlow.first().forEach {
 //                Log.d("POI DATA", "$it")
 //            }
 //        }
+
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            routeViewModel.typeListFlow.first().forEach {
+//                Log.d("ROUTE DATA", "$it")
+//            }
+//        }
+
