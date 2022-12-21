@@ -49,10 +49,14 @@ class MainActivity : ComponentActivity() {
 //                routeName = "de_route",
 //                routeList = historicKM,
 //                thumbnailUri = "pad_van_sinterklaas",
-//                routeLength = 60f,
+//                routeLength = 69f,
 //                routeDescription = "route_description_de_route"
 //            )
 //        )
+//        lifecycleScope.launch {
+//            routeViewModel.getTypeByID(2)?.let { routeViewModel.deleteType(it) }
+//        }
+
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            val poi = poiViewModel.typeListFlow.first().find { it.poiName == R.string.grote_kerk }?.copy(poiLocation = GeoPoint(51.588784341353744, 4.775163473055657))
 //            poi?.let { poiViewModel.updateType(it) }
