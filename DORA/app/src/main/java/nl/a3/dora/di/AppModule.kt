@@ -11,8 +11,6 @@ import nl.a3.dora.viewmodel.RouteViewModel
 import nl.a3.dora.DoraApp
 import nl.a3.dora.data.repository.PoiRepositoryImpl
 import nl.a3.dora.data.repository.RouteRepositoryImpl
-import nl.a3.dora.data.repository.test.DummyRepoPoi
-import nl.a3.dora.data.repository.test.DummyRepoRoute
 import nl.a3.dora.viewmodel.repository.PoiRepository
 import nl.a3.dora.viewmodel.repository.RouteRepository
 import javax.inject.Singleton

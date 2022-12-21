@@ -122,7 +122,7 @@ fun addPOIListToMap(
 ) {
     for (poi in POIList) {
         poiOverlay.addItem(
-            POIOverlayItem(poi, context.getString(poi.poiName))
+            POIOverlayItem(poi, context.getString(context.resources().getIdentifier(poi.poiName, "string", context.packageName)))
         )
 
         if (poi.isVisited) {
