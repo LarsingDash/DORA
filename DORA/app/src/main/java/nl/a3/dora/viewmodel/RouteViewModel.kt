@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import nl.a3.dora.model.Route
 import nl.a3.dora.viewmodel.repository.RouteRepository
 import nl.a3.dora.viewmodel.repository.ViewModelAbstract
@@ -19,10 +20,9 @@ class RouteViewModel @Inject constructor(
         get() = routeRepository.getAllRoutes()
 
     override fun getTypeByID(id: Int): Route? {
-        var tempRoute: Route? = null
-        viewModelScope.launch(Dispatchers.IO) {
-            tempRoute = routeRepository.getRouteByID(id)
-        }
+        var tempRoute: Route?
+        runBlocking { tempRoute = routeRepository.getRouteByID(id) }
+
         return tempRoute
     }
 

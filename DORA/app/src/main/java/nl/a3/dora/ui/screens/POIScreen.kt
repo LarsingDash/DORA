@@ -1,35 +1,59 @@
 package nl.a3.dora.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import nl.a3.dora.viewmodel.PoiViewModel
+import androidx.compose.runtime.*
+import nl.a3.dora.MainActivity
+import nl.a3.dora.model.POI
+import nl.a3.dora.ui.component.POIItem
 
 @Composable
 fun POIScreen(
-    poiViewModel: PoiViewModel,
     poiID: Int?,
 ) {
-    val poiListState = poiViewModel.typeListFlow.collectAsState(initial = listOf())
-
-    //Testing if all POIs are added in
-//    poiListState.value.forEach{
-//        Log.d("DEBUG DATA", "POI DATA: $it")
-//    }
-
-    Text(text = "$poiID")
+    val nullableList by remember {
+        mutableStateOf(MainActivity.selectedRoute?.routeList)
+    }
+    val list: List<POI> = nullableList ?: listOf()
+    var openedPOI: POI? by remember { mutableStateOf(null) }
+    var preOpenedPoiID by remember { mutableStateOf(poiID) }
 
     LazyColumn {
-        items(poiListState.value.size) { index ->
-            val poi = poiListState.value[index]
+        items(list.size) { index ->
+            val poi = list[index]
+            var foldout = false
+            if (openedPOI != null && openedPOI == poi) foldout = true
+            if (preOpenedPoiID != null && poi.poiID != null && preOpenedPoiID == poi.poiID ) foldout = true
+            POIItem(
+                poi = poi,
+                isFoldedOut = foldout,
+                onFoldClick = {
+                    openedPOI = if (foldout) null else poi
+                    preOpenedPoiID = null
+                },
+            )
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    Text(text = "$poiID")
+//    val poiListState = poiViewModel.typeListFlow.collectAsState(initial = listOf())
+
+    /*LazyColumn {
+        items(list.size) { index ->
+            val poi = list[index]
             Text(
                 text = poi.name,
                 modifier = Modifier.padding(5.dp),
@@ -39,15 +63,13 @@ fun POIScreen(
                 painter = painterResource(id = poi.thumbnailUri),
                 contentDescription = "Cool tower"
             )
-            Text(
-                text = "Me when coding this fucking shit",
-                lineHeight = 70.sp
-            )
-            Text(
-                text = "Dogukan 14-12-2022",
-                fontStyle = FontStyle.Italic,
-                lineHeight = 70.sp
-            )
+            if(poi.poiID == poiID) {
+                Text(
+                    text = "Je moeder ofzo: $poiID",
+                    fontStyle = FontStyle.Italic,
+                    lineHeight = 70.sp
+                )
+            }
         }
-    }
+    }*/
 }

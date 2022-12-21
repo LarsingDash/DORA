@@ -31,23 +31,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //TODO find a better way to do this
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-        //TODO same thing
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
 
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            poiViewModel.typeListFlow.first().forEach() {
-                Log.d("POI DATA", "$it")
-            }
-        }
-
-        setupUserLocation()
 
         setContent {
             DORATheme {
@@ -104,42 +94,6 @@ class MainActivity : ComponentActivity() {
             )
         } else Log.println(Log.DEBUG, "DEBUG", "No permissions")
     }
-
-
-//TEST DATA for RoomDB integration
-//        val poi = POI(
-//            name = "Einde stadswandeling",
-//            distanceTo = 0f,
-//            isVisited = false,
-//            thumbnailUri = R.drawable.einde_route,
-//            poiLocation = GeoPoint(51.589780, 4.776203)
-//        )
-//        poiViewModel.addType(poi)
-
-//        Log of all POI data, for testing usages
-
-//        lifecycleScope.launch {
-//            poiViewModel.typeListFlow.first().find { it.poiID == 30 }?.let {
-//                poiViewModel.deleteType(it)
-//            }
-//        }
-//        lifecycleScope.launch {
-//            val poi = poiViewModel.typeListFlow.first().last().copy(poiID = 26)
-//            poiViewModel.updateType(poi)
-//        }
-
-//        routeViewModel.addType(
-//            Route(
-//                routeID = null,
-//                routeName = "Route 1",
-//                listOf(
-//                    poi
-//                ),
-//                thumbnailUri = R.drawable.tower_of_destinity,
-//                routeLength = 20f,
-//                routeContent = "Historic tower of awesomeness"
-//            )
-//        )
 
     companion object {
         var selectedRoute: Route? = null

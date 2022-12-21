@@ -1,11 +1,14 @@
 package nl.a3.dora.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import nl.a3.dora.data.repository.test.DummyRepoPoi
 import nl.a3.dora.model.POI
 import nl.a3.dora.viewmodel.repository.PoiRepository
@@ -22,10 +25,9 @@ class PoiViewModel @Inject constructor(
         get() = poiRepository.getAllPOIs()
 
     override fun getTypeByID(id: Int): POI? {
-        var tempItem: POI? = null
-        viewModelScope.launch(Dispatchers.IO) {
-            tempItem = poiRepository.getPOIByID(id)!!.copy()
-        }
+        var tempItem: POI?
+
+        runBlocking { tempItem = poiRepository.getPOIByID(id) }
         return tempItem
     }
 

@@ -42,7 +42,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRouteRepository(db: DoraDB): RouteRepository {
-        return DummyRepoRoute()
+        return RouteRepositoryImpl(db.routeDao())
     }
 
 }

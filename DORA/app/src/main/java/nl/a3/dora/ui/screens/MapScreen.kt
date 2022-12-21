@@ -6,9 +6,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.app.ActivityCompat
-import androidx.core.location.LocationManagerCompat.requestLocationUpdates
 import androidx.navigation.NavController
 import com.google.android.gms.location.*
 import nl.a3.dora.MainActivity

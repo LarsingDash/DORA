@@ -18,20 +18,19 @@ class DummyRepoRoute: RouteRepository {
         listOf(
             Route(
                 routeID = 0,
-                routeName = "Route 1",
+                routeName = R.string.route_test,
                 listOf(
-                    POI(0, "Poi 0", true, R.drawable.tower_of_destinity, GeoPoint(51.5856, 4.7925)),
-                    POI(1, "Poi 1",false, R.drawable.breda_bieb, GeoPoint(51.58778, 4.78080)),
-                    POI(2, "Poi 2",false, R.drawable.breda_stadhuis_nieuw, GeoPoint(51.59461, 4.77896)),
-                    POI(3, "Poi 3", true, R.drawable.bocht_of_cingel, GeoPoint(51.5864, 4.7902)), //Geolocation made up
-                ),
+                    POI(poiID= 0, poiName= R.string.poi_test, isVisited=  true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = 0, poiLocation =  GeoPoint(51.5856, 4.7925)),
+                    POI(poiID = 1, poiName=R.string.poi_test,isVisited=false, thumbnailUri=R.drawable.breda_bieb, poiDescription = 0, poiLocation = GeoPoint(51.58778, 4.78080)),
+                    POI(poiID= 2, poiName=R.string.poi_test,isVisited=false, thumbnailUri=R.drawable.breda_stadhuis_nieuw, poiDescription = 0, poiLocation = GeoPoint(51.59461, 4.77896)),
+                    POI(poiID = 3, poiName=R.string.poi_test, isVisited=true, thumbnailUri=R.drawable.bocht_of_cingel, poiDescription = 0,poiLocation= GeoPoint(51.5864, 4.7902))),
                 thumbnailUri = R.drawable.tower_of_destinity,
                 routeLength = 5f,
-                routeContent = "This route is used for test data purposes"
+                routeDescription = R.string.truth
             ),
             Route(
                 routeID = 1,
-                routeName = "Route 2",
+                routeName = R.string.route_test,
                 listOf(
 //                    POI(poiID = 0, name = "Poi 4", 4f, false, "img1", null),
 //                    POI(poiID = 1, name = "Poi 5", 1f, true, "img2", null),
@@ -40,18 +39,18 @@ class DummyRepoRoute: RouteRepository {
                 ),
                 thumbnailUri = R.drawable.breda_bieb,
                 routeLength = 10f,
-                routeContent = "This second route is used for test data purposes"
+                routeDescription = 0
             ),
         )
     )
 
     override fun getAllRoutes(): Flow<List<Route>> {
-        Log.d("DEBUG Route", "Getting all Routes $routeList")
+//        Log.d("DEBUG Route", "Getting all Routes $routeList")
         return routeList.asFlow()
     }
 
     override suspend fun getRouteByID(id: Int): Route? {
-        Log.d("DEBUG Route", "Getting ${routeList.first()[id]} from list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Getting ${routeList.first()[id]} from list ${routeList.first()}")
         return routeList.first()[id]
 
     }
@@ -64,11 +63,11 @@ class DummyRepoRoute: RouteRepository {
 
     override suspend fun insertRoute(route: Route) {
         routeList.first() + route
-        Log.d("DEBUG Route", "Inserting $route to list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Inserting $route to list ${routeList.first()}")
     }
 
     override suspend fun deleteRoute(route: Route) {
         routeList.first().toMutableList().remove(route)
-        Log.d("DEBUG Route", "Deleting $route from list ${routeList.first()}")
+//        Log.d("DEBUG Route", "Deleting $route from list ${routeList.first()}")
     }
 }
