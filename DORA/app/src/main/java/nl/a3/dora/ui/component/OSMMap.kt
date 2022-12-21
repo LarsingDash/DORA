@@ -203,6 +203,10 @@ fun updateUserLocation(geoPoint: GeoPoint, context: Context) {
     mapView.invalidate()
 }
 
+fun recenter() {
+    mapView.controller.animateTo(MainActivity.userLocation)
+}
+
 @Composable
 private fun MapLifecycle(mapView: MapView) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle

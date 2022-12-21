@@ -1,19 +1,13 @@
 package nl.a3.dora.ui.screens
 
-import android.util.Log
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import io.ktor.http.HttpMethod.Companion.Get
 import nl.a3.dora.MainActivity
-import nl.a3.dora.R
-import nl.a3.dora.model.POI
-import nl.a3.dora.ui.component.OSMMap
-import nl.a3.dora.ui.component.updateUserLocation
-import nl.a3.dora.ui.component.addPOIListToMap
-import nl.a3.dora.ui.component.addRouteToMap
-import org.osmdroid.util.GeoPoint
+import nl.a3.dora.ui.component.*
 
 @Composable
 fun MapScreen(
@@ -21,8 +15,11 @@ fun MapScreen(
     currentPage: MutableState<String>
 ) {
     OSMMap(navController, currentPage)
+    Button(onClick = { recenter() }) {
+        Text(text = "Recenter")
+    }
 
-//    Get POI List
+//  Get POI List
     val poiList = MainActivity.selectedRoute?.routeList
     if (poiList != null) {
         addRouteToMap(poiList)
