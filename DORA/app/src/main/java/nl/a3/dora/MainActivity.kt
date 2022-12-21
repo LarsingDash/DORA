@@ -35,12 +35,14 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
-        lifecycleScope.launch(Dispatchers.IO) {
-//            updateRoutes(poiViewModel)
-            poiViewModel.typeListFlow.first().forEach {
-                Log.d("POI DATA", "$it")
-            }
-        }
+//        lifecycleScope.launch(Dispatchers.IO) {
+////            updateRoutes(poiViewModel)
+//            poiViewModel.typeListFlow.first().forEach {
+//                Log.d("POI DATA", "$it")
+//            }
+//        }
+//        Log.d("STRING RESOURCE", "${R.string.poi}")
+
 
         setContent {
             DORATheme {

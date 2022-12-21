@@ -30,7 +30,7 @@ fun RouteItem(
 ) {
     //Background Card used in both Route and POI Item
     ListItemCard(
-        headerText = route.routeName,
+        headerText = stringResource(id =  route.routeName),
         isFoldedOut = isFoldedOut,
         onFoldClick = onFoldClick,
         DescriptionComp = {
@@ -120,12 +120,12 @@ private fun PreviewRouteItem() {
     RouteItem(
         route = Route(
             routeID = 0,
-            routeName = "Route 1",
+            routeName = R.string.truth,
             listOf(
-                POI(poiID= 0, name=   "Poi 0", isVisited= true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5856, 4.7925)),
-                POI(poiID= 1, name="Poi 1", isVisited=false, thumbnailUri= R.drawable.breda_bieb, poiDescription = R.string.truth, poiLocation= GeoPoint(51.58778, 4.78080)),
-                POI(poiID=2, name="Poi 2", isVisited=false,  thumbnailUri= R.drawable.breda_stadhuis_nieuw, poiDescription = R.string.truth, poiLocation= GeoPoint(51.59461, 4.77896)),
-                POI(poiID=3, name="Poi 3", isVisited=true, thumbnailUri= R.drawable.bocht_of_cingel, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5864, 4.7902)), //Geolocation made up
+                POI(poiID= 0, poiName=   R.string.poi_test, isVisited= true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5856, 4.7925)),
+                POI(poiID= 1, poiName=R.string.poi_test, isVisited=false, thumbnailUri= R.drawable.breda_bieb, poiDescription = R.string.truth, poiLocation= GeoPoint(51.58778, 4.78080)),
+                POI(poiID=2, poiName=R.string.poi_test, isVisited=false,  thumbnailUri= R.drawable.breda_stadhuis_nieuw, poiDescription = R.string.truth, poiLocation= GeoPoint(51.59461, 4.77896)),
+                POI(poiID=3, poiName=R.string.poi_test, isVisited=true, thumbnailUri= R.drawable.bocht_of_cingel, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5864, 4.7902)), //Geolocation made up
             ),
             thumbnailUri = R.drawable.tower_of_destinity,
             routeDescription = R.string.truth,

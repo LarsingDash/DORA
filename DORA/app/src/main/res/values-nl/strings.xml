@@ -18,6 +18,8 @@
     <string name="no">nee</string>
     <string name="yes">ja</string>
     <string name="truth">Kanye spreekt kkr harde waarheid</string>
+    <string name="route_test">test string voor een route naam</string>
+    <string name="poi_test">test string voor een poi naam</string>
 
     <!--POI Descriptions-->
     <string name="poi_description_poiNameHere">test</string>

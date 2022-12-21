@@ -17,11 +17,13 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="truth">Kanye said nothing wrong</string>
+    <string name="route_test">test string for a route name</string>
+    <string name="poi_test">test string for a poi name</string>
 
     <!-- POI Gedeelte -->
-    <string name="poi_description_poiNameHere">Dit is een discription voor de POI {insert poi here}</string>
+    <string name="poi_description_poiNameHere">This is a description for thee POI {insert poi here}</string>
 
     <!-- Route Gedeelte -->
-    <string name="route_description_HistorischeKiloMeter">Dit is een description die nog aangepast moet worden binnen de strings xml file, want ik heb geen zin om deze tekst op te vullen dat mag iemand anders maar gewoon doen ofzo. PEACE</string>
     <string name="route_description_DEROUTE">test description for testing the test of the test of values</string>
+    <string name="route_description_HistorischeKiloMeter">TODO add description to route</string>
 </resources>

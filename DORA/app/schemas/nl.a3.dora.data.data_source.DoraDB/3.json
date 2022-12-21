@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "6c84396facf3cbfeabf82d7d238a4e18",
+    "identityHash": "97c2b39666c8d0b573abba3359dcc545",
     "entities": [
       {
         "tableName": "poi_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`poiID` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `isVisited` INTEGER NOT NULL, `thumbnailUri` INTEGER NOT NULL, `poiDescription` INTEGER NOT NULL, `poiLocation` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`poiID` INTEGER PRIMARY KEY AUTOINCREMENT, `poiName` INTEGER NOT NULL, `isVisited` INTEGER NOT NULL, `thumbnailUri` INTEGER NOT NULL, `poiDescription` INTEGER NOT NULL, `poiLocation` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "poiID",
@@ -15,9 +15,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
+            "fieldPath": "poiName",
+            "columnName": "poiName",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -56,7 +56,7 @@
       },
       {
         "tableName": "route_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`routeID` INTEGER PRIMARY KEY AUTOINCREMENT, `routeName` TEXT NOT NULL, `routeList` TEXT NOT NULL, `thumbnailUri` INTEGER NOT NULL, `routeDescription` INTEGER NOT NULL, `routeLength` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`routeID` INTEGER PRIMARY KEY AUTOINCREMENT, `routeName` INTEGER NOT NULL, `routeList` TEXT NOT NULL, `thumbnailUri` INTEGER NOT NULL, `routeDescription` INTEGER NOT NULL, `routeLength` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "routeID",
@@ -67,7 +67,7 @@
           {
             "fieldPath": "routeName",
             "columnName": "routeName",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -108,7 +108,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6c84396facf3cbfeabf82d7d238a4e18')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97c2b39666c8d0b573abba3359dcc545')"
     ]
   }
 }
