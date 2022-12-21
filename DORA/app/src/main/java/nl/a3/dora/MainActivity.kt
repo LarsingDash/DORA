@@ -38,26 +38,6 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
-//        val deROUTE: List<POI> = listOf(
-//            poiViewModel.getTypeByID(27),
-//            poiViewModel.getTypeByID(19),
-//            poiViewModel.getTypeByID(28),
-//            poiViewModel.getTypeByID(26)
-//        ) as List<POI>
-
-        // 1. School 2.Klooster kazerne <-- pos updaten 3. Vlaszak 4. Gasthuispoort 5.Station
-
-//        routeViewModel.getTypeByID(2)?.let {
-//            val route = it.copy(routeList = deROUTE)
-//            routeViewModel.updateType(route)
-//        }
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            poiViewModel.typeListFlow.first().forEach {
-//                Log.d("POI DATA", "$it")
-//            }
-//        }
-
         lifecycleScope.launch(Dispatchers.IO) {
             routeViewModel.typeListFlow.first().forEach {
                 Log.d("ROUTE DATA", "$it")
@@ -70,6 +50,12 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    companion object {
+        var selectedRoute: Route? = null
+    }
+}
+
 
 
 //TEST DATA for RoomDB integration
@@ -107,7 +93,22 @@ class MainActivity : ComponentActivity() {
 //            )
 //        )
 
-    companion object {
-        var selectedRoute: Route? = null
-    }
-}
+//        val deROUTE: List<POI> = listOf(
+//            poiViewModel.getTypeByID(27),
+//            poiViewModel.getTypeByID(19),
+//            poiViewModel.getTypeByID(28),
+//            poiViewModel.getTypeByID(26)
+//        ) as List<POI>
+
+// 1. School 2.Klooster kazerne <-- pos updaten 3. Vlaszak 4. Gasthuispoort 5.Station
+
+//        routeViewModel.getTypeByID(2)?.let {
+//            val route = it.copy(routeList = deROUTE)
+//            routeViewModel.updateType(route)
+//        }
+
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            poiViewModel.typeListFlow.first().forEach {
+//                Log.d("POI DATA", "$it")
+//            }
+//        }

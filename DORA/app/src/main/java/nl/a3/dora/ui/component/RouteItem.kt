@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,65 +28,80 @@ fun RouteItem(
     onResetRouteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card (
+    //Background Card used in both Route and POI Item
+    ListItemCard(
+        headerText = route.routeName,
+        isFoldedOut = isFoldedOut,
+        onFoldClick = onFoldClick,
+        DescriptionComp = {
+            RouteDescriptionItem(
+                route = route,
+                onSelectRouteClick = onSelectRouteClick,
+                onResetRouteClick = onResetRouteClick
+            )
+        },
         modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        Column {
-            ListItemHeader(text = route.routeName,isFoldedOut = isFoldedOut, onFoldClick = onFoldClick)
-            if (isFoldedOut) {
-                RouteDiscriptionItem(
-                    route = route,
-                    onSelectRouteClick = onSelectRouteClick,
-                    onResetRouteClick = onResetRouteClick
-                )
-            }
-        }
-    }
+    )
 }
 
 @Composable
-private fun RouteDiscriptionItem(
+private fun RouteDescriptionItem(
     route: Route,
     onSelectRouteClick: () -> Unit,
     onResetRouteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier
-        .fillMaxWidth()
-        .padding(8.dp)) {
-        //discription and picture
-        Row() {
-            //discription header and text
-            Column (modifier = Modifier.weight(1f)) {
-                Text(text = stringResource(R.string.route_info))
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        //description and picture
+        Row {
+            //description header and text
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = stringResource(R.string.header_info),
+                    style = MaterialTheme.typography.h1
+                )
                 Text(text = route.routeContent)
             }
             //thumbnail
             Image(
-                modifier = Modifier.size(128.dp).clip(RoundedCornerShape(25)),
+                modifier = Modifier
+                    .size(128.dp)
+                    .clip(RoundedCornerShape(25)),
                 contentScale = ContentScale.Crop,
                 painter = painterResource(id = route.thumbnailUri),
-                contentDescription = null
+                contentDescription = stringResource(R.string.route_thumb_desc)
             )
         }
         //distance, poi, and logo
-        Row() {
+        Row {
             //distance and POI amount
-            Column {
-                Text(text = stringResource(R.string.discription_distance) + " " + route.routeLength)
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(text = stringResource(R.string.discription_distance) + " " + route.routeLength + "km")
                 Text(text = stringResource(R.string.discription_poi_amount) + " " + route.routeList.size)
             }
-            //todo add logo
+            //ags logo
+            Image(
+                modifier = Modifier
+                    .size(64.dp),
+                painter = painterResource(id = R.drawable.ags_logo),
+                contentDescription = stringResource(R.string.ags_logo_desc)
+            )
         }
-        //reset route and select route button
+        //reset route and select route button. spacers to get buttons at the center
         Row(horizontalArrangement = Arrangement.Center) {
             Spacer(modifier = Modifier.weight(1f))
+            //selectButton
             Button(onClick = onSelectRouteClick) {
                 Text(text = stringResource(R.string.select_button_text))
             }
             Spacer(modifier = Modifier.weight(1f))
+            //resetButton
             Button(onClick = onResetRouteClick) {
                 Text(text = stringResource(R.string.reset_button_text))
             }
@@ -96,6 +111,7 @@ private fun RouteDiscriptionItem(
 }
 
 
+//NON ESSENTIAL/IGNORE BELOW
 //preview RouteItem with one route from DummyRepoRoute
 @Preview
 @Composable
@@ -106,9 +122,21 @@ private fun PreviewRouteItem() {
             routeName = "Route 1",
             listOf(
                 POI(0, "Poi 0", true, R.drawable.tower_of_destinity, GeoPoint(51.5856, 4.7925)),
-                POI(1, "Poi 1",false, R.drawable.breda_bieb, GeoPoint(51.58778, 4.78080)),
-                POI(2, "Poi 2",false, R.drawable.breda_stadhuis_nieuw, GeoPoint(51.59461, 4.77896)),
-                POI(3, "Poi 3", true, R.drawable.bocht_of_cingel, GeoPoint(51.5864, 4.7902)), //Geolocation made up
+                POI(1, "Poi 1", false, R.drawable.breda_bieb, GeoPoint(51.58778, 4.78080)),
+                POI(
+                    2,
+                    "Poi 2",
+                    false,
+                    R.drawable.breda_stadhuis_nieuw,
+                    GeoPoint(51.59461, 4.77896)
+                ),
+                POI(
+                    3,
+                    "Poi 3",
+                    true,
+                    R.drawable.bocht_of_cingel,
+                    GeoPoint(51.5864, 4.7902)
+                ), //Geolocation made up
             ),
             thumbnailUri = R.drawable.tower_of_destinity,
             routeLength = 5f,

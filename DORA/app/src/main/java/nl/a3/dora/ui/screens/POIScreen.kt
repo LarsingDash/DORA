@@ -1,20 +1,10 @@
 package nl.a3.dora.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import nl.a3.dora.MainActivity
 import nl.a3.dora.model.POI
-import nl.a3.dora.model.Route
-import nl.a3.dora.viewmodel.PoiViewModel
+import nl.a3.dora.ui.component.POIItem
 
 @Composable
 fun POIScreen(
@@ -23,13 +13,45 @@ fun POIScreen(
     val nullableList by remember {
         mutableStateOf(MainActivity.selectedRoute?.routeList)
     }
+    val list: List<POI> = nullableList ?: listOf()
+    var openedPOI: POI? by remember { mutableStateOf(null) }
+    var preOpenedPoiID by remember { mutableStateOf(poiID) }
+
+    LazyColumn {
+        items(list.size) { index ->
+            val poi = list[index]
+            var foldout = false
+            if (openedPOI != null && openedPOI == poi) foldout = true
+            if (preOpenedPoiID != null && poi.poiID != null && preOpenedPoiID == poi.poiID ) foldout = true
+            POIItem(
+                poi = poi,
+                isFoldedOut = foldout,
+                onFoldClick = {
+                    openedPOI = if (foldout) null else poi
+                    preOpenedPoiID = null
+                },
+            )
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    Text(text = "$poiID")
 //    val poiListState = poiViewModel.typeListFlow.collectAsState(initial = listOf())
 
-    val list: List<POI> = nullableList ?: listOf()
-
-    LazyColumn {
+    /*LazyColumn {
         items(list.size) { index ->
             val poi = list[index]
             Text(
@@ -49,5 +71,5 @@ fun POIScreen(
                 )
             }
         }
-    }
+    }*/
 }
