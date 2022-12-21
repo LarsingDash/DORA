@@ -37,6 +37,8 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
+        Companion.routeViewModel = routeViewModel
+
 //        val historicKM: List<POI> = listOf(
 //            poiViewModel.getTypeByID(26),
 //            poiViewModel.getTypeByID(19),
@@ -71,6 +73,17 @@ class MainActivity : ComponentActivity() {
 
     companion object {
         var selectedRoute: Route? = null
+        var routeViewModel: RouteViewModel? = null
+
+        fun updateRoute(poi:POI){
+            selectedRoute?.routeList?.forEach {
+                if(it.poiID == poi.poiID)
+                    it.isVisited = true
+            }
+
+            Log.d("UPDATE ROUTE", "${selectedRoute?.routeList}")
+            selectedRoute?.let { routeViewModel?.updateType(it) }
+        }
     }
 }
 
