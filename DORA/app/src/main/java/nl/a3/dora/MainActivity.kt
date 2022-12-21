@@ -13,12 +13,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
+import org.osmdroid.util.GeoPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,14 +37,46 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
+//        val historicKM: List<POI> = listOf(
+//            poiViewModel.getTypeByID(16),
+//            poiViewModel.getTypeByID(17),
+//            poiViewModel.getTypeByID(18),
+//            poiViewModel.getTypeByID(19),
+//            poiViewModel.getTypeByID(20),
+//            poiViewModel.getTypeByID(21),
+//            poiViewModel.getTypeByID(22),
+//            poiViewModel.getTypeByID(23),
+//            poiViewModel.getTypeByID(24),
+//            poiViewModel.getTypeByID(25),
+//            poiViewModel.getTypeByID(2),
+//            poiViewModel.getTypeByID(3),
+//            poiViewModel.getTypeByID(4),
+//            poiViewModel.getTypeByID(5),
+//            poiViewModel.getTypeByID(6),
+//            poiViewModel.getTypeByID(7),
+//            poiViewModel.getTypeByID(8),
+//            poiViewModel.getTypeByID(9),
+//            poiViewModel.getTypeByID(10),
+//            poiViewModel.getTypeByID(11),
+//            poiViewModel.getTypeByID(13),
+//            poiViewModel.getTypeByID(14),
+//            poiViewModel.getTypeByID(12),
+//            poiViewModel.getTypeByID(15),
+//        ) as List<POI>
+//
+//        routeViewModel.addType(
+//            Route(
+//                routeName = R.string.historische_km,
+//                routeList = historicKM,
+//                thumbnailUri = R.drawable.meester_muller,
+//                routeLength = 60f,
+//                routeDescription = R.string.route_description_historische_kilometer
+//            )
+//        )
 //        lifecycleScope.launch(Dispatchers.IO) {
-////            updateRoutes(poiViewModel)
-//            poiViewModel.typeListFlow.first().forEach {
-//                Log.d("POI DATA", "$it")
-//            }
+//            val poi = poiViewModel.typeListFlow.first().find { it.poiName == R.string.grote_kerk }?.copy(poiLocation = GeoPoint(51.588784341353744, 4.775163473055657))
+//            poi?.let { poiViewModel.updateType(it) }
 //        }
-//        Log.d("STRING RESOURCE", "${R.string.poi}")
-
 
         setContent {
             DORATheme {
@@ -53,41 +87,6 @@ class MainActivity : ComponentActivity() {
 
     companion object {
         var selectedRoute: Route? = null
-    }
-}
-
-private suspend fun updateRoutes(poiViewModel: PoiViewModel) {
-    poiViewModel.typeListFlow.first().forEach {
-        when(it.poiID) {
-            1 -> poiViewModel.updateType(it.copy())
-            2 -> poiViewModel.updateType(it.copy())
-            3 -> poiViewModel.updateType(it.copy())
-            4 -> poiViewModel.updateType(it.copy())
-            5 -> poiViewModel.updateType(it.copy())
-            6 -> poiViewModel.updateType(it.copy())
-            7 -> poiViewModel.updateType(it.copy())
-            8 -> poiViewModel.updateType(it.copy())
-            9 -> poiViewModel.updateType(it.copy())
-            10 -> poiViewModel.updateType(it.copy())
-            11 -> poiViewModel.updateType(it.copy())
-            12 -> poiViewModel.updateType(it.copy())
-            13 -> poiViewModel.updateType(it.copy())
-            14 -> poiViewModel.updateType(it.copy())
-            15 -> poiViewModel.updateType(it.copy())
-            16 -> poiViewModel.updateType(it.copy())
-            17 -> poiViewModel.updateType(it.copy())
-            18 -> poiViewModel.updateType(it.copy())
-            19 -> poiViewModel.updateType(it.copy())
-            20 -> poiViewModel.updateType(it.copy())
-            21 -> poiViewModel.updateType(it.copy())
-            22 -> poiViewModel.updateType(it.copy())
-            23 -> poiViewModel.updateType(it.copy())
-            24 -> poiViewModel.updateType(it.copy())
-            25 -> poiViewModel.updateType(it.copy())
-            26 -> poiViewModel.updateType(it.copy())
-            27 -> poiViewModel.updateType(it.copy())
-            28 -> poiViewModel.updateType(it.copy())
-        }
     }
 }
 
@@ -138,6 +137,7 @@ private suspend fun updateRoutes(poiViewModel: PoiViewModel) {
 //                Log.d("POI DATA", "$it")
 //            }
 //        }
+
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            routeViewModel.typeListFlow.first().forEach {
 //                Log.d("ROUTE DATA", "$it")
