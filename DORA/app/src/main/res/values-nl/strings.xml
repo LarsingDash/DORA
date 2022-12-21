@@ -2,29 +2,117 @@
 <resources>
     <string name="app_name">DORA</string>
     <string name="header_info">Info:</string>
-    <string name="reset_button_text">reset route</string>
-    <string name="select_button_text">selecteer route</string>
-    <string name="close_route_item">sluit route item</string>
-    <string name="open_route_item">open route item</string>
-    <string name="discription_distance">afstand:</string>
+    <string name="reset_button_text">Reset route</string>
+    <string name="select_button_text">Selecteer route</string>
+    <string name="close_route_item">Sluit route item</string>
+    <string name="open_route_item">Open route item</string>
+    <string name="discription_distance">Afstand:</string>
     <string name="discription_poi_amount">POI\'s:</string>
-    <string name="ags_logo_desc">ags logo</string>
-    <string name="route_thumb_desc">route thumbnail</string>
-    <string name="has_visited_text">bezocht: al bezocht</string>
-    <string name="not_yet_visited_text">bezocht: onbezocht</string>
-    <string name="poi_number">poi nummer: </string>
-    <string name="reset_route">reset route</string>
-    <string name="are_you_sure_text">weet je zeker dat je route will resetten?</string>
-    <string name="no">nee</string>
-    <string name="yes">ja</string>
+    <string name="ags_logo_desc">Ags logo</string>
+    <string name="route_thumb_desc">Route thumbnail</string>
+    <string name="has_visited_text">Bezocht: al bezocht</string>
+    <string name="not_yet_visited_text">Bezocht: onbezocht</string>
+    <string name="poi_number">Poi nummer: </string>
+    <string name="reset_route">Reset route</string>
+    <string name="are_you_sure_text">Weet je zeker dat je route will resetten?</string>
+    <string name="no">Nee</string>
+    <string name="yes">Ja</string>
     <string name="truth">Kanye spreekt kkr harde waarheid</string>
-    <string name="route_test">test string voor een route naam</string>
-    <string name="poi_test">test string voor een poi naam</string>
+    <string name="route_test">Test string voor een route naam</string>
+    <string name="poi_test">Test string voor een poi naam</string>
 
     <!--POI Descriptions-->
-    <string name="poi_description_poiNameHere">test</string>
+    <string name="poiName_placeholder">test</string>
+    <string name="poi_description_poiNameHere">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="vvv_breda">VVV-Breda</string>
+    <string name="poi_description_vvv_breda">Informate over de POI hier</string>
+
+    <string name="liefdeszuster">Liefdesuster</string>
+    <string name="poi_description_liefdeszuster">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="nassau_baronie_monument">Nassau Baroniemonument</string>
+    <string name="poi_description_nassau_baronie_monument">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="the_light_house">The Light House</string>
+    <string name="poi_description_the_light_house">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="kasteel_van_breda">Kasteel van Breda</string>
+    <string name="poi_description_kasteel_van_breda">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="stadhouderspoort">Stadhouderspoort</string>
+    <string name="poi_description_stadhouderspoort">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="huis_van_brecht">Huis van Brecht</string>
+    <string name="poi_description_huis_van_brecht">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="spanjaardsgat">Spanjaardsgat</string>
+    <string name="poi_description_spanjaardsgat">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="begin_vismarkt">Begin Vismarkt</string>
+    <string name="poi_description_begin_vismarkt">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="begin_havermarkt">Begin Havermarkt</string>
+    <string name="poi_description_begin_havermarkt">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="grote_kerk">Grote Kerk</string>
+    <string name="poi_description_grote_kerk">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="het_poortje">Het Poortje</string>
+    <string name="poi_description_het_poortje">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="ridderstraat">Ridderstraat</string>
+    <string name="poi_description_ridderstraat">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="grote_markt">Grote Markt</string>
+    <string name="poi_description_grote_markt">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="bevrijdingsmonument">Bevrijdingsmonument Judith</string>
+    <string name="poi_description_bevrijdingsmonument">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="stadhuis">Stadhuis</string>
+    <string name="poi_description_stadhuis">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="antonius_van_paduakerk">Antonius van Paduakerk</string>
+    <string name="poi_description_antonius_van_paduakerk">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="bieb_nieuwe_veste">Bibliotheek-nieuwe Veste</string>
+    <string name="poi_description_bieb_nieuwe_veste">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="kloosterkazerne">Kloosterkazerne</string>
+    <string name="poi_description_kloosterkazerne">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="chasse_theater">Chassé theater</string>
+    <string name="poi_description_chasse_theater">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="beyerd">Beyerd</string>
+    <string name="poi_description_beyerd">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="gasthuispoort">Gasthuispoort</string>
+    <string name="poi_description_gasthuispoort">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="willem_merkx_tuin">Willem Merkx tuin</string>
+    <string name="poi_description_willem_merkx_tuin">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="begijnhof">Begijnhof</string>
+    <string name="poi_description_begijnhof">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="ruiterstandbeeld_stadhouder_willem_3">Ruiterstandbeeld stadhouder Willem III</string>
+    <string name="poi_description_ruiterstandbeeld_stadhouder_willem_3">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="station_breda">Station Breda</string>
+    <string name="poi_description_station_breda">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="avans_hogeschool">Avans Hogeschool</string>
+    <string name="poi_description_avans_hogeschool">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+
+    <string name="vlaszak">Vlaszak</string>
+    <string name="poi_description_vlaszak">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
 
     <!-- Route Gedeelte -->
-    <string name="route_description_HistorischeKiloMeter">test discription for the testing of the test of testing the test of values test</string>
-    <string name="route_description_DEROUTE">Dit IS DE ROUTE NEEF KAULO HARD TOCH</string>
+    <string name="historische_km">Historische Kilometer</string>
+    <string name="route_description_historische_kilometer">test discription for the testing of the test of testing the test of values test</string>
+
+    <string name="de_route">De route van coolheid</string>
+    <string name="route_description_de_route">Dit IS DE ROUTE NEEF KAULO HARD TOCH</string>
 </resources>

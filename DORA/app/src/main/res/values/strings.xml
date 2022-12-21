@@ -21,9 +21,97 @@
     <string name="poi_test">test string for a poi name</string>
 
     <!-- POI Gedeelte -->
+    <string name="poiName_placeholder">test</string>
     <string name="poi_description_poiNameHere">This is a description for thee POI {insert poi here}</string>
 
+    <string name="vvv_breda">VVV-Breda</string>
+    <string name="poi_description_vvv_breda">Informate over de POI hier</string>
+
+    <string name="liefdeszuster">Love Sista</string>
+    <string name="poi_description_liefdeszuster">This is a description for the POI {insert poi here}</string>
+
+    <string name="nassau_baronie_monument">Nassau Baroniemonument</string>
+    <string name="poi_description_nassau_baronie_monument">This is a description for the POI {insert poi here}</string>
+
+    <string name="the_light_house">The Light House</string>
+    <string name="poi_description_the_light_house">This is a description for thee POI {insert poi here}</string>
+
+    <string name="kasteel_van_breda">Kasteel van Breda</string>
+    <string name="poi_description_kasteel_van_breda">This is a description for the POI {insert poi here}</string>
+
+    <string name="stadhouderspoort">Stadhouderspoort</string>
+    <string name="poi_description_stadhouderspoort">This is a description for the POI {insert poi here}</string>
+
+    <string name="huis_van_brecht">Huis van Brecht</string>
+    <string name="poi_description_huis_van_brecht">This is a description for the POI {insert poi here}</string>
+
+    <string name="spanjaardsgat">Spanjaardsgat</string>
+    <string name="poi_description_spanjaardsgat">This is a description for the POI {insert poi here}</string>
+
+    <string name="begin_vismarkt">Begin Vismarkt</string>
+    <string name="poi_description_begin_vismarkt">This is a description for the POI {insert poi here}</string>
+
+    <string name="begin_havermarkt">Begin Havermarkt</string>
+    <string name="poi_description_begin_havermarkt">This is a description for the POI {insert poi here}</string>
+
+    <string name="grote_kerk">Grote Kerk</string>
+    <string name="poi_description_grote_kerk">This is a description for the POI {insert poi here}</string>
+
+    <string name="het_poortje">Het Poortje</string>
+    <string name="poi_description_het_poortje">This is a description for the POI {insert poi here}</string>
+
+    <string name="ridderstraat">Ridderstraat</string>
+    <string name="poi_description_ridderstraat">This is a description for the POI {insert poi here}</string>
+
+    <string name="grote_markt">Grote Markt</string>
+    <string name="poi_description_grote_markt">This is a description for the POI {insert poi here}</string>
+
+    <string name="bevrijdingsmonument">Bevrijdingsmonument</string>
+    <string name="poi_description_bevrijdingsmonument">This is a description for the POI {insert poi here}</string>
+
+    <string name="stadhuis">Stadhuis</string>
+    <string name="poi_description_stadhuis">This is a description for the POI {insert poi here}</string>
+
+    <string name="antonius_van_paduakerk">Antonius van Paduakerk</string>
+    <string name="poi_description_antonius_van_paduakerk">This is a description for the POI {insert poi here}</string>
+
+    <string name="bieb_nieuwe_veste">Bibliotheek-nieuwe Veste</string>
+    <string name="poi_description_bieb_nieuwe_veste">This is a description for the POI {insert poi here}</string>
+
+    <string name="kloosterkazerne">Kloosterkazerne</string>
+    <string name="poi_description_kloosterkazerne">This is a description for the POI {insert poi here}</string>
+
+    <string name="chasse_theater">Chassé theater</string>
+    <string name="poi_description_chasse_theater">This is a description for the POI {insert poi here}</string>
+
+    <string name="beyerd">Beyerd</string>
+    <string name="poi_description_beyerd">This is a description for the POI {insert poi here}</string>
+
+    <string name="gasthuispoort">Gasthuispoort</string>
+    <string name="poi_description_gasthuispoort">This is a description for the POI {insert poi here}</string>
+
+    <string name="willem_merkx_tuin">Willem Merkx tuin</string>
+    <string name="poi_description_willem_merkx_tuin">This is a description for the POI {insert poi here}</string>
+
+    <string name="begijnhof">Begijnhof</string>
+    <string name="poi_description_begijnhof">This is a description for the POI {insert poi here}</string>
+
+    <string name="ruiterstandbeeld_stadhouder_willem_3">Ruiterstandbeeld stadhouder Willem III</string>
+    <string name="poi_description_ruiterstandbeeld_stadhouder_willem_3">This is a description for the POI {insert poi here}</string>
+
+    <string name="station_breda">Station Breda</string>
+    <string name="poi_description_station_breda">This is a description for the POI {insert poi here}</string>
+
+    <string name="avans_hogeschool">Avans Hogeschool</string>
+    <string name="poi_description_avans_hogeschool">This is a description for the POI {insert poi here}</string>
+
+    <string name="vlaszak">Vlaszak</string>
+    <string name="poi_description_vlaszak">This is a description for the POI {insert poi here}</string>
+
     <!-- Route Gedeelte -->
-    <string name="route_description_DEROUTE">test description for testing the test of the test of values</string>
-    <string name="route_description_HistorischeKiloMeter">TODO add description to route</string>
+    <string name="historische_km">Historic Kilometer</string>
+    <string name="route_description_historische_kilometer">This is a description for the POI {insert poi here}</string>
+
+    <string name="de_route">The Route of awesomeness</string>
+    <string name="route_description_de_route">test description for testing the test of the test of values</string>
 </resources>
