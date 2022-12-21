@@ -1,8 +1,16 @@
 package nl.a3.dora.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Looper
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.app.ActivityCompat
+import androidx.core.location.LocationManagerCompat.requestLocationUpdates
 import androidx.navigation.NavController
+import com.google.android.gms.location.*
 import nl.a3.dora.MainActivity
 import nl.a3.dora.ui.component.OSMMap
 import nl.a3.dora.ui.component.addPOIListToMap
@@ -15,8 +23,8 @@ fun MapScreen(
 ) {
     OSMMap(navController, currentPage)
 
+    //Get POI List
     val poiList = MainActivity.selectedRoute?.routeList
-
     if (poiList != null) {
         println(poiList)
         addPOIListToMap(poiList)
