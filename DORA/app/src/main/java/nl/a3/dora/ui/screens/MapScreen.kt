@@ -26,8 +26,7 @@ fun MapScreen(
     //Get POI List
     val poiList = MainActivity.selectedRoute?.routeList
     if (poiList != null) {
-        println(poiList)
-        addPOIListToMap(poiList)
         addRouteToMap(poiList)
+        addPOIListToMap(poiList, LocalContext.current)
     }
 }

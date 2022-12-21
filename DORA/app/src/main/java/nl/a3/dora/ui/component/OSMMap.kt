@@ -3,7 +3,6 @@ package nl.a3.dora.ui.component
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -16,11 +15,15 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
+import nl.a3.dora.R
 import nl.a3.dora.model.POI
 import nl.a3.dora.ui.Pages
 import org.osmdroid.bonuspack.routing.OSRMRoadManager
 import org.osmdroid.bonuspack.routing.RoadManager
 import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.tileprovider.tilesource.TileSourcePolicy
+import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
@@ -64,6 +67,8 @@ fun OSMMap(
                 controller.setZoom(17.0)
 
                 mapView.overlays.add(poiOverlay)
+                //todo perhaps
+//                mapView.tileProvider.tileSource = TileSourceFactory.BASE_OVERLAY_NL
             }
         },
     )
@@ -97,15 +102,31 @@ private fun createPOIOverlay(
         }
 
         //Create and return overlay
-        ItemizedIconOverlay(context, mutableListOf<POIOverlayItem>(), listener)
+        ItemizedIconOverlay(
+            mutableListOf<POIOverlayItem>(),
+            context.getDrawable(R.drawable.unvisited),
+            listener,
+            context
+        )
     }
 }
 
 //Other Functions
-fun addPOIListToMap(POIList: List<POI>) {
-    poiOverlay.addItems(
-        POIList.map { POIOverlayItem(it) }
-    )
+fun addPOIListToMap(
+    POIList: List<POI>,
+    context: Context,
+) {
+    for (poi in POIList) {
+        poiOverlay.addItem(
+            POIOverlayItem(poi)
+        )
+
+        if (poi.isVisited) {
+            poiOverlay.getItem(poiOverlay.size() - 1)
+                .setMarker(context.getDrawable(R.drawable.visited))
+        }
+    }
+
     mapView.invalidate()
 }
 
@@ -139,7 +160,7 @@ fun addRouteToMap(POIList: List<POI>) {
             }
 
             //Add the overlay to all overlays
-            mapView.overlays.add(routeOverlay)
+            mapView.overlays.add(mapView.overlays.indexOf(poiOverlay), routeOverlay)
         }.start()
     }
 
