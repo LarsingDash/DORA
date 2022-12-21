@@ -13,7 +13,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
-import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
@@ -22,9 +21,6 @@ import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -67,8 +63,8 @@ class MainActivity : ComponentActivity() {
                     userLocation = geoLocation
 
                     if (
-                        Math.abs(userLocation.latitude - lastUserLocation.latitude)  > 0.00001
-                        || Math.abs(userLocation.longitude - lastUserLocation.longitude)  > 0.00001
+                        Math.abs(userLocation.latitude - lastUserLocation.latitude) > 0.00001
+                        || Math.abs(userLocation.longitude - lastUserLocation.longitude) > 0.00001
                     ) {
                         lastUserLocation = userLocation
 

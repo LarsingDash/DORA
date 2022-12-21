@@ -122,7 +122,7 @@ fun addPOIListToMap(
 ) {
     for (poi in POIList) {
         poiOverlay.addItem(
-            POIOverlayItem(poi, context.getString(context.resources().getIdentifier(poi.poiName, "string", context.packageName)))
+            POIOverlayItem(poi, context.getString(context.resources.getIdentifier(poi.poiName, "string", context.packageName)))
         )
 
         if (poi.isVisited) {
@@ -142,7 +142,18 @@ fun addRouteToMap(originalPOIList: List<POI>) {
     val poiList = arrayListOf<POI>()
     poiList.addAll(originalPOIList)
     for (poi in originalPOIList) {
-        if (!poi.isVisited) poiList.add(originalPOIList.indexOf(poi), POI(-1, 0, true, 0, 0, MainActivity.userLocation))
+        if (!poi.isVisited) {
+            poiList.add(
+                poiList.indexOf(poi),
+                POI(
+                    -1,
+                    "user",
+                    true,
+                    "",
+                    "location of user",
+                    MainActivity.userLocation))
+            break
+        }
     }
 
     //Make subRoutes between all POI's
