@@ -39,6 +39,8 @@ class MainActivity : ComponentActivity() {
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
+        Companion.routeViewModel = routeViewModel
+        
         setContent {
             DORATheme {
                 DORA(poiViewModel, routeViewModel)
