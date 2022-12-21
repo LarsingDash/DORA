@@ -14,42 +14,42 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import nl.a3.dora.viewmodel.repository.LocationClient
+import org.osmdroid.util.GeoPoint
 
 @Suppress("DEPRECATION")
 class LocationClientImpl(
     private val context: Context,
-    private val client: FusedLocationProviderClient
+    private val client: FusedLocationProviderClient,
+    private var geoPoint: GeoPoint,
 ) : LocationClient {
-
     @SuppressLint("MissingPermission")
     override fun getLocationUpdates(interval: Long): Flow<Location> {
         return callbackFlow {
-            println("owen gangster <3")
             val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
             val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
             val isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
             if (!isGpsEnabled && !isNetworkEnabled) {
-                throw LocationClient.LocationException("GPS is disabled")
+                throw LocationClient.LocationException()
             }
 
             val request = LocationRequest.create()
                 .setInterval(interval)
                 .setFastestInterval(interval)
 
-            println("ik heb je moeder gedaan")
             val locationCallback = object : LocationCallback() {
                 override fun onLocationResult(locationResult: LocationResult) {
-                    println("bruh69")
                     super.onLocationResult(locationResult)
                     locationResult.locations.lastOrNull()?.let { location ->
-                        println("kanker")
+                        if (locationResult.lastLocation != null) {
+                            geoPoint.latitude = locationResult.lastLocation!!.latitude
+                            geoPoint.longitude = locationResult.lastLocation!!.longitude
+                        }
                         launch { send(location) }
                     }
                 }
             }
 
-            println("je vader ook")
             client.requestLocationUpdates(
                 request,
                 locationCallback,
@@ -61,5 +61,9 @@ class LocationClientImpl(
             }
 
         }
+    }
+
+    override fun getLocation(): GeoPoint{
+        return this.geoPoint
     }
 }

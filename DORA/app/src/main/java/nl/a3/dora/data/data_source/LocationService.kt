@@ -34,7 +34,8 @@ class LocationService(
         super.onCreate()
         locationClient = LocationClientImpl(
             context,
-            LocationServices.getFusedLocationProviderClient(context)
+            LocationServices.getFusedLocationProviderClient(context),
+            this.geoPoint,
         )
         start()
     }
@@ -49,38 +50,13 @@ class LocationService(
 
     @SuppressLint("ServiceCast")
     fun start() {
-//        val notification = NotificationCompat.Builder(this, "location")
-//            .setContentTitle("Tracking location...")
-//            .setContentText("Location: null")
-//            .setSmallIcon(R.drawable.ic_launcher_background)
-//            .setOngoing(true)
-//
-//        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//
-//        locationClient.getLocationUpdates(5000L)
-//            .catch { e -> e.printStackTrace() }
-//            .onEach { location ->
-//                val lat = location.latitude.toString()
-//                val long = location.longitude.toString()
-//                val updatedNotification = notification.setContentText(
-//                    "location: ($lat, $long)"
-//                )
-//                notificationManager.notify(1, updatedNotification.build())
-//            }
-//            .launchIn(serviceScope)
-//
-//        startForeground(1, notification.build())
-//
-        println("bruh")
         locationClient.getLocationUpdates(1000L)
             .catch { e -> e.printStackTrace() }
             .onEach { location ->
-                println("poopoo")
                 this.geoPoint.latitude = location.latitude
                 this.geoPoint.longitude = location.longitude
             }
             .launchIn(serviceScope)
-        println("bruh2")
     }
 
     private fun stop() {
@@ -94,8 +70,7 @@ class LocationService(
     }
 
     fun getLastLocation():GeoPoint {
-        println("Peepeepoopoo")
-        return this.geoPoint
+        return locationClient.getLocation()
     }
 
     companion object {

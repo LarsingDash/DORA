@@ -22,7 +22,4 @@ fun MapScreen(
         POI(1, "Casino", true, 0, GeoPoint(51.58778, 4.78080)),
         POI(2, "Station", false, 0, GeoPoint(51.59461, 4.77896))
     )
-
-
-    Text(text = locationService.getLastLocation().toString())
 }
