@@ -5,7 +5,6 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.preference.PreferenceManager
 import android.util.Log
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -14,14 +13,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
-import org.osmdroid.util.GeoPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -39,8 +36,9 @@ class MainActivity : ComponentActivity() {
         val routeViewModel: RouteViewModel by viewModels()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            routeViewModel.typeListFlow.first().forEach {
-                Log.d("ROUTE DATA", "$it")
+//            updateRoutes(poiViewModel)
+            poiViewModel.typeListFlow.first().forEach {
+                Log.d("POI DATA", "$it")
             }
         }
 
@@ -56,7 +54,40 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+private suspend fun updateRoutes(poiViewModel: PoiViewModel) {
+    poiViewModel.typeListFlow.first().forEach {
+        when(it.poiID) {
+            1 -> poiViewModel.updateType(it.copy())
+            2 -> poiViewModel.updateType(it.copy())
+            3 -> poiViewModel.updateType(it.copy())
+            4 -> poiViewModel.updateType(it.copy())
+            5 -> poiViewModel.updateType(it.copy())
+            6 -> poiViewModel.updateType(it.copy())
+            7 -> poiViewModel.updateType(it.copy())
+            8 -> poiViewModel.updateType(it.copy())
+            9 -> poiViewModel.updateType(it.copy())
+            10 -> poiViewModel.updateType(it.copy())
+            11 -> poiViewModel.updateType(it.copy())
+            12 -> poiViewModel.updateType(it.copy())
+            13 -> poiViewModel.updateType(it.copy())
+            14 -> poiViewModel.updateType(it.copy())
+            15 -> poiViewModel.updateType(it.copy())
+            16 -> poiViewModel.updateType(it.copy())
+            17 -> poiViewModel.updateType(it.copy())
+            18 -> poiViewModel.updateType(it.copy())
+            19 -> poiViewModel.updateType(it.copy())
+            20 -> poiViewModel.updateType(it.copy())
+            21 -> poiViewModel.updateType(it.copy())
+            22 -> poiViewModel.updateType(it.copy())
+            23 -> poiViewModel.updateType(it.copy())
+            24 -> poiViewModel.updateType(it.copy())
+            25 -> poiViewModel.updateType(it.copy())
+            26 -> poiViewModel.updateType(it.copy())
+            27 -> poiViewModel.updateType(it.copy())
+            28 -> poiViewModel.updateType(it.copy())
+        }
+    }
+}
 
 //TEST DATA for RoomDB integration
 //        val poi = POI(
@@ -100,15 +131,14 @@ class MainActivity : ComponentActivity() {
 //            poiViewModel.getTypeByID(26)
 //        ) as List<POI>
 
-// 1. School 2.Klooster kazerne <-- pos updaten 3. Vlaszak 4. Gasthuispoort 5.Station
-
-//        routeViewModel.getTypeByID(2)?.let {
-//            val route = it.copy(routeList = deROUTE)
-//            routeViewModel.updateType(route)
-//        }
-
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            poiViewModel.typeListFlow.first().forEach {
 //                Log.d("POI DATA", "$it")
 //            }
 //        }
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            routeViewModel.typeListFlow.first().forEach {
+//                Log.d("ROUTE DATA", "$it")
+//            }
+//        }
+

@@ -1,19 +1,27 @@
 <resources>
     <string name="app_name">DORA</string>
     <string name="header_info">Info:</string>
-    <string name="reset_button_text">reset route</string>
-    <string name="select_button_text">select route</string>
-    <string name="close_route_item">close route item</string>
-    <string name="open_route_item">open route item</string>
-    <string name="discription_distance">afstand:</string>
+    <string name="reset_button_text">Reset route</string>
+    <string name="select_button_text">Select route</string>
+    <string name="close_route_item">Close route item</string>
+    <string name="open_route_item">Open route item</string>
+    <string name="discription_distance">Distance:</string>
     <string name="discription_poi_amount">POI\'s:</string>
-    <string name="ags_logo_desc">ags logo</string>
-    <string name="route_thumb_desc">route thumbnail</string>
-    <string name="has_visited_text">bezocht: al bezocht</string>
-    <string name="not_yet_visited_text">bezocht: onbezocht</string>
-    <string name="poi_number">poi nummer: </string>
-    <string name="reset_route">reset route</string>
-    <string name="are_you_sure_text">weet je zeker dat je route will resetten?</string>
-    <string name="no">nee</string>
-    <string name="yes">ja</string>
+    <string name="ags_logo_desc">Ags logo</string>
+    <string name="route_thumb_desc">Route thumbnail</string>
+    <string name="has_visited_text">Visited: Already visited</string>
+    <string name="not_yet_visited_text">Visited: Not yet visited</string>
+    <string name="poi_number">POI number: </string>
+    <string name="reset_route">Reset route</string>
+    <string name="are_you_sure_text">Are you certain of resetting the route?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="truth">Kanye said nothing wrong</string>
+
+    <!-- POI Gedeelte -->
+    <string name="poi_description_poiNameHere">Dit is een discription voor de POI {insert poi here}</string>
+
+    <!-- Route Gedeelte -->
+    <string name="route_description_HistorischeKiloMeter">Dit is een description die nog aangepast moet worden binnen de strings xml file, want ik heb geen zin om deze tekst op te vullen dat mag iemand anders maar gewoon doen ofzo. PEACE</string>
+    <string name="route_description_DEROUTE">test description for testing the test of the test of values</string>
 </resources>

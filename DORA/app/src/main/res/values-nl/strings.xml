@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DORA</string>
+    <string name="header_info">Info:</string>
+    <string name="reset_button_text">reset route</string>
+    <string name="select_button_text">selecteer route</string>
+    <string name="close_route_item">sluit route item</string>
+    <string name="open_route_item">open route item</string>
+    <string name="discription_distance">afstand:</string>
+    <string name="discription_poi_amount">POI\'s:</string>
+    <string name="ags_logo_desc">ags logo</string>
+    <string name="route_thumb_desc">route thumbnail</string>
+    <string name="has_visited_text">bezocht: al bezocht</string>
+    <string name="not_yet_visited_text">bezocht: onbezocht</string>
+    <string name="poi_number">poi nummer: </string>
+    <string name="reset_route">reset route</string>
+    <string name="are_you_sure_text">weet je zeker dat je route will resetten?</string>
+    <string name="no">nee</string>
+    <string name="yes">ja</string>
+    <string name="truth">Kanye spreekt kkr harde waarheid</string>
+
+    <!--POI Descriptions-->
+    <string name="poi_description_poiNameHere">test</string>
+
+    <!-- Route Gedeelte -->
+    <string name="route_description_HistorischeKiloMeter">test discription for the testing of the test of testing the test of values test</string>
+    <string name="route_description_DEROUTE">Dit IS DE ROUTE NEEF KAULO HARD TOCH</string>
+</resources>

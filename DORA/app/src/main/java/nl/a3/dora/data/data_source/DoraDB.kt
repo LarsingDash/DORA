@@ -22,7 +22,7 @@ import nl.a3.dora.model.Route
         POI::class,
         Route::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 @TypeConverters(

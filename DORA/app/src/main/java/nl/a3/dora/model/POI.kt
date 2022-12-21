@@ -17,5 +17,6 @@ data class POI(
     val name: String,
     val isVisited: Boolean,
     val thumbnailUri: Int,
+    val poiDescription: Int,
     val poiLocation: GeoPoint,
 )

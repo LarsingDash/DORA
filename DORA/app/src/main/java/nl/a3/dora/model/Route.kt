@@ -13,6 +13,6 @@ data class Route(
     val routeName: String,
     val routeList: List<POI>,
     val thumbnailUri: Int,
-    val routeLength: Float,
-    val routeContent: String
+    val routeDescription: Int,
+    val routeLength: Float
 )

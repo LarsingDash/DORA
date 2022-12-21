@@ -99,6 +99,7 @@ private fun PreviewPOIItem() {
             "Poi 0",
             true,
             R.drawable.tower_of_destinity,
+            R.string.truth,
             GeoPoint(51.5856, 4.7925)
         ),
         isFoldedOut = true,

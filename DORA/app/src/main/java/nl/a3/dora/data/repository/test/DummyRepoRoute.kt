@@ -20,14 +20,13 @@ class DummyRepoRoute: RouteRepository {
                 routeID = 0,
                 routeName = "Route 1",
                 listOf(
-                    POI(0, "Poi 0", true, R.drawable.tower_of_destinity, GeoPoint(51.5856, 4.7925)),
-                    POI(1, "Poi 1",false, R.drawable.breda_bieb, GeoPoint(51.58778, 4.78080)),
-                    POI(2, "Poi 2",false, R.drawable.breda_stadhuis_nieuw, GeoPoint(51.59461, 4.77896)),
-                    POI(3, "Poi 3", true, R.drawable.bocht_of_cingel, GeoPoint(51.5864, 4.7902)), //Geolocation made up
-                ),
+                    POI(poiID= 0, name= "Poi 0", isVisited=  true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = 0, poiLocation =  GeoPoint(51.5856, 4.7925)),
+                    POI(poiID = 1, name="Poi 1",isVisited=false, thumbnailUri=R.drawable.breda_bieb, poiDescription = 0, poiLocation = GeoPoint(51.58778, 4.78080)),
+                    POI(poiID= 2, name="Poi 2",isVisited=false, thumbnailUri=R.drawable.breda_stadhuis_nieuw, poiDescription = 0, poiLocation = GeoPoint(51.59461, 4.77896)),
+                    POI(poiID = 3, name="Poi 3", isVisited=true, thumbnailUri=R.drawable.bocht_of_cingel, poiDescription = 0,poiLocation= GeoPoint(51.5864, 4.7902))),
                 thumbnailUri = R.drawable.tower_of_destinity,
                 routeLength = 5f,
-                routeContent = "This route is used for test data purposes"
+                routeDescription = R.string.truth
             ),
             Route(
                 routeID = 1,
@@ -40,7 +39,7 @@ class DummyRepoRoute: RouteRepository {
                 ),
                 thumbnailUri = R.drawable.breda_bieb,
                 routeLength = 10f,
-                routeContent = "This second route is used for test data purposes"
+                routeDescription = 0
             ),
         )
     )
