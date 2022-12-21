@@ -14,8 +14,10 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
+import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
+import nl.a3.dora.ui.screens.geofenceDialog
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
@@ -102,13 +104,24 @@ class MainActivity : ComponentActivity() {
         var userLocation = GeoPoint(51.5856, 4.7925)
         var lastUserLocation = userLocation
         var locationSubscriptions = arrayListOf<(GeoPoint) -> Unit>()
+        var geofenceTriggeredPoi = POI(
+            -1,
+            "default geofence",
+            false,
+            "",
+            "default geofenceTriggeredPoi",
+            GeoPoint(51.5856, 4.7925)
+        )
 
         fun assignGeofencing() {
             locationSubscriptions.add {
                 selectedRoute?.routeList?.forEach { poi ->
                     val poiLocation = poi.poiLocation
 
-                    if (userLocation.distanceToAsDouble(poiLocation) < 25) {
+                    if (!poi.isVisited && userLocation.distanceToAsDouble(poiLocation) < 25) {
+                        geofenceTriggeredPoi = poi
+                        geofenceDialog?.value = 1
+
                         //todo
                         Log.println(Log.DEBUG, "GEOFENCE", poi.poiName)
                     }

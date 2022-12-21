@@ -19,6 +19,7 @@
     <string name="truth">Kanye said nothing wrong</string>
     <string name="route_test">test string for a route name</string>
     <string name="poi_test">test string for a poi name</string>
+    <string name="geofence_title">Congratulations!</string>
 
     <!-- POI Gedeelte -->
     <string name="poiName_placeholder">test</string>
@@ -114,4 +115,7 @@
 
     <string name="de_route">The Route of awesomeness</string>
     <string name="route_description_de_route">test description for testing the test of the test of values</string>
+    <string name="geofence_desc">You have reached the next POI, would you like to read more about it?</string>
+    <string name="close">close</string>
+    <string name="read_more">read more</string>
 </resources>
