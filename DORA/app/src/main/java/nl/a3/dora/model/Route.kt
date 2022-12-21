@@ -1,6 +1,5 @@
 package nl.a3.dora.model
 
-import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,9 +9,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "route_table")
 data class Route(
     @PrimaryKey(autoGenerate = true) val routeID: Int? = null,
-    val routeName: Int,
+    val routeName: String,
     val routeList: List<POI>,
-    val thumbnailUri: Int,
-    val routeDescription: Int,
+    val thumbnailUri: String,
+    val routeDescription: String,
     val routeLength: Float
 )

@@ -67,8 +67,8 @@
     <string name="grote_markt">Grote Markt</string>
     <string name="poi_description_grote_markt">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
 
-    <string name="bevrijdingsmonument">Bevrijdingsmonument Judith</string>
-    <string name="poi_description_bevrijdingsmonument">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
+    <string name="bevrijdingsmonument_judith">Bevrijdingsmonument Judith</string>
+    <string name="poi_description_bevrijdingsmonument_judith">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>
 
     <string name="stadhuis">Stadhuis</string>
     <string name="poi_description_stadhuis">Dit is een descriptie voor de bijbehorende POI {insert poi here}</string>

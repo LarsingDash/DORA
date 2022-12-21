@@ -102,10 +102,7 @@ private fun createPOIOverlay(
 
 fun addPOIListToMap(POIList: List<POI>, context: Context) {
     poiOverlay.addItems(
-        POIList.map { POIOverlayItem(it, context
-            .getString(
-                it
-                    .poiName)) }
+        POIList.map { POIOverlayItem(it, "") }
     )
     mapView.invalidate()
 }

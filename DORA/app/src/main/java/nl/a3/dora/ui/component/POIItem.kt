@@ -1,5 +1,6 @@
 package nl.a3.dora.ui.component
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,14 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nl.a3.dora.R
 import nl.a3.dora.model.POI
-import org.osmdroid.util.GeoPoint
 
 @Composable
 fun POIItem(
@@ -25,20 +24,32 @@ fun POIItem(
     modifier: Modifier = Modifier,
     onFoldClick: () -> Unit
 ) {
+    val context = LocalContext.current
+
     //Background Card used in both Route and POI Item
     ListItemCard(
-        headerText = stringResource(id = poi.poiName),
+        headerText = context.getString(
+            context.resources.getIdentifier(
+                poi.poiName,
+                "string",
+                context.packageName
+            )
+        ),
         isFoldedOut = isFoldedOut,
         onFoldClick = onFoldClick,
         DescriptionComp = {
-            POIDescriptionItem(poi = poi)
+            POIDescriptionItem(
+                poi = poi,
+                context = context
+            )
         },
         modifier = modifier
     )
 }
 
 @Composable
-private fun POIDescriptionItem(poi: POI, modifier: Modifier = Modifier) {
+private fun POIDescriptionItem(poi: POI, modifier: Modifier = Modifier, context: Context) {
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -47,13 +58,13 @@ private fun POIDescriptionItem(poi: POI, modifier: Modifier = Modifier) {
         //Info and thumbnail
         Row {
             //description header and text
-            Column (modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = stringResource(R.string.header_info),
                     style = MaterialTheme.typography.h1
                 )
                 //todo add descriptionText
-                Text(text = "TODO ADD DESCRIPTION")
+                Text(text = context.getString(context.resources.getIdentifier(poi.poiDescription, "string", context.packageName)))
                 Spacer(modifier = Modifier.height(2.dp))
                 //poi number
                 Text(text = stringResource(R.string.poi_number) + " " + (poi.poiID?.plus(1)))
@@ -73,8 +84,14 @@ private fun POIDescriptionItem(poi: POI, modifier: Modifier = Modifier) {
                     .size(128.dp)
                     .clip(RoundedCornerShape(25)),
                 contentScale = ContentScale.Crop,
-                painter = painterResource(id = poi.thumbnailUri),
-                contentDescription = stringResource(R.string.route_thumb_desc)
+                painter = painterResource(id = context.resources.getIdentifier(poi.thumbnailName, "drawable", context.packageName)),
+                contentDescription = context.getString(
+                    context.resources.getIdentifier(
+                        poi.poiDescription,
+                        "string",
+                        context.packageName
+                    )
+                )
             )
         }
         //ags logo
@@ -90,19 +107,19 @@ private fun POIDescriptionItem(poi: POI, modifier: Modifier = Modifier) {
 
 //NON ESSENTIAL/IGNORE BELOW
 //preview POIItem with one POI
-@Preview
-@Composable
-private fun PreviewPOIItem() {
-    POIItem(
-        poi = POI(
-            0,
-            R.string.truth,
-            true,
-            R.drawable.tower_of_destinity,
-            R.string.truth,
-            GeoPoint(51.5856, 4.7925)
-        ),
-        isFoldedOut = true,
-        onFoldClick = {}
-    )
-}
+//@Preview
+//@Composable
+//private fun PreviewPOIItem() {
+//    POIItem(
+//        poi = POI(
+//            0,
+//            R.string.truth,
+//            true,
+//            R.drawable.tower_of_destinity,
+//            R.string.truth,
+//            GeoPoint(51.5856, 4.7925)
+//        ),
+//        isFoldedOut = true,
+//        onFoldClick = {}
+//    )
+//}

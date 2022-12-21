@@ -1,5 +1,6 @@
 package nl.a3.dora.ui.component
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -7,17 +8,16 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nl.a3.dora.R
-import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
-import org.osmdroid.util.GeoPoint
 
 @Composable
 fun RouteItem(
@@ -28,14 +28,17 @@ fun RouteItem(
     onResetRouteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+
     //Background Card used in both Route and POI Item
     ListItemCard(
-        headerText = stringResource(id =  route.routeName),
+        headerText = context.getString(context.resources.getIdentifier(route.routeName, "string", context.packageName)),
         isFoldedOut = isFoldedOut,
         onFoldClick = onFoldClick,
         DescriptionComp = {
             RouteDescriptionItem(
                 route = route,
+                context = context,
                 onSelectRouteClick = onSelectRouteClick,
                 onResetRouteClick = onResetRouteClick
             )
@@ -47,6 +50,7 @@ fun RouteItem(
 @Composable
 private fun RouteDescriptionItem(
     route: Route,
+    context: Context,
     onSelectRouteClick: () -> Unit,
     onResetRouteClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -65,7 +69,7 @@ private fun RouteDescriptionItem(
                     style = MaterialTheme.typography.h1
                 )
 
-                Text(text = stringResource(id = route.routeDescription))
+                Text(text = context.getString(context.resources.getIdentifier(route.routeDescription, "string", context.packageName)))
             }
             //thumbnail
             Image(
@@ -73,7 +77,7 @@ private fun RouteDescriptionItem(
                     .size(128.dp)
                     .clip(RoundedCornerShape(25)),
                 contentScale = ContentScale.Crop,
-                painter = painterResource(id = route.thumbnailUri),
+                painter = painterResource(id = context.resources.getIdentifier(route.thumbnailUri, "drawable", context.packageName)),
                 contentDescription = stringResource(R.string.route_thumb_desc)
             )
         }
@@ -114,26 +118,26 @@ private fun RouteDescriptionItem(
 
 //NON ESSENTIAL/IGNORE BELOW
 //preview RouteItem with one route from DummyRepoRoute
-@Preview
-@Composable
-private fun PreviewRouteItem() {
-    RouteItem(
-        route = Route(
-            routeID = 0,
-            routeName = R.string.truth,
-            listOf(
-                POI(poiID= 0, poiName=   R.string.poi_test, isVisited= true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5856, 4.7925)),
-                POI(poiID= 1, poiName=R.string.poi_test, isVisited=false, thumbnailUri= R.drawable.breda_bieb, poiDescription = R.string.truth, poiLocation= GeoPoint(51.58778, 4.78080)),
-                POI(poiID=2, poiName=R.string.poi_test, isVisited=false,  thumbnailUri= R.drawable.breda_stadhuis_nieuw, poiDescription = R.string.truth, poiLocation= GeoPoint(51.59461, 4.77896)),
-                POI(poiID=3, poiName=R.string.poi_test, isVisited=true, thumbnailUri= R.drawable.bocht_of_cingel, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5864, 4.7902)), //Geolocation made up
-            ),
-            thumbnailUri = R.drawable.tower_of_destinity,
-            routeDescription = R.string.truth,
-            routeLength = 5f
-        ),
-        isFoldedOut = true,
-        {},
-        {},
-        {}
-    )
-}
+//@Preview
+//@Composable
+//private fun PreviewRouteItem() {
+//    RouteItem(
+//        route = Route(
+//            routeID = 0,
+//            routeName = R.string.truth,
+//            listOf(
+//                POI(poiID= 0, poiName=   R.string.poi_test, isVisited= true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5856, 4.7925)),
+//                POI(poiID= 1, poiName=R.string.poi_test, isVisited=false, thumbnailUri= R.drawable.breda_bieb, poiDescription = R.string.truth, poiLocation= GeoPoint(51.58778, 4.78080)),
+//                POI(poiID=2, poiName=R.string.poi_test, isVisited=false,  thumbnailUri= R.drawable.breda_stadhuis_nieuw, poiDescription = R.string.truth, poiLocation= GeoPoint(51.59461, 4.77896)),
+//                POI(poiID=3, poiName=R.string.poi_test, isVisited=true, thumbnailUri= R.drawable.bocht_of_cingel, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5864, 4.7902)), //Geolocation made up
+//            ),
+//            thumbnailUri = R.drawable.tower_of_destinity,
+//            routeDescription = R.string.truth,
+//            routeLength = 5f
+//        ),
+//        isFoldedOut = true,
+//        {},
+//        {},
+//        {}
+//    )
+//}

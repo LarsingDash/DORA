@@ -66,8 +66,8 @@
     <string name="grote_markt">Grote Markt</string>
     <string name="poi_description_grote_markt">This is a description for the POI {insert poi here}</string>
 
-    <string name="bevrijdingsmonument">Bevrijdingsmonument</string>
-    <string name="poi_description_bevrijdingsmonument">This is a description for the POI {insert poi here}</string>
+    <string name="bevrijdingsmonument_judith">Bevrijdingsmonument</string>
+    <string name="poi_description_bevrijdingsmonument_judith">This is a description for the POI {insert poi here}</string>
 
     <string name="stadhuis">Stadhuis</string>
     <string name="poi_description_stadhuis">This is a description for the POI {insert poi here}</string>
