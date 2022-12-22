@@ -20,6 +20,9 @@ fun MapScreen(
     navController: NavController,
     currentPage: MutableState<String>
 ) {
+    val poiList = remember {
+        mutableStateOf(MainActivity.selectedRoute?.routeList)
+    }
     geofenceDialog = remember {
         mutableStateOf(0)
     }
@@ -30,7 +33,9 @@ fun MapScreen(
     }
 
     val context = LocalContext.current
-    if (geofenceDialog?.value == 1) {
+    if (geofenceDialog?.value == 1 && poiList.value != null) {
+        addPOIListToMap(poiList.value!!, context)
+
         DialogBox(
             showDialog = geofenceDialog!!,
             titleText = context.getString(R.string.geofence_title),
@@ -46,18 +51,17 @@ fun MapScreen(
     }
 
 //  Get POI List
-    val poiList = MainActivity.selectedRoute?.routeList
-    if (poiList != null) {
-        addRouteToMap(poiList)
-        addPOIListToMap(poiList, LocalContext.current)
+    if (poiList.value != null) {
+        addRouteToMap(poiList.value!!)
+        addPOIListToMap(poiList.value!!, LocalContext.current)
     }
 
     updateUserLocation(MainActivity.userLocation, context)
     MainActivity.locationSubscriptions.add {
         updateUserLocation(it, context)
 
-        if (poiList != null) {
-            addRouteToMap(poiList)
+        if (poiList.value != null) {
+            addRouteToMap(poiList.value!!)
         }
     }
 }

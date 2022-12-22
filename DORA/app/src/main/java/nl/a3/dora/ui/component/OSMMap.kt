@@ -117,6 +117,8 @@ fun addPOIListToMap(
     POIList: List<POI>,
     context: Context,
 ) {
+    poiOverlay.removeAllItems()
+
     for (poi in POIList) {
         poiOverlay.addItem(
             POIOverlayItem(poi, context.getString(context.resources.getIdentifier(poi.poiName, "string", context.packageName)))

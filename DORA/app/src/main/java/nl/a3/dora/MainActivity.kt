@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
         val routeViewModel: RouteViewModel by viewModels()
 
         Companion.routeViewModel = routeViewModel
-        
+
         setContent {
             DORATheme {
                 DORA(poiViewModel, routeViewModel)
@@ -117,18 +117,33 @@ class MainActivity : ComponentActivity() {
 
         fun assignGeofencing() {
             locationSubscriptions.add {
-                selectedRoute?.routeList?.forEach { poi ->
-                    val poiLocation = poi.poiLocation
+                if (selectedRoute != null) {
+                    for (poi in selectedRoute?.routeList!!) {
+                        val poiLocation = poi.poiLocation
 
-                    if (!poi.isVisited && userLocation.distanceToAsDouble(poiLocation) < 25) {
-                        geofenceTriggeredPoi = poi
-                        geofenceDialog?.value = 1
+                        if (!poi.isVisited) {
+                            if (userLocation.distanceToAsDouble(poiLocation) < 25) {
+                                geofenceTriggeredPoi = poi
+                                geofenceDialog?.value = 1
 
-                        //todo
-                        Log.println(Log.DEBUG, "GEOFENCE", poi.poiName)
+                                updateRoute(poi)
+                            } else break
+                        }
                     }
                 }
             }
+        }
+
+        var routeViewModel: RouteViewModel? = null
+
+        fun updateRoute(poi: POI) {
+            selectedRoute?.routeList?.forEach {
+                if (it.poiID == poi.poiID)
+                    it.isVisited = true
+            }
+
+            Log.d("UPDATE ROUTE", "${selectedRoute?.routeList}")
+            selectedRoute?.let { routeViewModel?.updateType(it) }
         }
     }
 }

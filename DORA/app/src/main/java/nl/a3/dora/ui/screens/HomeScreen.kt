@@ -85,9 +85,10 @@ private fun resetRoute(routeViewModel: RouteViewModel) {
     val route = routeAwaitingReset?.copy(routeList = newRouteList)
     if (route != null) {
         routeViewModel.updateType(route)
+        MainActivity.selectedRoute = route
     }
 
-    Log.d("POI data", "${routeAwaitingReset?.routeList}")
+    Log.d("POI data", "${route?.routeList}")
 
     routeAwaitingReset = null
 }
