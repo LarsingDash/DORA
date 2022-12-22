@@ -45,8 +45,8 @@ fun HomeScreen(
                 onSelectRouteClick = {
                     MainActivity.selectedRoute = route
                     MainActivity.lastUserLocation = GeoPoint(0.0,0.0)
+                    navController.navigate(Pages.Map.title + "/1/-1")
                     currentPage.value = Pages.Map.title
-                    navController.navigate(Pages.Map.title + "/1")
                 },
                 onResetRouteClick = {
                     showDialog.value = 1

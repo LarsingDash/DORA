@@ -18,7 +18,8 @@ var geofenceDialog: MutableState<Int>? = null
 @Composable
 fun MapScreen(
     navController: NavController,
-    currentPage: MutableState<String>
+    currentPage: MutableState<String>,
+    poiID: Int?
 ) {
     val poiList = remember {
         mutableStateOf(MainActivity.selectedRoute?.routeList)
@@ -28,8 +29,14 @@ fun MapScreen(
     }
 
     OSMMap(navController, currentPage)
-    Button(onClick = { recenter() }) {
+    Button(onClick = { recenter(MainActivity.userLocation) }) {
         Text(text = "Recenter")
+    }
+
+    //NavArgument
+    if (poiID != -1) {
+        val poi = poiList.value?.find { it.poiID == poiID }
+        recenter(poi!!.poiLocation)
     }
 
     val context = LocalContext.current

@@ -61,7 +61,7 @@ fun OSMMap(
         modifier = Modifier.fillMaxSize(),
         factory = {
             mapView.apply {
-                minZoomLevel = 5.0
+                minZoomLevel = 15.0
                 maxZoomLevel = 20.0
                 isTilesScaledToDpi = true
 
@@ -205,8 +205,8 @@ fun updateUserLocation(geoPoint: GeoPoint, context: Context) {
     mapView.invalidate()
 }
 
-fun recenter() {
-    mapView.controller.animateTo(MainActivity.userLocation)
+fun recenter(geoPoint: GeoPoint) {
+    mapView.controller.animateTo(geoPoint, 18.0, 2000L)
 }
 
 @Composable
