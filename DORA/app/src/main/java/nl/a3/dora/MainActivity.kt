@@ -10,18 +10,17 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.runtime.MutableState
 import androidx.core.app.ActivityCompat
-import androidx.navigation.NavController
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
 import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
-import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.screens.geofenceDialog
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.RouteViewModel
@@ -33,16 +32,26 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Set background for status and navigation bars
+        val background = ContextCompat.getDrawable(this, R.drawable.background_gradient)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+        val transparent = ContextCompat.getColor(this,android.R.color.transparent)
+        window.statusBarColor = transparent
+        window.navigationBarColor = transparent
+        window.setBackgroundDrawable(background)
+
+        //Setups
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
-        setupUserLocation(this)
-        assignGeofencing()
 
         val routeViewModel: RouteViewModel by viewModels()
-
         Companion.routeViewModel = routeViewModel
+
+        //GPS setups
+        setupUserLocation(this)
+        assignGeofencing()
 
         setContent {
             DORATheme {
