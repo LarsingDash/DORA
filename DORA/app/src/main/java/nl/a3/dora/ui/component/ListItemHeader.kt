@@ -1,24 +1,32 @@
 package nl.a3.dora.ui.component
 
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import nl.a3.dora.R
+import nl.a3.dora.ui.theme.navBarColor1
+import nl.a3.dora.ui.theme.navBarColor2
+import nl.a3.dora.ui.theme.selectedColor1
+import nl.a3.dora.ui.theme.selectedColor2
 
 @Composable
 fun ListItemHeader(
@@ -26,25 +34,62 @@ fun ListItemHeader(
     isFoldedOut: Boolean,
     onFoldClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = Color.LightGray
 ) {
-    val animatedColor by animateColorAsState(
-        targetValue = if (isFoldedOut) Color.Blue else color //todo change selectedcolor to a nicer one
-    )
-    Surface(
-        modifier = Modifier.clickable { onFoldClick.invoke() },
-    color = animatedColor) {
-        Row (modifier = modifier.padding(8.dp)) {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.h1,
-                color = Color.White
+    val brush = if (isFoldedOut)
+        Brush.horizontalGradient(
+            colors = listOf(
+                navBarColor1,
+                navBarColor2,
             )
-            Spacer(modifier = Modifier.weight(1f))
+        ) else Brush.horizontalGradient(
+        colors = listOf(
+            selectedColor1,
+            selectedColor2,
+        )
+    )
+
+    Box(modifier = Modifier
+        .clickable { onFoldClick.invoke() }
+        .background(
+            brush = brush
+        ),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            modifier = modifier
+                .padding(8.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.9f),
+                text = text,
+                style = MaterialTheme.typography.h1.copy(
+                    shadow = Shadow(
+                        color = Color(15, 15, 15),
+                        offset = Offset(x = 2f, y = 4f),
+                        blurRadius = 0.3f
+                    )
+                ),
+                color = Color.White,
+                fontWeight = FontWeight.Black,
+                fontSize = 28.sp,
+                textAlign = TextAlign.Center
+            )
+
             if (isFoldedOut) {
-                Icon(imageVector = Icons.Filled.ExpandLess, contentDescription = stringResource(R.string.close_route_item))
+                Icon(
+                    imageVector = Icons.Filled.ExpandLess,
+                    contentDescription = stringResource(R.string.close_route_item),
+                    tint = Color.White
+                )
             } else {
-                Icon(imageVector = Icons.Filled.ExpandMore, contentDescription = stringResource(R.string.open_route_item))
+                Icon(
+                    imageVector = Icons.Filled.ExpandMore,
+                    contentDescription = stringResource(R.string.open_route_item),
+                    tint = Color.White
+
+                )
             }
         }
     }
