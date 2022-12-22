@@ -15,7 +15,7 @@ import org.osmdroid.util.GeoPoint
 data class POI(
     @PrimaryKey(autoGenerate = true)  val poiID: Int? = null,
     val poiName: String,
-    val isVisited: Boolean,
+    var isVisited: Boolean,
     val thumbnailName: String,
     val poiDescription: String,
     val poiLocation: GeoPoint,

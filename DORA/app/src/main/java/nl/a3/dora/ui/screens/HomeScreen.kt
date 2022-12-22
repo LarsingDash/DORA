@@ -7,12 +7,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.R
+import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.component.DialogBox
 import nl.a3.dora.ui.component.RouteItem
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
+import org.osmdroid.util.GeoPoint
 
 private var routeAwaitingReset: Route? = null
 
@@ -42,8 +44,9 @@ fun HomeScreen(
                 },
                 onSelectRouteClick = {
                     MainActivity.selectedRoute = route
+                    MainActivity.lastUserLocation = GeoPoint(0.0,0.0)
+                    navController.navigate(Pages.Map.title + "/1/-1")
                     currentPage.value = Pages.Map.title
-                    navController.navigate(Pages.Map.title + "/1")
                 },
                 onResetRouteClick = {
                     showDialog.value = 1
@@ -65,19 +68,27 @@ fun HomeScreen(
                     false
                 ) {
                     Log.d("DEBUG ENTRY", "Resetting ROUTE")
-                    resetRoute(poiViewModel)
+                    resetRoute(routeViewModel)
                 }
             )
         )
     }
 }
 
-private fun resetRoute(poiViewModel: PoiViewModel) {
-    Log.d("POI data", "${routeAwaitingReset?.routeList}")
+private fun resetRoute(routeViewModel: RouteViewModel) {
+    val newRouteList = mutableListOf<POI>()
     routeAwaitingReset?.routeList?.forEach {
-        val poi = it.copy(isVisited = false)
-        Log.d("POI data", "$poi")
-        poiViewModel.updateType(poi)
+        val newPOI = it.copy(isVisited = false)
+        newRouteList.add(newPOI)
     }
+
+    val route = routeAwaitingReset?.copy(routeList = newRouteList)
+    if (route != null) {
+        routeViewModel.updateType(route)
+        MainActivity.selectedRoute = route
+    }
+
+    Log.d("POI data", "${route?.routeList}")
+
     routeAwaitingReset = null
 }

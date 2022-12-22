@@ -1,6 +1,9 @@
 package nl.a3.dora
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Looper
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.preference.PreferenceManager
@@ -8,14 +11,13 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
+import nl.a3.dora.ui.screens.geofenceDialog
 import nl.a3.dora.ui.theme.DORATheme
 import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
@@ -27,40 +29,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //TODO find a better way to do this
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-        //TODO same thing
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        setupUserLocation()
+        assignGeofencing()
 
         val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
-//        val historicKM: List<POI> = listOf(
-//            poiViewModel.getTypeByID(26),
-//            poiViewModel.getTypeByID(19),
-//            poiViewModel.getTypeByID(27),
-//            poiViewModel.getTypeByID(28),
-//        ) as List<POI>
-//
-//        routeViewModel.addType(
-//            Route(
-//                routeName = "de_route",
-//                routeList = historicKM,
-//                thumbnailUri = "pad_van_sinterklaas",
-//                routeLength = 69f,
-//                routeDescription = "route_description_de_route"
-//            )
-//        )
-//        lifecycleScope.launch {
-//            routeViewModel.getTypeByID(2)?.let { routeViewModel.deleteType(it) }
-//        }
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            val poi = poiViewModel.typeListFlow.first().find { it.poiName == R.string.grote_kerk }?.copy(poiLocation = GeoPoint(51.588784341353744, 4.775163473055657))
-//            poi?.let { poiViewModel.updateType(it) }
-//        }
+        Companion.routeViewModel = routeViewModel
 
         setContent {
             DORATheme {
@@ -69,62 +48,102 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun setupUserLocation() {
+        //Setup provider and requests
+        val provider = LocationServices.getFusedLocationProviderClient(this)
+        val request = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY,
+            1000L
+        ).build()
+
+        //Setup callback
+        val callback = object : LocationCallback() {
+            override fun onLocationResult(result: LocationResult) {
+                super.onLocationResult(result)
+
+                //Update locations
+                val location = result.lastLocation
+                if (location != null) {
+                    val geoLocation = GeoPoint(location.latitude, location.longitude)
+                    userLocation = geoLocation
+
+                    if (userLocation.distanceToAsDouble(lastUserLocation) > 0.5) {
+                        lastUserLocation = userLocation
+
+                        //Invoke subscriptions
+                        for (subscriber in locationSubscriptions) {
+                            subscriber.invoke(geoLocation)
+                        }
+                    }
+                }
+            }
+        }
+
+        //Check permissions before assigning request
+        val hasFineLocation = ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val hasCourseLocation = ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (hasFineLocation && hasCourseLocation
+        ) {
+            //Assign request
+            provider.requestLocationUpdates(
+                request,
+                callback,
+                Looper.getMainLooper()
+            )
+        } else Log.println(Log.DEBUG, "DEBUG", "No permissions")
+    }
+
     companion object {
         var selectedRoute: Route? = null
+        var userLocation = GeoPoint(51.5856, 4.7925)
+        var lastUserLocation = userLocation
+        var locationSubscriptions = arrayListOf<(GeoPoint) -> Unit>()
+        var geofenceTriggeredPoi = POI(
+            -1,
+            "default geofence",
+            false,
+            "",
+            "default geofenceTriggeredPoi",
+            GeoPoint(51.5856, 4.7925)
+        )
+
+        fun assignGeofencing() {
+            locationSubscriptions.add {
+                if (selectedRoute != null) {
+                    for (poi in selectedRoute?.routeList!!) {
+                        val poiLocation = poi.poiLocation
+
+                        if (!poi.isVisited) {
+                            if (userLocation.distanceToAsDouble(poiLocation) < 25) {
+                                geofenceTriggeredPoi = poi
+                                geofenceDialog?.value = 1
+
+                                updateRoute(poi)
+                            } else break
+                        }
+                    }
+                }
+            }
+        }
+
+        var routeViewModel: RouteViewModel? = null
+
+        fun updateRoute(poi: POI) {
+            selectedRoute?.routeList?.forEach {
+                if (it.poiID == poi.poiID)
+                    it.isVisited = true
+            }
+
+            Log.d("UPDATE ROUTE", "${selectedRoute?.routeList}")
+            selectedRoute?.let { routeViewModel?.updateType(it) }
+        }
     }
 }
-
-//TEST DATA for RoomDB integration
-//        val poi = POI(
-//            name = "Einde stadswandeling",
-//            distanceTo = 0f,
-//            isVisited = false,
-//            thumbnailUri = R.drawable.einde_route,
-//            poiLocation = GeoPoint(51.589780, 4.776203)
-//        )
-//        poiViewModel.addType(poi)
-
-//        Log of all POI data, for testing usages
-
-//        lifecycleScope.launch {
-//            poiViewModel.typeListFlow.first().find { it.poiID == 30 }?.let {
-//                poiViewModel.deleteType(it)
-//            }
-//        }
-//        lifecycleScope.launch {
-//            val poi = poiViewModel.typeListFlow.first().last().copy(poiID = 26)
-//            poiViewModel.updateType(poi)
-//        }
-
-//        routeViewModel.addType(
-//            Route(
-//                routeID = null,
-//                routeName = "Route 1",
-//                listOf(
-//                    poi
-//                ),
-//                thumbnailUri = R.drawable.tower_of_destinity,
-//                routeLength = 20f,
-//                routeContent = "Historic tower of awesomeness"
-//            )
-//        )
-
-//        val deROUTE: List<POI> = listOf(
-//            poiViewModel.getTypeByID(27),
-//            poiViewModel.getTypeByID(19),
-//            poiViewModel.getTypeByID(28),
-//            poiViewModel.getTypeByID(26)
-//        ) as List<POI>
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            poiViewModel.typeListFlow.first().forEach {
-//                Log.d("POI DATA", "$it")
-//            }
-//        }
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            routeViewModel.typeListFlow.first().forEach {
-//                Log.d("ROUTE DATA", "$it")
-//            }
-//        }
-

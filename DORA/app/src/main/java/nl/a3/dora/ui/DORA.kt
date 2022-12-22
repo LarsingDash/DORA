@@ -66,7 +66,7 @@ fun DORA(
                     currentPage.value = Pages.Home.title
                 },
                 mapButtonUnit = {
-                    navController.navigate(Pages.Map.title + "/-1")
+                    navController.navigate(Pages.Map.title + "/-1/-1")
                     currentPage.value = Pages.Map.title
                 },
                 poiButtonUnit = {
@@ -94,11 +94,15 @@ fun DORA(
 
             //Map
             composable(
-                route = Pages.Map.title + "/{routeID}",
-                arguments = listOf(navArgument("routeID") { type = NavType.IntType })
+                route = Pages.Map.title + "/{routeID}/{poiID}",
+                arguments = listOf(
+                    navArgument("routeID") { type = NavType.IntType },
+                    navArgument("poiID") { type = NavType.IntType }
+                )
             ) {
                 val routeID = it.arguments?.getInt("routeID")
-                MapScreen(navController, currentPage)
+                val poiID = it.arguments?.getInt("poiID")
+                MapScreen(navController, currentPage, poiID)
                 BackHandler(true) {
                     if (routeID == -1)
                         currentActivity.finish()
@@ -116,7 +120,7 @@ fun DORA(
             ) {
                 val poiID = it.arguments?.getInt("poiID")
 
-                POIScreen(poiID)
+                POIScreen(poiID, navController, currentPage)
                 BackHandler(true) {
                     if (poiID == -1) currentActivity.finish()
                     else {

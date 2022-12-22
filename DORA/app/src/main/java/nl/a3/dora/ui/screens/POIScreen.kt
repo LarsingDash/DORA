@@ -2,6 +2,7 @@ package nl.a3.dora.ui.screens
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
+import androidx.navigation.NavController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.model.POI
 import nl.a3.dora.ui.component.POIItem
@@ -9,6 +10,8 @@ import nl.a3.dora.ui.component.POIItem
 @Composable
 fun POIScreen(
     poiID: Int?,
+    navController: NavController,
+    currentPage: MutableState<String>
 ) {
     val nullableList by remember {
         mutableStateOf(MainActivity.selectedRoute?.routeList)
@@ -30,6 +33,8 @@ fun POIScreen(
                     openedPOI = if (foldout) null else poi
                     preOpenedPoiID = null
                 },
+                navController = navController,
+                currentPage = currentPage
             )
         }
     }
