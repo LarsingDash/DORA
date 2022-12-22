@@ -1,7 +1,9 @@
 package nl.a3.dora
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.os.StrictMode
@@ -11,6 +13,8 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -98,7 +102,16 @@ class MainActivity : ComponentActivity() {
                 callback,
                 Looper.getMainLooper()
             )
-        } else Log.println(Log.DEBUG, "DEBUG", "No permissions")
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                ),
+                99
+            )
+        }
     }
 
     companion object {
