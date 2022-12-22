@@ -13,4 +13,7 @@ val iconSelected = Color(0xFFFFFFFF)
 val navBarColor1 = Color(0xFFC661FF)
 val navBarColor2 = Color(0xFF467BFF)
 
+val selectedColor1 = Color(0xFF2AC9B3)
+val selectedColor2 = Color(0xFF29FF96)
+
 val confirmButton = Color(0xFF467BFF)
