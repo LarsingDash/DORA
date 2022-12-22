@@ -18,7 +18,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import nl.a3.dora.R
 import nl.a3.dora.model.POI
@@ -82,7 +84,9 @@ private fun POIDescriptionItem(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = stringResource(R.string.header_info),
-                    style = MaterialTheme.typography.h1
+                    style = MaterialTheme.typography.h1,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp
                 )
                 //todo add descriptionText
                 Text(
@@ -91,9 +95,11 @@ private fun POIDescriptionItem(
                             poi.poiDescription,
                             "string",
                             context.packageName
-                        )
-                    )
+                        ),
+                    ),
+                    fontWeight = FontWeight.Medium,
                 )
+
                 Spacer(modifier = Modifier.height(2.dp))
                 //poi number
                 Text(text = stringResource(R.string.poi_number) + " " + (poi.poiID?.plus(1)))
@@ -134,7 +140,7 @@ private fun POIDescriptionItem(
             modifier = Modifier
                 .size(64.dp),
             painter = painterResource(id = R.drawable.ags_logo),
-            contentDescription = stringResource(R.string.ags_logo_desc)
+            contentDescription = stringResource(R.string.ags_logo_desc),
         )
     }
 }
