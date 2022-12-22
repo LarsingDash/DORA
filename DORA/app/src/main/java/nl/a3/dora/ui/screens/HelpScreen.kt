@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import nl.a3.dora.R
 import nl.a3.dora.ui.component.DialogBox
-import nl.a3.dora.ui.theme.selectedColor1
-import nl.a3.dora.ui.theme.selectedColor2
+import nl.a3.dora.ui.theme.unSelectedColor1
+import nl.a3.dora.ui.theme.unSelectedColor2
 
 @Composable
 fun HelpScreen() {
@@ -62,8 +61,8 @@ fun HelpScreen() {
                     .background(
                         Brush.horizontalGradient(
                             colors = listOf(
-                                selectedColor1,
-                                selectedColor2,
+                                unSelectedColor1,
+                                unSelectedColor2,
                             )
                         )
                     ),
@@ -90,8 +89,8 @@ fun HelpScreen() {
                     .background(
                         Brush.horizontalGradient(
                             colors = listOf(
-                                selectedColor2,
-                                selectedColor1,
+                                unSelectedColor2,
+                                unSelectedColor1,
                             )
                         )
                     ),

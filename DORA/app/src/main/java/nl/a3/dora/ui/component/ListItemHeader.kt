@@ -19,14 +19,10 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import nl.a3.dora.R
-import nl.a3.dora.ui.theme.navBarColor1
-import nl.a3.dora.ui.theme.navBarColor2
-import nl.a3.dora.ui.theme.selectedColor1
-import nl.a3.dora.ui.theme.selectedColor2
+import nl.a3.dora.ui.theme.*
 
 @Composable
 fun ListItemHeader(
@@ -38,13 +34,13 @@ fun ListItemHeader(
     val brush = if (isFoldedOut)
         Brush.horizontalGradient(
             colors = listOf(
-                navBarColor1,
-                navBarColor2,
+                selectedColor1,
+                selectedColor2,
             )
         ) else Brush.horizontalGradient(
         colors = listOf(
-            selectedColor1,
-            selectedColor2,
+            unSelectedColor1,
+            unSelectedColor2,
         )
     )
 
