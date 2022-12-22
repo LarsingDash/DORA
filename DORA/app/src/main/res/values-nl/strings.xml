@@ -115,6 +115,8 @@
 
     <string name="de_route">De route van coolheid</string>
     <string name="route_description_de_route">Dit IS DE ROUTE NEEF KAULO HARD TOCH</string>
+
+    <!-- Other -->
     <string name="geofence_title">Gefeliciteerd!</string>
     <string name="geofence_desc">Je hebt de volgende bezienswaardigheid bereikt, wil je er meer over lezen?</string>
     <string name="close">sluiten</string>

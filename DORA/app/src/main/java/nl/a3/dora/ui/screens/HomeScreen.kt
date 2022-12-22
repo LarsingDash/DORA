@@ -33,7 +33,7 @@ fun HomeScreen(
 
     LazyColumn(
         Modifier
-            .background(Color(240,240,240))
+            .background(Color(240, 240, 240))
             .fillMaxHeight()
     ) {
         items(routeStateList.value.size) { index ->

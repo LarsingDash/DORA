@@ -115,6 +115,8 @@
 
     <string name="de_route">The Route of awesomeness</string>
     <string name="route_description_de_route">test description for testing the test of the test of values</string>
+
+    <!-- Other -->
     <string name="geofence_desc">You have reached the next POI, would you like to read more about it?</string>
     <string name="close">close</string>
     <string name="read_more">read more</string>
