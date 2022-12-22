@@ -1,9 +1,9 @@
 package nl.a3.dora
 
 import android.Manifest
-import android.app.AlertDialog
+import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.os.StrictMode
@@ -13,17 +13,17 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.MutableState
 import androidx.core.app.ActivityCompat
+import androidx.navigation.NavController
 import com.google.android.gms.location.*
 import dagger.hilt.android.AndroidEntryPoint
 import nl.a3.dora.model.POI
 import nl.a3.dora.model.Route
 import nl.a3.dora.ui.DORA
+import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.screens.geofenceDialog
 import nl.a3.dora.ui.theme.DORATheme
-import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
@@ -37,87 +37,24 @@ class MainActivity : ComponentActivity() {
         StrictMode.setThreadPolicy(policy)
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
-        setupUserLocation()
+        setupUserLocation(this)
         assignGeofencing()
 
-        val poiViewModel: PoiViewModel by viewModels()
         val routeViewModel: RouteViewModel by viewModels()
 
         Companion.routeViewModel = routeViewModel
 
         setContent {
             DORATheme {
-                DORA(poiViewModel, routeViewModel)
+                DORA(routeViewModel)
             }
-        }
-    }
-
-    private fun setupUserLocation() {
-        //Setup provider and requests
-        val provider = LocationServices.getFusedLocationProviderClient(this)
-        val request = LocationRequest.Builder(
-            Priority.PRIORITY_HIGH_ACCURACY,
-            1000L
-        ).build()
-
-        //Setup callback
-        val callback = object : LocationCallback() {
-            override fun onLocationResult(result: LocationResult) {
-                super.onLocationResult(result)
-
-                //Update locations
-                val location = result.lastLocation
-                if (location != null) {
-                    val geoLocation = GeoPoint(location.latitude, location.longitude)
-                    userLocation = geoLocation
-
-                    if (userLocation.distanceToAsDouble(lastUserLocation) > 0.5) {
-                        lastUserLocation = userLocation
-
-                        //Invoke subscriptions
-                        for (subscriber in locationSubscriptions) {
-                            subscriber.invoke(geoLocation)
-                        }
-                    }
-                }
-            }
-        }
-
-        //Check permissions before assigning request
-        val hasFineLocation = ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-
-        val hasCourseLocation = ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-
-        if (hasFineLocation && hasCourseLocation
-        ) {
-            //Assign request
-            provider.requestLocationUpdates(
-                request,
-                callback,
-                Looper.getMainLooper()
-            )
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                ),
-                99
-            )
         }
     }
 
     companion object {
         var selectedRoute: Route? = null
         var userLocation = GeoPoint(51.5856, 4.7925)
-        var lastUserLocation = userLocation
+        var lastUserLocation = GeoPoint(0.0,0.0)
         var locationSubscriptions = arrayListOf<(GeoPoint) -> Unit>()
         var geofenceTriggeredPoi = POI(
             -1,
@@ -127,6 +64,7 @@ class MainActivity : ComponentActivity() {
             "default geofenceTriggeredPoi",
             GeoPoint(51.5856, 4.7925)
         )
+        var hasPermissions: Boolean = false
 
         fun assignGeofencing() {
             locationSubscriptions.add {
@@ -148,8 +86,7 @@ class MainActivity : ComponentActivity() {
         }
 
         var routeViewModel: RouteViewModel? = null
-
-        fun updateRoute(poi: POI) {
+        private fun updateRoute(poi: POI) {
             selectedRoute?.routeList?.forEach {
                 if (it.poiID == poi.poiID)
                     it.isVisited = true
@@ -157,6 +94,70 @@ class MainActivity : ComponentActivity() {
 
             Log.d("UPDATE ROUTE", "${selectedRoute?.routeList}")
             selectedRoute?.let { routeViewModel?.updateType(it) }
+        }
+
+        fun setupUserLocation(context: Context) {
+            //Setup provider and requests
+            val provider = LocationServices.getFusedLocationProviderClient(context)
+            val request = LocationRequest.Builder(
+                Priority.PRIORITY_HIGH_ACCURACY,
+                500L
+            ).build()
+
+            //Setup callback
+            val callback = object : LocationCallback() {
+                override fun onLocationResult(result: LocationResult) {
+                    super.onLocationResult(result)
+
+                    //Update locations
+                    val location = result.lastLocation
+                    if (location != null) {
+                        val geoLocation = GeoPoint(location.latitude, location.longitude)
+                        userLocation = geoLocation
+
+                        if (userLocation.distanceToAsDouble(lastUserLocation) > 0.5) {
+                            lastUserLocation = userLocation
+
+                            //Invoke subscriptions
+                            for (subscriber in locationSubscriptions) {
+                                subscriber.invoke(geoLocation)
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Check permissions before assigning request
+            val hasFineLocation = ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+
+            val hasCourseLocation = ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+
+            if (hasFineLocation && hasCourseLocation
+            ) {
+                hasPermissions = true
+
+                //Assign request
+                provider.requestLocationUpdates(
+                    request,
+                    callback,
+                    Looper.getMainLooper()
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    context as Activity,
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                    ),
+                    99
+                )
+            }
         }
     }
 }

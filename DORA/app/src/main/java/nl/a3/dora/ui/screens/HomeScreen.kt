@@ -12,7 +12,6 @@ import nl.a3.dora.model.Route
 import nl.a3.dora.ui.Pages
 import nl.a3.dora.ui.component.DialogBox
 import nl.a3.dora.ui.component.RouteItem
-import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 import org.osmdroid.util.GeoPoint
 
@@ -21,7 +20,6 @@ private var routeAwaitingReset: Route? = null
 @Composable
 fun HomeScreen(
     routeViewModel: RouteViewModel,
-    poiViewModel: PoiViewModel,
     navController: NavHostController,
     currentPage: MutableState<String>
 ) {
@@ -44,7 +42,7 @@ fun HomeScreen(
                 },
                 onSelectRouteClick = {
                     MainActivity.selectedRoute = route
-                    MainActivity.lastUserLocation = GeoPoint(0.0,0.0)
+                    MainActivity.lastUserLocation = GeoPoint(0.0, 0.0)
                     navController.navigate(Pages.Map.title + "/1/-1")
                     currentPage.value = Pages.Map.title
                 },

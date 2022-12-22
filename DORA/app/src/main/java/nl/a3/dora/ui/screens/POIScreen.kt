@@ -38,43 +38,4 @@ fun POIScreen(
             )
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    Text(text = "$poiID")
-//    val poiListState = poiViewModel.typeListFlow.collectAsState(initial = listOf())
-
-    /*LazyColumn {
-        items(list.size) { index ->
-            val poi = list[index]
-            Text(
-                text = poi.name,
-                modifier = Modifier.padding(5.dp),
-                lineHeight = 70.sp
-            )
-            Image(
-                painter = painterResource(id = poi.thumbnailUri),
-                contentDescription = "Cool tower"
-            )
-            if(poi.poiID == poiID) {
-                Text(
-                    text = "Je moeder ofzo: $poiID",
-                    fontStyle = FontStyle.Italic,
-                    lineHeight = 70.sp
-                )
-            }
-        }
-    }*/
 }

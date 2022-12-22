@@ -34,7 +34,6 @@ import nl.a3.dora.ui.theme.iconSelected
 import nl.a3.dora.ui.theme.iconUnselected
 import nl.a3.dora.ui.theme.navBarColor1
 import nl.a3.dora.ui.theme.navBarColor2
-import nl.a3.dora.viewmodel.PoiViewModel
 import nl.a3.dora.viewmodel.RouteViewModel
 
 enum class Pages(val title: String) {
@@ -48,7 +47,6 @@ private lateinit var currentPage: MutableState<String>
 
 @Composable
 fun DORA(
-    poiViewModel: PoiViewModel,
     routeViewModel: RouteViewModel
 ) {
     val navController: NavHostController = rememberNavController()
@@ -86,7 +84,7 @@ fun DORA(
         ) {
             //Home
             composable(route = Pages.Home.title) {
-                HomeScreen(routeViewModel, poiViewModel, navController, currentPage)
+                HomeScreen(routeViewModel, navController, currentPage)
                 BackHandler(true) {
                     currentActivity.finish()
                 }

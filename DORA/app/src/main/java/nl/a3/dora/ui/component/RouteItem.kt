@@ -114,30 +114,3 @@ private fun RouteDescriptionItem(
         }
     }
 }
-
-
-//NON ESSENTIAL/IGNORE BELOW
-//preview RouteItem with one route from DummyRepoRoute
-//@Preview
-//@Composable
-//private fun PreviewRouteItem() {
-//    RouteItem(
-//        route = Route(
-//            routeID = 0,
-//            routeName = R.string.truth,
-//            listOf(
-//                POI(poiID= 0, poiName=   R.string.poi_test, isVisited= true, thumbnailUri= R.drawable.tower_of_destinity, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5856, 4.7925)),
-//                POI(poiID= 1, poiName=R.string.poi_test, isVisited=false, thumbnailUri= R.drawable.breda_bieb, poiDescription = R.string.truth, poiLocation= GeoPoint(51.58778, 4.78080)),
-//                POI(poiID=2, poiName=R.string.poi_test, isVisited=false,  thumbnailUri= R.drawable.breda_stadhuis_nieuw, poiDescription = R.string.truth, poiLocation= GeoPoint(51.59461, 4.77896)),
-//                POI(poiID=3, poiName=R.string.poi_test, isVisited=true, thumbnailUri= R.drawable.bocht_of_cingel, poiDescription = R.string.truth, poiLocation= GeoPoint(51.5864, 4.7902)), //Geolocation made up
-//            ),
-//            thumbnailUri = R.drawable.tower_of_destinity,
-//            routeDescription = R.string.truth,
-//            routeLength = 5f
-//        ),
-//        isFoldedOut = true,
-//        {},
-//        {},
-//        {}
-//    )
-//}

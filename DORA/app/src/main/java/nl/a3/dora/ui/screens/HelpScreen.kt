@@ -11,11 +11,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.res.painterResource
 import nl.a3.dora.R
 import nl.a3.dora.ui.component.DialogBox
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun HelpScreen() {
@@ -77,7 +75,7 @@ fun HelpScreen() {
                     "aswell as hyperlinks to video's about the POI. Finally there is a rating in stars " +
                     "about the POI.",
             buttons = mapOf(
-                "close" to Pair(false, {}),
+                "close" to Pair(false) {},
             )
         )
     }
@@ -91,7 +89,7 @@ fun HelpScreen() {
                     "de app zijn Owen Verhoeven, Lars Villevoye, Dogukan Akyazi, Tom Martens, Max" +
                     "van gils en Martijn van der Linden.",
             buttons = mapOf(
-                "close" to Pair(false, {}),
+                "close" to Pair(false) {},
             )
         )
     }

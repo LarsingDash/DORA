@@ -24,6 +24,21 @@ fun MapScreen(
     currentPage: MutableState<String>,
     poiID: Int?
 ) {
+    val context = LocalContext.current
+
+    val hasRequestedOnThisPage = remember {
+        mutableStateOf(false)
+    }
+    if (currentPage.value == Pages.Map.title
+        && !hasRequestedOnThisPage.value
+        && !MainActivity.hasPermissions
+    ) {
+        hasRequestedOnThisPage.value = true
+
+        MainActivity.setupUserLocation(context)
+        MainActivity.assignGeofencing()
+    }
+
     val poiList = remember {
         mutableStateOf(MainActivity.selectedRoute?.routeList)
     }
@@ -32,14 +47,14 @@ fun MapScreen(
     }
 
     OSMMap(navController, currentPage)
-    Row(Modifier
-        .padding(0.dp, 10.dp, 0.dp, 0.dp)
-        .fillMaxWidth(),
+    Row(
+        Modifier
+            .padding(0.dp, 10.dp, 0.dp, 0.dp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
-            modifier = Modifier.width(250.dp)
-            ,onClick = { recenter(MainActivity.userLocation) }) {
+            modifier = Modifier.width(250.dp), onClick = { recenter(MainActivity.userLocation, false) }) {
             Text(text = "Recenter")
         }
     }
@@ -47,10 +62,9 @@ fun MapScreen(
     //NavArgument
     if (poiID != -1) {
         val poi = poiList.value?.find { it.poiID == poiID }
-        recenter(poi!!.poiLocation)
+        recenter(poi!!.poiLocation, true)
     }
 
-    val context = LocalContext.current
     if (geofenceDialog?.value == 1 && poiList.value != null) {
         addPOIListToMap(poiList.value!!, context)
 
@@ -59,7 +73,7 @@ fun MapScreen(
             titleText = context.getString(R.string.geofence_title),
             description = context.getString(R.string.geofence_desc),
             buttons = mapOf(
-                context.getString(R.string.close) to Pair(false, {}),
+                context.getString(R.string.close) to Pair(false) {},
                 context.getString(R.string.read_more) to Pair(true) {
                     navController.navigate(Pages.POI.title + "/${MainActivity.geofenceTriggeredPoi.poiID}")
                     currentPage.value = Pages.POI.title

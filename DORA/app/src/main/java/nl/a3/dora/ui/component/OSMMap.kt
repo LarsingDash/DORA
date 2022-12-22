@@ -205,8 +205,9 @@ fun updateUserLocation(geoPoint: GeoPoint, context: Context) {
     mapView.invalidate()
 }
 
-fun recenter(geoPoint: GeoPoint) {
-    mapView.controller.animateTo(geoPoint, 18.0, 2000L)
+fun recenter(geoPoint: GeoPoint, isInstant: Boolean) {
+    val speed = if (isInstant) 0L else 1250L
+    mapView.controller.animateTo(geoPoint, 18.0, speed)
 }
 
 @Composable

@@ -1,6 +1,5 @@
 package nl.a3.dora.ui.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +25,7 @@ fun DialogBox(
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0,0,0, 0x44)
+        color = Color(0, 0, 0, 0x44)
     ) {}
 
     Column(
