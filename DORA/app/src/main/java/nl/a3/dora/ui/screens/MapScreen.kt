@@ -1,12 +1,15 @@
 package nl.a3.dora.ui.screens
 
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.R
@@ -29,8 +32,16 @@ fun MapScreen(
     }
 
     OSMMap(navController, currentPage)
-    Button(onClick = { recenter(MainActivity.userLocation) }) {
-        Text(text = "Recenter")
+    Row(Modifier
+        .padding(0.dp, 10.dp, 0.dp, 0.dp)
+        .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(
+            modifier = Modifier.width(250.dp)
+            ,onClick = { recenter(MainActivity.userLocation) }) {
+            Text(text = "Recenter")
+        }
     }
 
     //NavArgument
