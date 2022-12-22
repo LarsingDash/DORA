@@ -37,7 +37,8 @@ fun ListItemHeader(
         Row (modifier = modifier.padding(8.dp)) {
             Text(
                 text = text,
-                style = MaterialTheme.typography.h1
+                style = MaterialTheme.typography.h1,
+                color = Color.White
             )
             Spacer(modifier = Modifier.weight(1f))
             if (isFoldedOut) {

@@ -26,7 +26,6 @@ fun RouteItem(
     onFoldClick: () -> Unit,
     onSelectRouteClick: () -> Unit,
     onResetRouteClick: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
@@ -43,7 +42,7 @@ fun RouteItem(
                 onResetRouteClick = onResetRouteClick
             )
         },
-        modifier = modifier
+        modifier = Modifier,
     )
 }
 
