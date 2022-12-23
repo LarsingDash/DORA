@@ -16,105 +16,177 @@
     <string name="are_you_sure_text">Are you certain of resetting the route?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
-    <string name="truth">Kanye said nothing wrong</string>
     <string name="route_test">test string for a route name</string>
     <string name="poi_test">test string for a poi name</string>
     <string name="geofence_title">Congratulations!</string>
+    <string name="how_does_app_work_description">On the bottom of the app there are four buttons. Each of these buttons lead to different pages. Home is the homescreen, here you can find all available routes to walk and how many points of interest there are on that route. On this page you have the ability to click on a route to get two options. The first is to select the route, so you can start or resume walking it and the second is to reset the route. The reset route option is only useful if you havent walked the route before, if pressed a popup appears to confirm if you want to reset the route. The button labeled Map shows the directions and route of the selected route. It shows the POIs through a sort of arrow icon on the map. This icon can be pressed and if you do press it, a popup will appear. In the popup it reveals the number of the POI and the distance to the selected POI. It also shows a blue marked text that says "POI info" and if pressed, it will take you to the POI details page with the details of the selected POI. When you reach a POI another popup will appear, congratulating you on reaching the next POI. In this popup you will have two choices, the first is to go to the POI details page to learn more about the POI. The second choice is to continue the route you are walking to the next POI. The button labeled POI gives an overview of all points of interest. In this screen you will have an overview of all the POI's on your selected route. Without touching anything in this screen you can see what the distance is to all POI's. If you click on a POI a dropdown information box will appear with more information on the selected POI. In this box there is general information about the POI, there is an image of the POI aswell as hyperlinks to video's about the POI. Finally there is a rating in stars about the POI.</string>>
+    <string name="help_button_name">How does the app work?</string>
+    <string name="about_the_app_description">This app is aimed at people who would like to discover the city of Breda. The app was developed for AGS on the previous VVV-Breda system. The creators of the app are Owen Verhoeven, Lars Villevoye, Dogukan Akyazi, Tom Martens, Max van Gils and Martijn van der Linden. OpenStreetMap® is open data, licensed under the Open Data Commons Open Database License (ODbL) by the OpenStreetMap Foundation (OSMF).</string>>
+    <string name="about_button_name">About the app</string>>
 
     <!-- POI Gedeelte -->
-    <string name="poiName_placeholder">test</string>
-    <string name="poi_description_poiNameHere">This is a description for thee POI {insert poi here}</string>
-
     <string name="vvv_breda">VVV-Breda</string>
-    <string name="poi_description_vvv_breda">Informate over de POI hier</string>
+    <string name="poi_description_vvv_breda">
+        VVV-Breda is an organisation that helps people discover the city Breda. VVV-Breda brings people information about parking
+        possibilities, shopping locations within the city, locations of the best nightclubs, restaurants that serve great food and
+        much more. Since 2020 VVV-Breda does not have a physical location anymore, but the website remains online, to help people
+        explore Breda.
+    </string>
 
-    <string name="liefdeszuster">Love Sista</string>
-    <string name="poi_description_liefdeszuster">This is a description for the POI {insert poi here}</string>
+    <string name="liefdeszuster">The Love sister of St Vincent de Paul</string>
+    <string name="poi_description_liefdeszuster">
+        The Love sister of St Vincent de Paul is a statue made of bronze. The statue shows a walking nun with a book in het hands.
+        The statue was a gift from the Meeùs-group given to the municipality of Breda to celebrate the restoration of the Meeùs-group
+        headquarters. The artist who made the statue was Josepha van Riemsdijk, born in 1915 and passed away in 2005. The statue
+        was finished in 1990 and is 2 meters in height.
+    </string>
 
-    <string name="nassau_baronie_monument">Nassau Baroniemonument</string>
-    <string name="poi_description_nassau_baronie_monument">This is a description for the POI {insert poi here}</string>
+    <string name="nassau_baronie_monument">The Nassau-Baroniemonument</string>
+    <string name="poi_description_nassau_baronie_monument">
+        The Nassau-Baroniemonument is placed in the park Valkenberg, in the heart of Breda. The monument was created and placed
+        to honor and remember the 500-year bond between Breda and the house Oranje-Nassau. The monument is in the style of a castle
+        and has a lion on the top. In the right paw of the lion is a sword in upright position, in the left paw the lion holds a
+        shield. The lion is on top of the monument because it symbolises the power of the Netherlands. Beneath the lion there are
+        three carved out sides of the monument. These carvings show the inauguration of Engelbrecht van Nassau and Johanna van
+        Polanen. The other two sides of the monument show a list of the names of Barons of Breda and a list of names of princes
+        of Breda. Beneath that layer is a ring of 20 civic crests and the names of the municipalities that belonged to the Nassau.
+        The monument was placed in 1905 and was made by the architect Pierre Cuypers, born 1827 and passed away 1921.
+    </string>
 
     <string name="the_light_house">The Light House</string>
-    <string name="poi_description_the_light_house">This is a description for thee POI {insert poi here}</string>
+    <string name="poi_description_the_light_house">
+        The art piece "Lighthouse" is a lighthouse in the park Valkenberg. The lighthouse reaches 18 meters in height, but does
+        not actually work. The Italian artist Aldo Rossi, Born 1931 and passed away 1997, designed a similar art piece seven years
+        prior in 1985. The art piece has been in the park Valkenberg since 1992 and was first revealed by the mayor of that time
+        Ed Nijpels.
+    </string>
 
     <string name="kasteel_van_breda">Kasteel van Breda</string>
-    <string name="poi_description_kasteel_van_breda">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_kasteel_van_breda">
+        The castle of Breda is located in the city center on the castle square. The castle was originally owned by the Duke of Brabant, but was sold in 1353 to the Dutch nobleman Jan II van Polanen (Lord of Breda). The castle was inherited in subsequent years by his granddaughter, Johanna van Polanen, who married the German nobleman Engelbrecht I van Nassau-Siegen in 1403. The castle thus played an important role in uniting the House of Orange-Nassau with the Netherlands. Since 1826, the Castle has been used by the Royal Military Academy (KMA).
+    </string>
 
     <string name="stadhouderspoort">Stadhouderspoort</string>
-    <string name="poi_description_stadhouderspoort">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_stadhouderspoort">
+        The Stadhouderspoort with the coat of arms of King-stadholder William the Fifth, which was added later. Behind you you will see the equestrian statue of King Stadtholder William III. A collection was held for this statue among the citizens of Breda, which raised NLG 47,000 (€ 21,360). The King Stadtholder was of great importance to the old Nassau city of Breda. He completed the renovation of the castle after a century and a half. To the right of the gate is the so-called Blokhuis, the official residence of the governor of the RMA.Willem van Oranje lived there in an adjoining room, but Prince Maurits preferred the water mill as his daily residence. Prince Philips Willem (1554–1618), the eldest and Roman Catholic son of William of Orange, who spent many years in Spanish exile and was buried in Diest, was the first Orange to live in the castle with his wife .
+    </string>
 
     <string name="huis_van_brecht">Huis van Brecht</string>
-    <string name="poi_description_huis_van_brecht">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_huis_van_brecht">
+        Until the sixteenth century Het Hof or the Herberghe of the Lords of Breda was located on this territory. Here were a large number of distinguished houses, where chief courtiers lived and where guests of the Court stayed. One of the most important, in any case also the oldest court houses in Breda, is the House of Brecht (± 1490). It is located on the right side of the Cingelstraat and is probably one of the few distinguished stone buildings that survived the great city fire of 1534. This house has also known changing destinations and functions. It is certain that the house owes its name to the man who had it built, Jonker Godevaart van Brecht. Wealthy merchants and officers lived there, but it also served as a military hospital for many years. After the Second World War, the House of Brecht was used as part of the Royal Military Academy for all kinds of purposes, such as accommodation for the administrative company and the storage of uniforms and equipment, while the tailor shop and the dining rooms of the non-commissioned officers also found their place here. In 1952, the exhibition was set up in the House of Brecht on the occasion of the celebration of Breda 700 years of Oranjestad. In 1988, archaeological research was started that preceded the restoration, which ultimately took more than two years. Since 24 November 1993, the 165th anniversary of the Royal Military Academy, the House of Brecht has housed the KMA library.
+    </string>
 
     <string name="spanjaardsgat">Spanjaardsgat</string>
-    <string name="poi_description_spanjaardsgat">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_spanjaardsgat">
+        On almost every old print of the Bredase Haven you can see the wooden crane with which the ships were unloaded in the Haven until 1864. The name Kraanstraat indicates that function, just as street names such as Visserstraat, Vismarktstraat and Haven already indicate that you have ended up here in the harbor quarter of the city of Breda. In front of you lies the Spanjaardsgat. Count Hendrik de Derde, we cannot ignore him in Breda, also built these two sturdy defensive towers around 1509 to strengthen the castle. The left tower is called "Garnet Tower" and the right one the "Pigeon Tower". The name Duiventoren is derived from the fact that homing pigeons were kept for William of Orange. The two towers now serve as chapels. There is one misunderstanding that we need to talk you out of your head when looking at this attractive piece of Breda history. The persistent story has it that in 1590 the robbery of Adriaan van Bergen with his peat ship would have taken place here. However, historians have shown that these two towers could not have played a role in this event, because there was no water gate here at that time. The Spanjaardsgat, as you look at it now, was only dug out in 1610 in order to provide the inner canal with fresh water. This heroic and so often sung about robbery by Adriaan van Bergen must have taken place further north, namely at a place where the monument Het Vosje was unveiled in 1940, at the current sports grounds of the KMA.
+    </string>
 
     <string name="begin_vismarkt">Begin Vismarkt</string>
-    <string name="poi_description_begin_vismarkt">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_begin_vismarkt">
+        In 1367 there is already a fish market. The skippers from Holland, Zeeland and Flanders came across the river Mark (the main supply route for many centuries) and moored here. The harbour, the weigh house and the vishal (which dates from around 1760) and the old crane have determined the townscape here for many centuries. Until the sixteenth century, this part of the harbor was home to shipyards, but also beer breweries. Part of the "De Witte Leeuw" beer brewery still protrudes above the fish hall. It is the tall building, which now houses a restaurant. The mansion in front of it, on the Haven at no. 20, is the former Brouwershuis. In 1964, the harbor was filled in (with a one-vote majority in the city council!) to make way for the first underground parking garage in the Netherlands. Fortunately, the harbor was restored in 2007, giving Breda a nice part of the city center back. The Koning Willem Alexander Bridge was recently raised, so that a passers-by harbor for pleasure craft has been created on the Prinsenkade.
+    </string>
 
     <string name="begin_havermarkt">Begin Havermarkt</string>
-    <string name="poi_description_begin_havermarkt">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_begin_havermarkt">
+        From the place where the fish market (1725) still indicates that a lively trade in sea fish used to be carried on here, we walk through the Vismarktstraat to the Havermarkt. This market has been the nightlife center of Breda for over fifty years. Despite the name Havermarkt, it must be stated that the grains were not traded here, but on the Grote Markt. Vegetables, eggs and butter were imported and sold here by farmers from the surrounding area. A leather market was also held here in the seventeenth century. The old names of this square: Groenmarkt, Botermarkt and Korenmarkt indicate the former functions a little better. Around 1490, the Havermarkt was constructed as an extension of the Visserstraat. Anyone who grabs a beer on a terrace in the summer on this delightful square will soon discover (even without that beer) that this square offers the best view of the large tower of the Grote Kerk. From this place you can also admire the beautiful wide substructure of that tower. There is a lot to see in this square. On the left, on the corner of Havermarkt and Reigerstraat, you will see the house "De Arent", built around 1490. It now has a seventeenth-century stepped gable and was completely restored in 1966 and converted into a restaurant. Opposite you on the Havermarkt are two more buildings that deserve your attention. Havermarkt number 5 dates from the sixteenth and seventeenth centuries. “De Vogelstruys” at Havermarkt 21 is a remarkable seventeenth-century monument with a high, non-symmetrical stepped gable. This house has also had all kinds of functions and destinations over the centuries. In the seventeenth century it was, among other things, a refuge house for the sisters of Catharinadal. Four copies have been made of the statuette “De Troubadour”, which adorns the end of the Havermarkt. The other three were unveiled in Diest, Orange and Dillenburg, the sister cities of Breda in the Union of Orange Cities, which was established in 1963. A little further in the Visserstraat (no. 31), on the right is a beautiful brick house from the 17th century with remains of a sixteenth century Gothic house, called the Three Moors.
+    </string>
 
     <string name="grote_kerk">Grote Kerk</string>
-    <string name="poi_description_grote_kerk">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_grote_kerk">
+        In 1969 the Torenfeesten were held in Breda to celebrate the conclusion of the restoration period of the Grote Toren, which took 25 years. All this time, the people of Breda, but not only them, have looked at a tower that hid its beauty behind a network of scaffolding. Also between 1995 and 1997, the beauty of the Grote or Onze Lieve Vrouwe Kerk was temporarily hidden behind scaffolding. In almost three years the church was once again restored from the inside out. The restoration was divided into three phases. In the first phase, activities such as hosing clean the outside, repairing the pointing and the stained-glass windows and painting the inside were central. The underfloor heating was installed in the second phase. The tower was also taken care of in this phase. In the third phase, the rest of the church was restored. Research has shown that the construction of the church started in 1410. In the sixteenth century, the church was expanded on the south and north sides with a few chapels, the current vestry and the choir aisle. The tower was completed in 1509. The first stone was laid in 1468, so that the construction period in all took forty years. The spire burned down in 1694. In the following years it was rebuilt, partly with wood that was donated from his forests by King-stadholder William the Third. In 1702 the rooster could be placed on it again. It is clear that the Lords of Breda, especially the Nassaus, have made an important contribution to the genesis of the Grote Kerk. Those Lords of Breda are also buried there. Their tombs are true art-historical showpieces. Prince William of Orange, who was murdered in Delft in 1584, had reserved a final resting place in the Grote Kerk under the beautiful tomb of Count Engelbert the Second. When Willem was shot, Breda was in Spanish hands. As a result, his remains and those of the Princes of Orange who came after him were now interred in Delft. After the iconoclasm of 1566, the originally Catholic church passed into Reformed hands. There are many places of interest in this church: the Prince Chapel (with 16th century frescoes and a magnificent gold-leaf restored ceiling), the choir stalls, the beautiful copper grille, the tombs of the Polanens, Engelbrecht the First, Jan the Fourth and Engelbrecht the Second of Nassau, the beautifully decorated epitaphs in memory of other deceased nobles, the restored organ from 1715, the gravestones you walk over and not to forget the Prinsenbank, where traditionally the Barons and Baronesses of Breda followed the service. Queen Wilhelmina was there when she attended the liberation service in 1945. A few more facts and figures about what we consider to be the most beautiful tower in the Netherlands: it is exactly 97 meters and 9 centimeters high, the first trans (tower entrance) is located at a height of fifty meters and the carillonneur must Climbing 276 steps before he can throw frolic sounds over the city from his cabin.
+    </string>
 
     <string name="het_poortje">Het Poortje</string>
-    <string name="poi_description_het_poortje">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_het_poortje">
+        Striking monuments cannot be discovered at first sight in this shopping street. Or maybe it is. The gate on the left with the sheep heads and with the coat of arms of Breda used to be the back entrance of the meat hall on the Grote Markt. Until January 1, 1995, this building served as accommodation for the Breda Museum. The gate dates from 1614, stonemason Melchior van Herbach made it and you will soon notice that there is some resemblance to the entrance gate on the Grote Markt.
+    </string>
 
     <string name="ridderstraat">Ridderstraat</string>
-    <string name="poi_description_ridderstraat">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_ridderstraat">
+        With a little imagination you can imagine yourself in the Hall of Fame in Los Angeles in the Ridderstraat. While walking over the beautiful copper memorial tiles, you should think of the following story: at the beginning of this century, the carnival was banned by the Catholic Church. When the Kielegatters, as the people of Breda are called during carnival, asked about the return of their carnival party, the answer was invariably: "With St. Juttemis." Fortunately, in 1936 the party hats could be taken out of the closet again. Years later, the idea arose to place a memorial tile for Prince Carnival every year. The shopkeepers from the Ridderstraat, during the Prinsenstraat carnival, have joined forces and jointly financed this project. In 1991, when the Breda carnival celebrated its 55th anniversary, the Foundation for the Promotion of Carnival Celebrations (BCV) donated the remarkable statue of St. Juttemis to the residents of Breda.
+    </string>
 
     <string name="grote_markt">Grote Markt</string>
-    <string name="poi_description_grote_markt">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_grote_markt">
+        “A Burgundian market square” say urban planners and art historians repeat it. Those who drink a drink on the now widened terraces on this mighty square, taste something that tastes of the good life in that name. The Breda people visit the weekly market on this square, they come from a game during market days. But the Grote Markt, whose oldest name is “De Place”, was also the scene of less pleasant things. Executions were also carried out. The tower on the roof of the town hall is a reminder of that. In that tower hung a bell that was rung when executions took place on the scaffold in front of the town hall. During the trial that preceded this, the perpetrator was locked up in the Heeren Gevangen-huys in Molenstraat.
+    </string>
 
     <string name="bevrijdingsmonument_judith">Bevrijdingsmonument</string>
-    <string name="poi_description_bevrijdingsmonument_judith">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_bevrijdingsmonument_judith">
+        In the seventeenth and eighteenth centuries, death sentences were first carried out on the scaffold in front of the town hall. After the execution, the corpses were taken to an area outside the city by the “moosmeier”, the man from the city cleaning department. The executioners sword of the last executioner of Breda from 1692 is still kept in the Breda Museum. On your left you will see the building at no. 19. This was called "Het Lam" or "Het wit Lam", before Prince Philips Willem gave permission in 1614 to house the Vleeshal here. Meat was only allowed to be sold in this place. We have already told a few things in Karrestraat about the gate with the two reclining lions, the coat of arms of Breda and the sheep heads, made by the Breda stonemason Melchior van Herbach. In 1617, the St. Joris cross and foot arch guild was given permission to use the upper floor of the building. Hence the particularly richly decorated pediment (point decoration) with the image of St. George and the dragon and the crossbow above the gate. The pennant under the pediment indicates the year 1772, so that Grote Markt may also be the place for the people of Breda where they keep in their memory the most miserable and most joyful moments from the most recent history of the city. The general evacuation of the population of Breda on May 12, 1940 and the festive liberation parade of the first Polish armored division on November 1, 1944, after the city had been liberated by the Poles on October 29, are extremes in those war memories.
+    </string>
 
     <string name="stadhuis">Stadhuis</string>
-    <string name="poi_description_stadhuis">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_stadhuis">
+        The main entrance to the town hall is located above the landing, which is guarded by two sandstone lions. The town hall, as it looks today, was only built in 1767. They are actually four houses, which were then hidden behind one facade by the master builder of Orange, Philips Willem Schonck. The oldest part is the main hall. As early as the fifteenth century, a so-called “Cleyn raedthuys” was also put into use. In 1898, the rightmost house, the "Lying Hert", was added, which still has a separate facade. Despite the fact that the town hall is only open to the public on a limited basis, we do not want to withhold the following information about its interior. Lady Justice above the main entrance and the wooden statue at the back of the hall indicate that justice was also administered in the town hall in the past. The counter of the former court, once standing against the back wall of the hall, is now kept in the Breda Museum. On the left side of the hall hangs a large copy of Velazquezs famous painting “Las Lanzas”, which depicts the surrender of Breda to the Spanish commander Spinola (1625). The original painting hangs in the Prado in Madrid. The town hall is still used for public council meetings and weddings. Since 1992, the mayor, aldermen and municipal officials have been housed in the new municipal office on Claudius Prinsenlaan. Through the gatehouse to the right of the town hall we walk onto the Stadserf. In the middle of this square, the statue De Turfschipper by Gerarda Rueb recalls the legendary robbery in 1590 by Adriaan van Bergen with his Turfschip.
+    </string>
 
     <string name="antonius_van_paduakerk">Antonius van Paduakerk</string>
-    <string name="poi_description_antonius_van_paduakerk">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_antonius_van_paduakerk">
+        On your right hand side in St. Janstraat is the Antonius Cathedral, a remarkably rich water state church. This church was built in 1836 as the first Catholic church after the clandestine period, which was officially allowed to be built. In 1853 it became the first bishops church (cathedral) of the new diocese in Breda. The seat of the bishop of Breda returned in 2001, after an absence of 32 years, to the Antoniuskerk, which thus again acquired the status of a cathedral. The cathedral has been thoroughly restored in recent years. The three types of antique columns are clearly visible on the facade. From bottom to top: Doric, Ionic and Corinthian columns. The statue above the entrance represents "Religion". Inside, the beautiful wooden pulpit immediately catches the eye. The life of Saint Anthony is depicted in various panels. A little further on are remnants or mere memories of two very important court houses, the Huis Ocrum, which until 1994 housed the Art Academy St. Joost, and the Huis Hersbeeck, now a presbytery. In 1667 the English envoys who took part in the peace negotiations of Breda stayed in both houses. The representatives of the Council of State used the building (no. 16) when they were on business trips in the city. King Lodewijk Napoleon also stayed there. The bay window of this building had a controlling function. This way the pastor could keep a close eye on who went to church. Huis Ocrum (no. 18) was a Roman orphanage from 1848 to 1952. You can still see this in the cobblestones that have been applied to the nineteenth-century facade of the academy building. The red color of this house (applied after the restoration) will fade to gray-red over the years.
+    </string>
 
     <string name="bieb_nieuwe_veste">Bibliotheek-nieuwe Veste</string>
-    <string name="poi_description_bieb_nieuwe_veste">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_bieb_nieuwe_veste">
+        In the Molenstraat you will see the library on the right, designed by architect Herman Hertzberger. Because the Molenstraat is quite narrow, the architect has created space by giving the library sloping walls. At the place of the library (on the corner with the Oude Vest) there used to be a gate. Above this gate was Heerens Gevangenhuys, where the most severely punished were housed. The place is still marked with pebbles in the asphalt. The asphalt road is the site of the old city moat.
+    </string>
 
     <string name="kloosterkazerne">Kloosterkazerne</string>
-    <string name="poi_description_kloosterkazerne">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_kloosterkazerne">
+        On this corner you will see a major monument from the history of Breda on the other side: the Kloosterkazerne. It is part of the former sister monastery St. Catharinadal, which was located here since 1295. The current building dates from 1504. In 1645 the Norbertines sisters were expelled from Breda to Oosterhout.
+    </string>
 
     <string name="chasse_theater">Chassé theater</string>
-    <string name="poi_description_chasse_theater">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_chasse_theater">
+        This complex became famous because it was converted into Illustere School, a higher education institute, which was created on the initiative of Frederik Hendrik. Due to lack of interest, the school was closed in 1669. In 1814 the remaining buildings were finally converted into barracks. In 2003, this barracks was completely restored by Holland Casino Breda. The Holland Casino has a small museum about the history of the building (free entrance at the front). Next to the Kloosterkazerne you will see the Chassé Theater. This theater was also designed by Herman Hertzberger, the designer of the library. The name Chassé comes from General Chassé, known for the Battle of Waterloo and the defense of the Citadel of Antwerp. He is buried in the Ginneken district of Breda. Under the undulating roof are three theaters and three cinemas, two theater towers and a large foyer. When designing the roof, the architect was inspired by a sculpture of a reclining woman, called "femme couchée qui rêve" by Alberto Giacometti. From the outside, the building is sober white/grey with lots of greenish glass. Inside, the color red predominates. Very cleverly, Hertzberger has brought in the end of the adjacent barracks building from the 19th century. The Chassé Theater and Holland Casino have a shared entrance hall.
+    </string>
 
     <string name="beyerd">Beyerd</string>
-    <string name="poi_description_beyerd">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_beyerd">
+        Before 1246 there was a guest house at number 22, which stood outside and then inside the city walls until 1530. The building was called the Beyerd (or beyaert) which originally means infirmary, common dining room in a guest house or passer-bys house. The institute has had several functions. At first it was a guest house, where the sick and poor could be cared for and assisted. In the sixteenth century it served as a plague house and it also served as a “Dolhuis” (madhouse). Until 1955 it was an Old Mens House. People who were admitted to the Gasthuys often had to pay a considerable sum of money. And as far as their health allowed, they had to work in their own bakery, brewery or vegetable garden to provide for themselves. Although the guesthouse had its own brewery, those who indulged in booze or "toeback" forfeited their meal for a certain time, according to the strict regulations.
+    </string>
 
     <string name="gasthuispoort">Gasthuispoort</string>
-    <string name="poi_description_gasthuispoort">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_gasthuispoort">
+        On the sidewalk, but also in the building on the left, you will see an indication of the former Gasthuispoort. This gate took its name from the Gasthuis (now MOTI).
+    </string>
 
     <string name="willem_merkx_tuin">Willem Merkx tuin</string>
-    <string name="poi_description_willem_merkx_tuin">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_willem_merkx_tuin">
+        The St. Annastraat, built in 1518, has been called that since 1519. Before that time, the street was called Korte Nieuwstraat and it was also referred to as the Hoendermarkt, because chickens (fowl) were traded in this street. The name St. Annastraat refers to the Anna devotion, which was at its peak around 1500. The St. Annastraat was probably created because the Lords of Breda van het Kasteel wanted direct access from the Molenpoort to the Valkenberg for their horses and carriages. The gate on your right gives access to the Willem Merkxtuin. In 1984, Ir.Willem Merkx took his leave as mayor of Breda. His wish to turn the vacant lot behind the patrician houses on Catharinastraat into a beautiful garden was fulfilled. As a farewell gift, the people of Breda presented their mayor with this beautiful sculpture garden. From the W. Merkxtuin you have a beautiful view of the back of the patrician houses in the Catharinastraat. The garden is open to the public free of charge between 9 a.m. and 5 p.m.
+    </string>
 
     <string name="begijnhof">Begijnhof</string>
-    <string name="poi_description_begijnhof">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_begijnhof">
+        The Begijnhof, the most rustic spot in Breda city center, owes its existence, at least at this location, to the Lords of Breda. The history of the Begijnhof in Breda goes back to 1267. The Begijnhof was closer to the Castle until 1531, but in that year Henry the Third of Nassau donated this piece of land in the Valkenberg, along what used to be called the Katerstraat, to pious women. Hendrik needed the land on which the Begijnhof used to be located for the renovation of his castle. The beguines started using the Sint Wendelinuskapel, located on the street, which had just been completed and dates from 1530. In 1590 and again after 1648, the chapel was made available to the Walloon community and it still is. When the city was surrendered to the State troops, a remarkable agreement was made that the beguines and their pastors could also be buried in this church in the future. That was the case until the Beguines were given their own burial space in the Roman Catholic Church in 1830. Zuylen cemetery. In the Walloon church there are still tombstones of beguines and pastors from after 1648. They held their services in a few converted houses, which were situated in the courtyard next to the chapel. The beguines again got their own church in 1836/37. This is located at the back of the Begijnhof. Despite all the changes of occupiers during the Eighty Years War, the Begijnhof continued to exist, because it enjoyed the special protection of the Princes of Orange. That bond continued to exist and every time a member of the House of Orange visited the city, a reception in the house of "miss mistress" and eating the saffron yellow beguine rice were traditionally on the program. This tradition was broken on Queen's Day 1981. The Beguinage was inhabited by Beguines for more than 700 years, until the last of them, Sister Frijters, died on Good Friday 1990. The life and works of the Beguines are still remembered in the Beguinage Museum at number 29. The garden of the Begijnhof is a herb garden. You will find hundreds of herbs. At the front right of the herb garden you will find a statue by Hans Bayens, depicting two beguines. In the 1960s, the Begijnhof was expanded with a second courtyard. There has been a statue there for several years, representing Johanna van Polanen, founder of the Wendelinus Chapel and wife of Count Engelbrecht, the first 'Bredase' Nassau. In 1980 the court was provided with a new gatehouse. This roughly restored the old situation that had changed in 1953. Above the gate in the Catharinastraat and in the facade of the church are statues of the patroness of the beguines, Saint Catherine with the wheel. Catharina is broken because she did not want to marry Emperor Maxentius. She had dedicated her life to God. The Breda Cultural Preservation Foundation is located in the gatehouse, including the Miniature Cabinet by artist Tine Merkx.
+    </string>
 
     <string name="ruiterstandbeeld_stadhouder_willem_3">Ruiterstandbeeld stadhouder Willem III</string>
-    <string name="poi_description_ruiterstandbeeld_stadhouder_willem_3">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_ruiterstandbeeld_stadhouder_willem_3">
+        In 1902, a national committee was established to erect a statue to William III in the Netherlands. The choice for placement in Breda was due to the cities close ties with the House of Orange-Nassau. The monument is located on the Kasteelplein in the center of Breda and is within walking distance of the Castle of Breda and the Begijnhof. The statue was unveiled on October 8, 1921 and was designed by Toon Dupuis, who was born in 1877 and died in 1937.
+    </string>
 
     <string name="station_breda">Station Breda</string>
-    <string name="poi_description_station_breda">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_station_breda">
+        Breda Station has been on the north side of the city center since 1863. The previous Breda station had to be demolished because the station fell under the restrictions of the establishment law. The first Breda station was inoperative from 1855 to 1968. The well-known station of Breda, which is still standing, was given a makeover by renovating the inside and outside. The architect Koen van Velsen has been named the architect with the best building in 2017 for this renovation.
+    </string>
 
     <string name="avans_hogeschool">Avans Hogeschool</string>
-    <string name="poi_description_avans_hogeschool">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_avans_hogeschool">
+        Avans University of Applied Sciences is a training organization that provides higher education at HBO level. The school has four main buildings on Breda; on the lovensdijkstraat are the buildings LA (Lovensdijkstraat 61), LC (Lovensdijkstraat 61 "The Villa") and LD (Lovensdijkstraat 63). These three buildings were thoroughly renovated in the period 2013 - 2015, giving them a much more modern look. The fourth building is located on the Hogeschoollaan (Hogeschoollaan 1), this building was opened in 2008 by Queen Maxima (still Princess Maxima at the time). The Avans University of Applied Sciences training organization has also been ranked number 1 as the best university of applied sciences in the Netherlands 11 times in 13 years.
+    </string>
 
     <string name="vlaszak">Vlaszak</string>
-    <string name="poi_description_vlaszak">This is a description for the POI {insert poi here}</string>
+    <string name="poi_description_vlaszak">
+        The vlaszak bus stop is a stop on the way to the avans campus. From Breda station to the avans campus, the fastest route is always via the Vlaszak bus stop.
+    </string>
 
     <!-- Route Gedeelte -->
     <string name="historische_km">Historic Kilometer</string>
     <string name="route_description_historische_kilometer">This is a description for the POI {insert poi here}</string>
 
     <string name="de_route">The Route of awesomeness</string>
-    <string name="route_description_de_route">test description for testing the test of the test of values</string>
+    <string name="route_description_de_route">This is our self-made route. This route passes places that are most important for the daily Avans student.</string>
     <string name="geofence_desc">You have reached the next POI, would you like to read more about it?</string>
     <string name="close">close</string>
     <string name="read_more">read more</string>
