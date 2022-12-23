@@ -186,8 +186,11 @@
     <string name="route_description_historische_kilometer">This is a description for the POI {insert poi here}</string>
 
     <string name="de_route">The Route of awesomeness</string>
+
+    <!-- Other -->
     <string name="route_description_de_route">This is our self-made route. This route passes places that are most important for the daily Avans student.</string>
     <string name="geofence_desc">You have reached the next POI, would you like to read more about it?</string>
     <string name="close">close</string>
     <string name="read_more">read more</string>
+    <string name="recenter">recenter</string>
 </resources>

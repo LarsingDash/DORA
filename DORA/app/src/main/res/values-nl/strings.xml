@@ -186,8 +186,11 @@
 
     <string name="de_route">De route van coolheid</string>
     <string name="route_description_de_route">Dit is onze zelfgemaakte route. Deze route komt langs plekken die voor de dagelijkse Avans student erg belangrijk zijn.</string>
+
+    <!-- Other -->
     <string name="geofence_title">Gefeliciteerd!</string>
     <string name="geofence_desc">Je hebt de volgende bezienswaardigheid bereikt, wil je er meer over lezen?</string>
     <string name="close">sluiten</string>
     <string name="read_more">meer lezen</string>
+    <string name="recenter">hercentreren</string>
 </resources>

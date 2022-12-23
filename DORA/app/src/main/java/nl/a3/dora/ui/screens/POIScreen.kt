@@ -1,7 +1,11 @@
 package nl.a3.dora.ui.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import nl.a3.dora.MainActivity
 import nl.a3.dora.model.POI
@@ -20,12 +24,17 @@ fun POIScreen(
     var openedPOI: POI? by remember { mutableStateOf(null) }
     var preOpenedPoiID by remember { mutableStateOf(poiID) }
 
-    LazyColumn {
+    LazyColumn(
+        Modifier
+            .background(Color(240, 240, 240))
+            .fillMaxHeight()
+    ) {
         items(list.size) { index ->
             val poi = list[index]
             var foldout = false
             if (openedPOI != null && openedPOI == poi) foldout = true
-            if (preOpenedPoiID != null && poi.poiID != null && preOpenedPoiID == poi.poiID ) foldout = true
+            if (preOpenedPoiID != null && poi.poiID != null && preOpenedPoiID == poi.poiID) foldout =
+                true
             POIItem(
                 poi = poi,
                 isFoldedOut = foldout,

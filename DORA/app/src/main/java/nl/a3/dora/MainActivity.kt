@@ -3,6 +3,7 @@ package nl.a3.dora
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Looper
@@ -14,6 +15,7 @@ import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.gestures.Orientation
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
@@ -48,6 +50,9 @@ class MainActivity : ComponentActivity() {
 
         val routeViewModel: RouteViewModel by viewModels()
         Companion.routeViewModel = routeViewModel
+
+        //Orientation lock
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //GPS setups
         setupUserLocation(this)

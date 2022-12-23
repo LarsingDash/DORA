@@ -1,8 +1,12 @@
 package nl.a3.dora.ui.screens
 
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import nl.a3.dora.MainActivity
@@ -27,7 +31,11 @@ fun HomeScreen(
     var openedRoute: Route? by remember { mutableStateOf(null) }
     val showDialog = remember { mutableStateOf(0) }
 
-    LazyColumn {
+    LazyColumn(
+        Modifier
+            .background(Color(240, 240, 240))
+            .fillMaxHeight()
+    ) {
         items(routeStateList.value.size) { index ->
             val route = routeStateList.value[index]
             var foldout = false

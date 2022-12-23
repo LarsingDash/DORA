@@ -30,10 +30,7 @@ import nl.a3.dora.ui.screens.HelpScreen
 import nl.a3.dora.ui.screens.HomeScreen
 import nl.a3.dora.ui.screens.MapScreen
 import nl.a3.dora.ui.screens.POIScreen
-import nl.a3.dora.ui.theme.iconSelected
-import nl.a3.dora.ui.theme.iconUnselected
-import nl.a3.dora.ui.theme.navBarColor1
-import nl.a3.dora.ui.theme.navBarColor2
+import nl.a3.dora.ui.theme.*
 import nl.a3.dora.viewmodel.RouteViewModel
 
 enum class Pages(val title: String) {
@@ -103,7 +100,12 @@ fun DORA(
                 MapScreen(navController, currentPage, poiID)
                 BackHandler(true) {
                     if (routeID == -1)
-                        currentActivity.finish()
+                        if (poiID == -1) {
+                            currentActivity.finish()
+                        } else {
+                            navController.popBackStack()
+                            currentPage.value = Pages.POI.title
+                        }
                     else {
                         navController.popBackStack()
                         currentPage.value = Pages.Home.title

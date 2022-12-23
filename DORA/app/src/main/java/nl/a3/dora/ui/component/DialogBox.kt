@@ -8,9 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -74,20 +72,19 @@ fun DialogBox(
                         Button(
                             modifier = Modifier
                                 .padding(innerPadding / 2, 0.dp)
-                                .weight(1 / buttons.size.toFloat())
-                                .clip(RoundedCornerShape(25.dp)),
+                                .weight(1 / buttons.size.toFloat()),
                             onClick = {
                                 showDialog.value = 0
                                 set.value.second.invoke()
                             },
                             colors = buttonColor,
-                            shape = RectangleShape,
+                            shape = RoundedCornerShape(25.dp),
                         ) {
-
                             Text(
                                 text = set.key,
                                 style = MaterialTheme.typography.body1,
                                 color = textColor,
+                                fontWeight = FontWeight.Bold
                             )
                         }
                     }
