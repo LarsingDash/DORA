@@ -100,7 +100,12 @@ fun DORA(
                 MapScreen(navController, currentPage, poiID)
                 BackHandler(true) {
                     if (routeID == -1)
-                        currentActivity.finish()
+                        if (poiID == -1) {
+                            currentActivity.finish()
+                        } else {
+                            navController.popBackStack()
+                            currentPage.value = Pages.POI.title
+                        }
                     else {
                         navController.popBackStack()
                         currentPage.value = Pages.Home.title

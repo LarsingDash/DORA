@@ -71,7 +71,7 @@ private fun POIDescriptionItem(
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-                navController.navigate(Pages.Map.title + "/1/${poi.poiID}")
+                navController.navigate(Pages.Map.title + "/-1/${poi.poiID}")
                 currentPage.value = Pages.Map.title
             }
     ) {
