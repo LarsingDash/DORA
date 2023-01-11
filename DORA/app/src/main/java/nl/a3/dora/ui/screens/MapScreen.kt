@@ -4,8 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -18,7 +18,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -61,6 +63,7 @@ fun MapScreen(
         mutableStateOf(0)
     }
 
+
     OSMMap(navController, currentPage)
     Row(
         Modifier
@@ -92,6 +95,24 @@ fun MapScreen(
                 fontWeight = FontWeight.Black,
                 fontSize = 20.sp
             )
+        }
+    }
+
+    Row(
+        Modifier
+            .padding(0.dp, 10.dp, 0.dp, 0.dp)
+            .fillMaxHeight(),
+        verticalAlignment = Alignment.Bottom
+    ){
+        Surface(
+            color= Color.DarkGray.copy(alpha = 0.6f),
+            modifier = Modifier.padding(7.dp)
+        ) {
+            Text(text = "Powered by OpenStreetMaps©",
+                fontSize = 13.sp,
+                fontStyle = FontStyle.Italic,
+                color = Color.White
+                )
         }
     }
 
